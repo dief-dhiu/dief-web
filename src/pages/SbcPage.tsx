@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { PageId, ConsultationRequest } from '../types';
-import { 
-  Briefcase, 
-  ShieldAlert, 
-  CheckCircle2, 
-  Send, 
-  Building, 
-  Users, 
-  FileText, 
-  Scale, 
+import {
+  Briefcase,
+  ShieldAlert,
+  CheckCircle2,
+  Send,
+  Building,
+  Users,
+  FileText,
+  Scale,
   Award,
   Sparkles,
   HelpCircle,
@@ -69,7 +69,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
 
   return (
     <div className="space-y-16 lg:space-y-24 py-8">
-      
+
       {/* 1. HERO & INTRODUCTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
@@ -77,7 +77,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
 
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-4">
-              
+
               <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gold/20 text-gold text-xs font-semibold border border-gold/30">
                 <Briefcase className="w-3.5 h-3.5" />
                 <span>Department Flagship Initiative 02</span>
@@ -88,9 +88,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
                 <span className="italic text-gold">Shariah Business Consultancy</span>
               </h1>
 
-              <div className="font-arabic text-lg sm:text-xl text-sage-light" dir="rtl">
-                استشارات الأعمال الشرعية — تأصيل المعاملات وبناء المؤسسات الأخلاقية
-              </div>
+
 
               <p className="text-sm sm:text-base text-sage-subtle leading-relaxed max-w-2xl">
                 Providing Shariah-oriented business guidance, contract evaluation, and practical ethical solutions for contemporary enterprises striving for commercial excellence under authentic Islamic principles.
@@ -141,7 +139,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
       {/* 2. VISION AND MISSION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          
+
           <div className="bg-white p-8 rounded-2xl border border-forest/10 shadow-soft space-y-3">
             <span className="text-xs font-bold text-gold-dark uppercase tracking-wider">SBC Vision</span>
             <h3 className="text-2xl font-editorial font-bold text-forest">Cultivating Ethical Commerce</h3>
@@ -176,7 +174,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          
+
           <div className="bg-white p-6 rounded-2xl border border-forest/10 shadow-soft space-y-3">
             <div className="font-arabic text-xl text-gold-dark font-bold">الأمانة</div>
             <h4 className="font-editorial text-lg font-bold text-forest">Amanah (Fiduciary Trust)</h4>
@@ -233,7 +231,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          
+
           <div className="bg-white p-6 rounded-2xl border border-forest/10 shadow-soft space-y-3 flex flex-col justify-between">
             <div className="space-y-3">
               <div className="w-10 h-10 rounded-xl bg-forest/10 text-forest flex items-center justify-center">
@@ -282,46 +280,11 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
         </div>
       </section>
 
-      {/* 7. CASE STUDIES & RESEARCH HIGHLIGHTS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-surface-lightGreen/60 rounded-3xl p-8 sm:p-12 border border-forest/10 space-y-6">
-          <div className="max-w-2xl space-y-2">
-            <span className="text-xs font-bold text-gold-dark uppercase tracking-wider">
-              Empirical Applications
-            </span>
-            <h3 className="text-2xl font-editorial font-bold text-forest">
-              Case Studies &amp; Research Briefs
-            </h3>
-            <p className="text-xs text-charcoal-muted">
-              Representative examples of commercial problem-solving addressed by the department's consultancy fellows.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white p-5 rounded-2xl border border-gray-200 space-y-2">
-              <span className="text-[10px] font-bold bg-gold/15 text-gold-dark px-2 py-0.5 rounded">Case Study A</span>
-              <h4 className="font-editorial text-base font-bold text-forest">Agrarian Working Capital via Bay' al-Salam</h4>
-              <p className="text-xs text-charcoal-muted leading-relaxed">
-                Assisted an organic spices producer in structuring a forward-sale advance procurement mechanism, enabling farmers to obtain seasonal pre-harvest liquidity without interest loans.
-              </p>
-            </div>
-
-            <div className="bg-white p-5 rounded-2xl border border-gray-200 space-y-2">
-              <span className="text-[10px] font-bold bg-gold/15 text-gold-dark px-2 py-0.5 rounded">Case Study B</span>
-              <h4 className="font-editorial text-base font-bold text-forest">Employee Equity Incentive via Diminishing Musharakah</h4>
-              <p className="text-xs text-charcoal-muted leading-relaxed">
-                Advised a software development startup on structuring an authentic partnership buy-out vesting schedule that avoids non-compliant speculative options.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* 8. REQUEST A CONSULTATION FORM */}
       <section id="consultation-form" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-3xl border border-forest/15 shadow-elevated p-8 sm:p-12 lg:p-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            
+
             {/* Left Description */}
             <div className="lg:col-span-5 space-y-4">
               <div className="inline-flex items-center space-x-2 text-xs font-bold text-gold-dark uppercase tracking-wider">
@@ -352,8 +315,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
 
               <div className="p-4 rounded-xl bg-ivory border border-forest/10 text-xs text-charcoal-muted">
                 <strong className="text-forest block mb-1">Direct Coordination Desk:</strong>
-                Email: sbc.consult@dhiu.in [Placeholder]<br />
-                Office: SBC Secretariat, Room 108, Academic Block
+                Email: <a href="mailto:dief@dhiu.in" className="hover:underline text-forest font-semibold">dief@dhiu.in</a><br />
               </div>
             </div>
 
@@ -401,9 +363,8 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="e.g. Dr. Salman Faris"
-                        className={`w-full px-3.5 py-2.5 text-xs bg-white border rounded-xl focus:border-forest focus:outline-none ${
-                          formErrors.name ? 'border-red-500' : 'border-gray-300'
-                        }`}
+                        className={`w-full px-3.5 py-2.5 text-xs bg-white border rounded-xl focus:border-forest focus:outline-none ${formErrors.name ? 'border-red-500' : 'border-gray-300'
+                          }`}
                       />
                       {formErrors.name && (
                         <p className="text-[10px] text-red-600 mt-1">{formErrors.name}</p>
@@ -419,9 +380,8 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="e.g. salman@company.com"
-                        className={`w-full px-3.5 py-2.5 text-xs bg-white border rounded-xl focus:border-forest focus:outline-none ${
-                          formErrors.email ? 'border-red-500' : 'border-gray-300'
-                        }`}
+                        className={`w-full px-3.5 py-2.5 text-xs bg-white border rounded-xl focus:border-forest focus:outline-none ${formErrors.email ? 'border-red-500' : 'border-gray-300'
+                          }`}
                       />
                       {formErrors.email && (
                         <p className="text-[10px] text-red-600 mt-1">{formErrors.email}</p>
@@ -439,9 +399,8 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
                         value={organization}
                         onChange={(e) => setOrganization(e.target.value)}
                         placeholder="e.g. Crescent Global Ventures"
-                        className={`w-full px-3.5 py-2.5 text-xs bg-white border rounded-xl focus:border-forest focus:outline-none ${
-                          formErrors.organization ? 'border-red-500' : 'border-gray-300'
-                        }`}
+                        className={`w-full px-3.5 py-2.5 text-xs bg-white border rounded-xl focus:border-forest focus:outline-none ${formErrors.organization ? 'border-red-500' : 'border-gray-300'
+                          }`}
                       />
                       {formErrors.organization && (
                         <p className="text-[10px] text-red-600 mt-1">{formErrors.organization}</p>
@@ -492,9 +451,8 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder="Please summarize your commercial model, current draft clauses or specific questions you need our advisory team to examine..."
-                      className={`w-full px-3.5 py-2.5 text-xs bg-white border rounded-xl focus:border-forest focus:outline-none ${
-                        formErrors.message ? 'border-red-500' : 'border-gray-300'
-                      }`}
+                      className={`w-full px-3.5 py-2.5 text-xs bg-white border rounded-xl focus:border-forest focus:outline-none ${formErrors.message ? 'border-red-500' : 'border-gray-300'
+                        }`}
                     ></textarea>
                     {formErrors.message && (
                       <p className="text-[10px] text-red-600 mt-1">{formErrors.message}</p>

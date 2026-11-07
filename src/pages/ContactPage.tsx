@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { PageId, ContactMessage } from '../types';
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Clock, 
-  Send, 
-  CheckCircle2, 
-  Building2, 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  Send,
+  CheckCircle2,
+  Building2,
   HelpCircle,
   ExternalLink,
   Edit3
@@ -63,7 +63,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
   return (
     <div className="space-y-16 py-8">
-      
+
       {/* HEADER BANNER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
@@ -79,9 +79,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               Contact the Department
             </h1>
 
-            <div className="font-arabic text-lg sm:text-xl text-sage-light" dir="rtl">
-              تواصل مع قسم الاقتصاد والتمويل الإسلامي
-            </div>
+
 
             <p className="text-sm sm:text-base text-sage-subtle leading-relaxed">
               We welcome academic correspondence, research partnership queries, visiting scholar appointments, student enquiries, and media requests.
@@ -93,10 +91,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({
       {/* DIRECTORY & WORKING FORM */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          
+
           {/* Left Column: Official Contact Information & Placeholders */}
           <div className="lg:col-span-5 space-y-6">
-            
+
             <div className="bg-white rounded-2xl p-6 sm:p-8 border border-forest/10 shadow-soft space-y-6">
               <div className="border-b border-gray-100 pb-4">
                 <span className="text-xs font-bold text-gold-dark uppercase tracking-wider block">
@@ -105,14 +103,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 <h3 className="font-editorial text-2xl font-bold text-forest mt-1">
                   Department Information
                 </h3>
-                <div className="inline-flex items-center space-x-1.5 text-[11px] text-charcoal-muted mt-1 bg-ivory px-2 py-0.5 rounded border border-gray-200">
-                  <Edit3 className="w-3 h-3 text-gold" />
-                  <span>Editable Directory Placeholders</span>
-                </div>
+
               </div>
 
               <div className="space-y-4 text-xs text-charcoal-light">
-                
+
                 <div className="flex items-start space-x-3">
                   <MapPin className="w-5 h-5 text-gold shrink-0 mt-0.5" />
                   <div>
@@ -127,7 +122,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                   <Mail className="w-5 h-5 text-gold shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-forest block mb-0.5">Official Email:</strong>
-                    <div className="font-mono text-forest font-semibold">islamiceco@darulhudaiu.ac.in</div>
+                    <div>
+                      <a href="mailto:dief@dhiu.in" className="font-mono text-forest font-semibold hover:underline">
+                        dief@dhiu.in
+                      </a>
+                    </div>
                     <div className="text-[11px] text-charcoal-muted mt-0.5">Web: www.darulhuda.in</div>
                   </div>
                 </div>
@@ -138,7 +137,6 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                     <strong className="text-forest block mb-0.5">Contact Directory:</strong>
                     <div>HOD (Anas Hudawi Nellikkuth): <span className="font-mono font-semibold text-forest">+91 81295 95547</span></div>
                     <div>Dean, Kulliyya of Sharia (Dr. K.P. Jafar Hudawi Kolathur): <span className="font-mono font-semibold text-forest">+91 99462 92164</span></div>
-                    <div className="text-[11px] text-charcoal-muted mt-0.5">Office: +91-XXXXXXXXXX</div>
                   </div>
                 </div>
 
@@ -223,7 +221,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                     Send a Direct Message
                   </h3>
                   <p className="text-xs text-charcoal-muted mt-1">
-                    Please complete the form below. Authorized department secretariat members will attend to your request promptly.
+                    Please complete the form below. Authorized department members will attend to your request promptly.
                   </p>
                 </div>
 
@@ -237,9 +235,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="e.g. Dr. Rashid Ahmad"
-                      className={`w-full px-3.5 py-2.5 text-xs bg-ivory/40 border rounded-xl focus:border-forest focus:outline-none ${
-                        formErrors.name ? 'border-red-500' : 'border-gray-300'
-                      }`}
+                      className={`w-full px-3.5 py-2.5 text-xs bg-ivory/40 border rounded-xl focus:border-forest focus:outline-none ${formErrors.name ? 'border-red-500' : 'border-gray-300'
+                        }`}
                     />
                     {formErrors.name && (
                       <p className="text-[10px] text-red-600 mt-1">{formErrors.name}</p>
@@ -255,9 +252,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="e.g. rashid@example.com"
-                      className={`w-full px-3.5 py-2.5 text-xs bg-ivory/40 border rounded-xl focus:border-forest focus:outline-none ${
-                        formErrors.email ? 'border-red-500' : 'border-gray-300'
-                      }`}
+                      className={`w-full px-3.5 py-2.5 text-xs bg-ivory/40 border rounded-xl focus:border-forest focus:outline-none ${formErrors.email ? 'border-red-500' : 'border-gray-300'
+                        }`}
                     />
                     {formErrors.email && (
                       <p className="text-[10px] text-red-600 mt-1">{formErrors.email}</p>
@@ -293,9 +289,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       value={subject}
                       onChange={(e) => setSubject(e.target.value)}
                       placeholder="e.g. Request for Postgraduate Syllabus"
-                      className={`w-full px-3.5 py-2.5 text-xs bg-ivory/40 border rounded-xl focus:border-forest focus:outline-none ${
-                        formErrors.subject ? 'border-red-500' : 'border-gray-300'
-                      }`}
+                      className={`w-full px-3.5 py-2.5 text-xs bg-ivory/40 border rounded-xl focus:border-forest focus:outline-none ${formErrors.subject ? 'border-red-500' : 'border-gray-300'
+                        }`}
                     />
                     {formErrors.subject && (
                       <p className="text-[10px] text-red-600 mt-1">{formErrors.subject}</p>
@@ -312,9 +307,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Please specify details regarding your inquiry, institutional background, or required materials..."
-                    className={`w-full px-3.5 py-2.5 text-xs bg-ivory/40 border rounded-xl focus:border-forest focus:outline-none ${
-                      formErrors.message ? 'border-red-500' : 'border-gray-300'
-                    }`}
+                    className={`w-full px-3.5 py-2.5 text-xs bg-ivory/40 border rounded-xl focus:border-forest focus:outline-none ${formErrors.message ? 'border-red-500' : 'border-gray-300'
+                      }`}
                   ></textarea>
                   {formErrors.message && (
                     <p className="text-[10px] text-red-600 mt-1">{formErrors.message}</p>
@@ -326,7 +320,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                   className="w-full py-3.5 bg-forest hover:bg-emerald-deep text-white font-semibold text-xs sm:text-sm rounded-xl shadow transition flex items-center justify-center space-x-2"
                 >
                   <Send className="w-4 h-4 text-gold" />
-                  <span>Send Message to Secretariat</span>
+                  <span>Send Message </span>
                 </button>
               </form>
             )}

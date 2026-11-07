@@ -5,7 +5,6 @@ export type PageId =
   | 'sbc'
   | 'tamweel'
   | 'activities'
-  | 'resources'
   | 'contact';
 
 export interface EventItem {
@@ -99,3 +98,8 @@ export interface FacultyMember {
   emailPlaceholder: string;
   phone?: string;
 }
+
+export * from './auth';
+export * from './journal';
+export * from './activity';
+export * from './faculty';

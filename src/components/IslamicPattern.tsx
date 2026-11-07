@@ -35,21 +35,20 @@ export const IslamicPatternBand: React.FC<{ className?: string }> = ({ className
 );
 
 export const CrestLogo: React.FC<{ size?: number; className?: string }> = ({ size = 48, className = "" }) => (
-  <div className={`relative flex items-center justify-center rounded-xl bg-forest border border-gold/40 shadow-soft p-2 ${className}`}>
-    <svg width={size} height={size} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Outer decorative diamond */}
-      <rect x="15" y="15" width="70" height="70" rx="6" stroke="#B69A5A" strokeWidth="2.5" transform="rotate(45 50 50)" />
-      <rect x="20" y="20" width="60" height="60" rx="4" fill="#174C38" />
-      {/* Scale of Justice & Book Motif */}
-      <path d="M50 26V74" stroke="#B69A5A" strokeWidth="3" strokeLinecap="round" />
-      <path d="M32 38H68" stroke="#B69A5A" strokeWidth="2.5" strokeLinecap="round" />
-      {/* Left scale pan */}
-      <path d="M32 38L25 50H39L32 38Z" fill="#B69A5A" fillOpacity="0.7" />
-      {/* Right scale pan */}
-      <path d="M68 38L61 50H75L68 38Z" fill="#B69A5A" fillOpacity="0.7" />
-      {/* Base Open Book */}
-      <path d="M34 68C42 64 50 67 50 67C50 67 58 64 66 68V76C58 72 50 75 50 75C50 75 42 72 34 76V68Z" fill="#FFFFFF" fillOpacity="0.9" />
-      <circle cx="50" cy="22" r="3.5" fill="#B69A5A" />
-    </svg>
+  <div 
+    style={{ width: size, height: size }}
+    className={`relative flex items-center justify-center rounded-xl bg-white border border-gold/50 shadow-soft p-1.5 overflow-hidden shrink-0 group ${className}`}
+  >
+    {/* Subtle geometric square pattern accents */}
+    <div className="absolute inset-0 pattern-light opacity-30 pointer-events-none"></div>
+    <div className="absolute top-0.5 left-0.5 w-1.5 h-1.5 border-t border-l border-gold/70"></div>
+    <div className="absolute top-0.5 right-0.5 w-1.5 h-1.5 border-t border-r border-gold/70"></div>
+    <div className="absolute bottom-0.5 left-0.5 w-1.5 h-1.5 border-b border-l border-gold/70"></div>
+    <div className="absolute bottom-0.5 right-0.5 w-1.5 h-1.5 border-b border-r border-gold/70"></div>
+    <img 
+      src="/dief-logo.png" 
+      alt="Department of Islamic Economics and Finance Official Logo" 
+      className="w-full h-full object-contain relative z-10 transition-transform duration-200 group-hover:scale-105"
+    />
   </div>
 );

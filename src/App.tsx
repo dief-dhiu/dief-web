@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { 
+  BrowserRouter, 
+  Routes, 
+  Route, 
+  Navigate, 
+  useNavigate, 
+  useLocation 
+} from 'react-router-dom';
+import { 
   PageId, 
   EventItem, 
   JournalArticle, 
@@ -12,17 +20,29 @@ import {
 import { 
   INITIAL_FACULTY, 
   INITIAL_EVENTS, 
-  INITIAL_ARTICLES, 
   INITIAL_RESOURCES, 
   INITIAL_CONSULTATIONS, 
   INITIAL_SUBMISSIONS, 
   INITIAL_MESSAGES 
 } from './data/mockData';
+import { AuthProvider } from './contexts/AuthContext';
+import { ProtectedRoute } from './components/ProtectedRoute';
+import { AdminLogin } from './pages/admin/AdminLogin';
+import { AdminLayout } from './pages/admin/AdminLayout';
+import { AdminDashboard } from './pages/admin/AdminDashboard';
+import { AdminSectionPlaceholder } from './pages/admin/AdminSectionPlaceholder';
+import { AdminSettings } from './pages/admin/AdminSettings';
+import { JournalCMS } from './pages/admin/journal/JournalCMS';
+import { ActivitiesCMS } from './pages/admin/activities/ActivitiesCMS';
+import { FacultyCMS } from './pages/admin/faculty/FacultyCMS';
+
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { SearchModal } from './components/SearchModal';
 import { AdminDrawer } from './components/AdminDrawer';
 import { NotificationToast, ToastData } from './components/NotificationToast';
+import { ScrollToTop } from './components/ScrollToTop';
+import { LegacyHashRedirect } from './components/LegacyHashRedirect';
 
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
@@ -30,17 +50,11 @@ import { DhibPage } from './pages/DhibPage';
 import { SbcPage } from './pages/SbcPage';
 import { TamweelPage } from './pages/TamweelPage';
 import { ActivitiesPage } from './pages/ActivitiesPage';
-import { ResourcesPage } from './pages/ResourcesPage';
 import { ContactPage } from './pages/ContactPage';
+import { NotFoundPage } from './pages/NotFoundPage';
 
-export function App() {
-  // Navigation & Deep linking state
-  const [currentPage, setCurrentPage] = useState<PageId>(() => {
-    const hash = window.location.hash.replace('#', '') as PageId;
-    const validPages: PageId[] = ['home', 'about', 'dhib', 'sbc', 'tamweel', 'activities', 'resources', 'contact'];
-    return validPages.includes(hash) ? hash : 'home';
-  });
-  const [selectedTargetId, setSelectedTargetId] = useState<string | undefined>(undefined);
+export function AppContent() {
+  const navigate = useNavigate();
 
   // Persistent Portal State
   const [events, setEvents] = useState<EventItem[]>(() => {
@@ -52,7 +66,7 @@ export function App() {
     }
   });
 
-  const [articles] = useState<JournalArticle[]>(INITIAL_ARTICLES);
+  const [articles] = useState<JournalArticle[]>([]);
 
   const [resources, setResources] = useState<ResourceItem[]>(() => {
     try {
@@ -118,11 +132,6 @@ export function App() {
     localStorage.setItem('dief_messages', JSON.stringify(messages));
   }, [messages]);
 
-  // Sync hash changes
-  useEffect(() => {
-    window.location.hash = currentPage;
-  }, [currentPage]);
-
   const showToast = (title: string, message: string, type: ToastData['type'] = 'success') => {
     const id = Date.now().toString() + Math.random().toString();
     setToasts((prev) => [...prev, { id, title, message, type }]);
@@ -131,9 +140,23 @@ export function App() {
     }, 4500);
   };
 
-  const handleNavigate = (page: PageId, targetId?: string) => {
-    setCurrentPage(page);
-    setSelectedTargetId(targetId);
+  const handlePublicNavigate = (page: PageId | string, targetId?: string) => {
+    const pageMap: Record<string, string> = {
+      home: '/',
+      about: '/about',
+      dhib: '/dhib',
+      sbc: '/sbc',
+      tamweel: targetId ? `/tamweel/${targetId}` : '/tamweel',
+      activities: targetId ? `/activities/${targetId}` : '/activities',
+      contact: '/contact'
+    };
+    const dest = pageMap[page] || (page.startsWith('/') ? page : `/${page}`);
+    navigate(dest);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleAdminNavigate = (path: string) => {
+    navigate(path);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -169,7 +192,7 @@ export function App() {
     setMessages((prev) => [newMsg, ...prev]);
   };
 
-  // Admin Actions
+  // Admin Actions for local preview
   const handleUpdateConsultationStatus = (id: string, status: ConsultationRequest['status']) => {
     setConsultations((prev) => prev.map((c) => c.id === id ? { ...c, status } : c));
     showToast('Status Updated', `Consultation request marked as ${status}.`, 'info');
@@ -209,124 +232,196 @@ export function App() {
   const pendingCount = consultations.filter((c) => c.status === 'Pending Review').length +
                        submissions.filter((s) => s.status === 'Submitted').length;
 
+  // Shared Public Layout Wrapper
+  const PublicLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    return (
+      <div className="min-h-screen flex flex-col bg-ivory text-charcoal font-sans antialiased selection:bg-forest selection:text-ivory">
+        <Navbar
+          onNavigate={handlePublicNavigate}
+          onOpenSearch={() => setSearchModalOpen(true)}
+          onOpenAdmin={() => handleAdminNavigate('/admin')}
+          pendingCount={pendingCount}
+        />
+
+        <main className="flex-1">
+          {children}
+        </main>
+
+        <Footer
+          onNavigate={handlePublicNavigate}
+          onOpenAdmin={() => handleAdminNavigate('/admin')}
+        />
+
+        <SearchModal
+          isOpen={searchModalOpen}
+          onClose={() => setSearchModalOpen(false)}
+          onNavigate={handlePublicNavigate}
+          events={events}
+          articles={articles}
+        />
+
+        <AdminDrawer
+          isOpen={adminDrawerOpen}
+          onClose={() => setAdminDrawerOpen(false)}
+          consultations={consultations}
+          onUpdateConsultationStatus={handleUpdateConsultationStatus}
+          submissions={submissions}
+          onUpdateSubmissionStatus={handleUpdateSubmissionStatus}
+          messages={messages}
+          onAddEvent={handleAddEvent}
+          onAddResource={handleAddResource}
+          onResetData={handleResetData}
+        />
+
+        <NotificationToast
+          toasts={toasts}
+          onDismiss={(id) => setToasts((prev) => prev.filter((t) => t.id !== id))}
+        />
+      </div>
+    );
+  };
+
   return (
-    <div className="min-h-screen flex flex-col bg-ivory text-charcoal font-sans antialiased selection:bg-forest selection:text-ivory">
-      
-      {/* Global Navbar */}
-      <Navbar
-        currentPage={currentPage}
-        onNavigate={handleNavigate}
-        onOpenSearch={() => setSearchModalOpen(true)}
-        onOpenAdmin={() => setAdminDrawerOpen(true)}
-        pendingCount={pendingCount}
-      />
+    <Routes>
+      {/* ========================================== */}
+      {/* 1. ADMIN CMS ROUTES (PROTECTED / ISOLATED) */}
+      {/* ========================================== */}
+      <Route path="/admin/login" element={<AdminLogin onNavigate={handleAdminNavigate} />} />
 
-      {/* Main Page Content */}
-      <main className="flex-1">
-        {currentPage === 'home' && (
-          <HomePage
-            onNavigate={handleNavigate}
-            events={events}
-            articles={articles}
-          />
-        )}
+      <Route path="/admin" element={
+        <ProtectedRoute routeId="dashboard" onNavigate={handleAdminNavigate}>
+          <AdminLayout currentRoute="dashboard" onNavigate={handleAdminNavigate}>
+            <AdminDashboard onNavigate={handleAdminNavigate} />
+          </AdminLayout>
+        </ProtectedRoute>
+      } />
 
-        {currentPage === 'about' && (
-          <AboutPage
-            onNavigate={handleNavigate}
-            faculty={faculty}
-          />
-        )}
+      <Route path="/admin/journal" element={
+        <ProtectedRoute routeId="journal" onNavigate={handleAdminNavigate}>
+          <AdminLayout currentRoute="journal" onNavigate={handleAdminNavigate}>
+            <JournalCMS onNavigate={handleAdminNavigate} onShowToast={showToast} />
+          </AdminLayout>
+        </ProtectedRoute>
+      } />
 
-        {currentPage === 'dhib' && (
-          <DhibPage
-            onNavigate={handleNavigate}
-            onShowToast={showToast}
-          />
-        )}
+      <Route path="/admin/activities" element={
+        <ProtectedRoute routeId="activities" onNavigate={handleAdminNavigate}>
+          <AdminLayout currentRoute="activities" onNavigate={handleAdminNavigate}>
+            <ActivitiesCMS onNavigate={handleAdminNavigate} onShowToast={showToast} />
+          </AdminLayout>
+        </ProtectedRoute>
+      } />
 
-        {currentPage === 'sbc' && (
-          <SbcPage
-            onNavigate={handleNavigate}
-            onSubmitConsultation={handleAddConsultation}
-            onShowToast={showToast}
-          />
-        )}
+      <Route path="/admin/faculty" element={
+        <ProtectedRoute routeId="faculty" onNavigate={handleAdminNavigate}>
+          <AdminLayout currentRoute="faculty" onNavigate={handleAdminNavigate}>
+            <FacultyCMS onNavigate={handleAdminNavigate} onShowToast={showToast} />
+          </AdminLayout>
+        </ProtectedRoute>
+      } />
 
-        {currentPage === 'tamweel' && (
-          <TamweelPage
-            onNavigate={handleNavigate}
-            articles={articles}
-            selectedArticleId={selectedTargetId}
-            onSubmitPaper={handleAddSubmission}
-            onShowToast={showToast}
-          />
-        )}
+      <Route path="/admin/enquiries" element={
+        <ProtectedRoute routeId="enquiries" onNavigate={handleAdminNavigate}>
+          <AdminLayout currentRoute="enquiries" onNavigate={handleAdminNavigate}>
+            <AdminSectionPlaceholder routeId="enquiries" onNavigate={handleAdminNavigate} />
+          </AdminLayout>
+        </ProtectedRoute>
+      } />
 
-        {currentPage === 'activities' && (
-          <ActivitiesPage
-            onNavigate={handleNavigate}
-            events={events}
-            selectedEventId={selectedTargetId}
-            onShowToast={showToast}
-          />
-        )}
+      <Route path="/admin/settings" element={
+        <ProtectedRoute routeId="settings" onNavigate={handleAdminNavigate}>
+          <AdminLayout currentRoute="settings" onNavigate={handleAdminNavigate}>
+            <AdminSettings onNavigate={handleAdminNavigate} />
+          </AdminLayout>
+        </ProtectedRoute>
+      } />
 
-        {currentPage === 'resources' && (
-          <ResourcesPage
-            onNavigate={handleNavigate}
-            resources={resources}
-            selectedResourceId={selectedTargetId}
-            onShowToast={showToast}
-          />
-        )}
+      <Route path="/admin/*" element={<Navigate to="/admin" replace />} />
 
-        {currentPage === 'contact' && (
-          <ContactPage
-            onNavigate={handleNavigate}
-            onSubmitContact={handleAddMessage}
-            onShowToast={showToast}
-          />
-        )}
-      </main>
+      {/* ========================================== */}
+      {/* 2. PUBLIC CANONICAL & CLEAN ROUTES         */}
+      {/* ========================================== */}
+      {/* Canonical Homepage at / */}
+      <Route path="/" element={
+        <PublicLayout>
+          <HomePage onNavigate={handlePublicNavigate} events={events} articles={articles} />
+        </PublicLayout>
+      } />
 
-      {/* Global Footer */}
-      <Footer
-        onNavigate={handleNavigate}
-        onOpenAdmin={() => setAdminDrawerOpen(true)}
-      />
+      {/* Legacy /home redirects to / */}
+      <Route path="/home" element={<Navigate to="/" replace />} />
 
-      {/* Global Interactive Search Modal */}
-      <SearchModal
-        isOpen={searchModalOpen}
-        onClose={() => setSearchModalOpen(false)}
-        onNavigate={handleNavigate}
-        events={events}
-        articles={articles}
-        resources={resources}
-      />
+      {/* Clean public routes */}
+      <Route path="/about" element={
+        <PublicLayout>
+          <AboutPage onNavigate={handlePublicNavigate} faculty={faculty} />
+        </PublicLayout>
+      } />
 
-      {/* Department Admin CMS Drawer */}
-      <AdminDrawer
-        isOpen={adminDrawerOpen}
-        onClose={() => setAdminDrawerOpen(false)}
-        consultations={consultations}
-        onUpdateConsultationStatus={handleUpdateConsultationStatus}
-        submissions={submissions}
-        onUpdateSubmissionStatus={handleUpdateSubmissionStatus}
-        messages={messages}
-        onAddEvent={handleAddEvent}
-        onAddResource={handleAddResource}
-        onResetData={handleResetData}
-      />
+      <Route path="/dhib" element={
+        <PublicLayout>
+          <DhibPage onNavigate={handlePublicNavigate} onShowToast={showToast} />
+        </PublicLayout>
+      } />
 
-      {/* Toast Feedback Notifications */}
-      <NotificationToast
-        toasts={toasts}
-        onDismiss={(id) => setToasts((prev) => prev.filter((t) => t.id !== id))}
-      />
+      <Route path="/sbc" element={
+        <PublicLayout>
+          <SbcPage onNavigate={handlePublicNavigate} onSubmitConsultation={handleAddConsultation} onShowToast={showToast} />
+        </PublicLayout>
+      } />
 
-    </div>
+      {/* Tamweel Journal (with support for shareable /tamweel/:articleId deep link) */}
+      <Route path="/tamweel" element={
+        <PublicLayout>
+          <TamweelPage onNavigate={handlePublicNavigate} articles={articles} onSubmitPaper={handleAddSubmission} onShowToast={showToast} />
+        </PublicLayout>
+      } />
+      <Route path="/tamweel/:articleId" element={
+        <PublicLayout>
+          <TamweelPage onNavigate={handlePublicNavigate} articles={articles} onSubmitPaper={handleAddSubmission} onShowToast={showToast} />
+        </PublicLayout>
+      } />
+
+      {/* Activities & Events (with support for shareable /activities/:activityId deep link) */}
+      <Route path="/activities" element={
+        <PublicLayout>
+          <ActivitiesPage onNavigate={handlePublicNavigate} events={events} onShowToast={showToast} />
+        </PublicLayout>
+      } />
+      <Route path="/activities/:activityId" element={
+        <PublicLayout>
+          <ActivitiesPage onNavigate={handlePublicNavigate} events={events} onShowToast={showToast} />
+        </PublicLayout>
+      } />
+
+      <Route path="/contact" element={
+        <PublicLayout>
+          <ContactPage onNavigate={handlePublicNavigate} onSubmitContact={handleAddMessage} onShowToast={showToast} />
+        </PublicLayout>
+      } />
+
+      {/* ========================================== */}
+      {/* 3. 404 BRANDED ERROR PAGE                  */}
+      {/* ========================================== */}
+      <Route path="*" element={
+        <PublicLayout>
+          <NotFoundPage onOpenSearch={() => setSearchModalOpen(true)} />
+        </PublicLayout>
+      } />
+    </Routes>
   );
 }
+
+export function App() {
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <ScrollToTop />
+        <LegacyHashRedirect />
+        <AppContent />
+      </AuthProvider>
+    </BrowserRouter>
+  );
+}
+
 export default App;

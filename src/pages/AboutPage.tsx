@@ -1,33 +1,61 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { PageId, FacultyMember } from '../types';
-import { 
-  Building2, 
-  Target, 
-  Eye, 
-  BookOpen, 
-  Compass, 
-  CheckCircle2, 
-  GraduationCap, 
-  Mail, 
+import { FacultyProfile } from '../types/faculty';
+import { fetchPublicFacultyProfiles } from '../lib/facultyService';
+import {
+  Building2,
+  Target,
+  Eye,
+  BookOpen,
+  Compass,
+  CheckCircle2,
+  GraduationCap,
+  Mail,
   Phone,
   ArrowRight,
   Globe2,
   Calendar,
   History,
   Sparkles,
-  Award
+  Award,
+  Loader2,
+  UserCheck
 } from 'lucide-react';
 import { IslamicStarIcon } from '../components/IslamicPattern';
 
 interface AboutPageProps {
   onNavigate: (page: PageId) => void;
-  faculty: FacultyMember[];
+  faculty?: FacultyMember[];
 }
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => {
+  const [liveProfiles, setLiveProfiles] = useState<FacultyProfile[]>([]);
+  const [facultyLoading, setFacultyLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+    async function loadFaculty() {
+      try {
+        const data = await fetchPublicFacultyProfiles();
+        if (isMounted) {
+          setLiveProfiles(data);
+        }
+      } catch (err) {
+        console.error('Failed to load public faculty profiles:', err);
+      } finally {
+        if (isMounted) {
+          setFacultyLoading(false);
+        }
+      }
+    }
+    loadFaculty();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
   return (
     <div className="space-y-16 lg:space-y-24 py-8">
-      
+
       {/* HEADER BANNER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
@@ -36,21 +64,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
           <div className="relative z-10 max-w-4xl space-y-4">
             <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gold/20 text-gold text-xs font-semibold border border-gold/30">
               <IslamicStarIcon size={12} className="text-gold" />
-              <span>Official Academic Prospectus Profile</span>
+              <span>Academic Prospectus &amp; Overview</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-editorial font-bold text-white tracking-tight">
-              Department of <br />
-              <span className="italic text-gold">Islamic Economics and Finance</span>
+              About the Department
             </h1>
-
-            <div className="text-xs sm:text-sm text-sage-light font-medium tracking-wide">
-              Under Kulliyya of Sharia, Darul Huda Islamic University • Chemmad, Malappuram, Kerala – 676306
-            </div>
-
-            <div className="font-arabic text-lg sm:text-xl text-sage-light" dir="rtl">
-              قسم الاقتصاد والتمويل الإسلامي — كلية الشريعة، جامعة دار الهدى الإسلامية
-            </div>
 
             <p className="text-sm sm:text-base text-sage-subtle leading-relaxed pt-2 max-w-3xl">
               Offering a rigorous and holistic academic environment focused on Islamic economic ideologies rooted in Shari’ah principles and modern financial understanding. Founded with the aim of Islamizing modern financial practices.
@@ -86,7 +105,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
           <div className="lg:col-span-6">
             <div className="relative rounded-2xl overflow-hidden shadow-elevated border border-forest/15 aspect-[4/3]">
               <img
-                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80"
+                src="/IF Logo Web.jpg"
                 alt="Scholars and students in academic discussion"
                 className="w-full h-full object-cover"
               />
@@ -155,7 +174,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
       {/* 3. VISION & MISSION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          
+
           {/* Vision Card */}
           <div className="bg-white rounded-2xl p-8 border border-forest/10 shadow-soft space-y-4">
             <div className="w-12 h-12 rounded-xl bg-forest/10 text-forest flex items-center justify-center">
@@ -288,7 +307,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          
+
           {/* B.A. Program */}
           <div className="bg-white rounded-2xl border border-forest/10 p-7 shadow-soft space-y-4 flex flex-col justify-between">
             <div className="space-y-3">
@@ -321,7 +340,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
               <p className="text-xs text-charcoal-muted leading-relaxed">
                 A two-year Master’s program that offers deep knowledge in Islamic finance, banking, monetary systems, and ethical investment, empowering students with theoretical foundations and practical expertise.
               </p>
-              
+
               <div className="space-y-2 text-xs text-charcoal-light pt-2 border-t border-gray-100">
                 <div className="font-bold text-forest">Mandatory Core Papers:</div>
                 <ol className="list-decimal list-inside space-y-1 text-[11px] text-charcoal-muted pl-1">
@@ -500,52 +519,76 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {faculty.map((f) => (
-            <div 
-              key={f.id}
-              className="bg-white rounded-2xl border border-forest/10 p-6 shadow-soft hover:shadow-elevated transition-all flex flex-col justify-between space-y-4"
-            >
-              <div className="space-y-4">
-                <div className="w-16 h-16 rounded-xl overflow-hidden bg-forest/10 shrink-0 border border-gold/40">
-                  <img src={f.image} alt={f.name} className="w-full h-full object-cover" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-bold text-gold-dark uppercase tracking-wider bg-gold/15 px-2 py-0.5 rounded">
-                    {f.title}
-                  </span>
-                  <h4 className="font-editorial text-base font-bold text-forest mt-1 leading-snug">
-                    {f.name}
-                  </h4>
+        {facultyLoading ? (
+          <div className="flex flex-col items-center justify-center py-16 text-charcoal-muted">
+            <Loader2 className="w-8 h-8 animate-spin text-forest mb-2" />
+            <span className="text-sm">Loading faculty directory...</span>
+          </div>
+        ) : liveProfiles.length === 0 ? (
+          <div className="text-center py-12 text-charcoal-muted">
+            <p className="text-sm">No faculty profiles currently published.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {liveProfiles.map((f) => (
+              <div
+                key={f.id}
+                className="bg-white rounded-2xl border border-forest/10 p-6 shadow-soft hover:shadow-elevated transition-all flex flex-col justify-between space-y-4"
+              >
+                <div className="space-y-4">
+                  <div className="w-16 h-16 rounded-xl overflow-hidden bg-forest/10 shrink-0 border border-gold/40 flex items-center justify-center">
+                    {f.photo_url ? (
+                      <img src={f.photo_url} alt={f.full_name} className="w-full h-full object-cover" />
+                    ) : (
+                      <UserCheck className="w-8 h-8 text-forest/40" />
+                    )}
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold text-gold-dark uppercase tracking-wider bg-gold/15 px-2 py-0.5 rounded">
+                      {f.category_name || f.designation}
+                    </span>
+                    <h4 className="font-editorial text-base font-bold text-forest mt-1 leading-snug">
+                      {f.full_name}
+                    </h4>
+                    {f.designation && (
+                      <p className="text-xs text-charcoal-muted mt-0.5">{f.designation}</p>
+                    )}
+                  </div>
+
+                  <div className="space-y-1.5 text-xs text-charcoal-light border-t border-gray-100 pt-3">
+                    {f.qualifications && (
+                      <div>
+                        <strong className="text-forest">Qualification:</strong> {f.qualifications}
+                      </div>
+                    )}
+                    {f.specializations && (
+                      <div>
+                        <strong className="text-forest">Specialization:</strong> {f.specializations}
+                      </div>
+                    )}
+                    {f.office_info && (
+                      <div className="flex items-center space-x-1.5 text-forest font-semibold pt-1">
+                        <Phone className="w-3.5 h-3.5 text-gold shrink-0" />
+                        <span>{f.office_info}</span>
+                      </div>
+                    )}
+                    {f.email && (
+                      <div>
+                        <strong className="text-forest">Email:</strong>{' '}
+                        <a href={`mailto:${f.email}`} className="font-mono text-forest hover:underline text-[11px]">{f.email}</a>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
-                <div className="space-y-1.5 text-xs text-charcoal-light border-t border-gray-100 pt-3">
-                  <div>
-                    <strong className="text-forest">Qualification:</strong> {f.qualification}
-                  </div>
-                  <div>
-                    <strong className="text-forest">Specialization:</strong> {f.specialization}
-                  </div>
-                  {f.phone && (
-                    <div className="flex items-center space-x-1.5 text-forest font-semibold pt-1">
-                      <Phone className="w-3.5 h-3.5 text-gold shrink-0" />
-                      <span>{f.phone}</span>
-                    </div>
-                  )}
-                  <div>
-                    <strong className="text-forest">Email:</strong>{' '}
-                    <span className="font-mono text-charcoal-muted text-[11px]">{f.emailPlaceholder}</span>
-                  </div>
+                <div className="pt-2 text-[11px] text-charcoal-muted bg-surface-lightGreen/40 p-2.5 rounded-lg border border-forest/5 flex items-center justify-between">
+                  <span className="font-medium text-forest">{f.category_name || 'Faculty Member'}</span>
+                  <IslamicStarIcon size={12} className="text-gold" />
                 </div>
               </div>
-
-              <div className="pt-2 text-[11px] text-charcoal-muted bg-surface-lightGreen/40 p-2.5 rounded-lg border border-forest/5 flex items-center justify-between">
-                <span className="font-medium text-forest">{f.status}</span>
-                <IslamicStarIcon size={12} className="text-gold" />
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* 9. JOIN US CALLOUT & CONTACT BLOCK */}
@@ -562,7 +605,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
               "We welcome passionate students, researchers, and public learners interested in becoming part of a transformative movement in Islamic economics and finance. Whether your aim is academic scholarship or ethical financial practice, our programs are designed to equip you for both this world and the Hereafter."
             </p>
             <div className="text-xs text-gold-light pt-2 flex flex-wrap gap-4">
-              <span>📧 islamiceco@darulhudaiu.ac.in</span>
+              <a href="mailto:dief@dhiu.in" className="hover:underline">📧 dief@dhiu.in</a>
               <span>📞 +91 81295 95547</span>
               <span>🌐 www.darulhuda.in</span>
             </div>
@@ -574,12 +617,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
               className="px-6 py-3.5 bg-gold hover:bg-gold-light text-forest font-bold text-xs rounded-xl shadow transition"
             >
               Contact Department Secretariat
-            </button>
-            <button
-              onClick={() => onNavigate('resources')}
-              className="px-6 py-3.5 bg-white/10 hover:bg-white/20 text-white border border-gold/40 font-bold text-xs rounded-xl transition"
-            >
-              Curricular Resources
             </button>
           </div>
         </div>

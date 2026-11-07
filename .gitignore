@@ -1,0 +1,23 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Production build
+dist
+build
+
+# Environment files
+.env.local
+.env.*.local
+.env
+
+# Editor and OS
+.DS_Store
+Thumbs.db
+*.local
+supabase/migrations/20261106_001_admin_roles_and_audit_logs.sql
+supabase/migrations/20261106_002_initial_super_admin_provisioning.sql
+supabase/migrations/20261106_003_tamweel_journal_cms.sql
+supabase/migrations/20261106_004_activities_cms.sql
+supabase/migrations/20261106_005_faculty_cms.sql

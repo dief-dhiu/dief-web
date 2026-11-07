@@ -1,19 +1,15 @@
 import React from 'react';
 import { PageId } from '../types';
-import { 
-  Building2, 
-  ShieldAlert, 
-  BookOpen, 
-  TrendingUp, 
-  Scale, 
-  CheckCircle2, 
-  GraduationCap, 
-  Layers, 
+import {
+  Building2,
+  ShieldAlert,
+  TrendingUp,
+  CheckCircle2,
+  GraduationCap,
+  Layers,
   ArrowRight,
-  FileText,
   Mail,
-  HelpCircle,
-  Coins
+  HelpCircle
 } from 'lucide-react';
 import { IslamicStarIcon } from '../components/IslamicPattern';
 
@@ -26,7 +22,7 @@ export const DhibPage: React.FC<DhibPageProps> = ({ onNavigate, onShowToast }) =
 
   return (
     <div className="space-y-16 lg:space-y-24 py-8">
-      
+
       {/* 1. HERO & DHIB INTRODUCTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
@@ -34,7 +30,7 @@ export const DhibPage: React.FC<DhibPageProps> = ({ onNavigate, onShowToast }) =
 
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-4">
-              
+
               <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gold/20 text-gold text-xs font-semibold border border-gold/30">
                 <Building2 className="w-3.5 h-3.5" />
                 <span>Department Flagship Initiative 01</span>
@@ -45,9 +41,7 @@ export const DhibPage: React.FC<DhibPageProps> = ({ onNavigate, onShowToast }) =
                 <span className="italic text-gold">Darul Huda Islamic Bank</span>
               </h1>
 
-              <div className="font-arabic text-lg sm:text-xl text-sage-light" dir="rtl">
-                مبادرة بنك دار الهدى الإسلامي — نحو تجربة مصرفية أخلاقية
-              </div>
+
 
               <p className="text-sm sm:text-base text-sage-subtle leading-relaxed max-w-2xl">
                 An innovative academic financial laboratory, exploratory sandbox, and community financial literacy platform dedicated to investigating, modeling, and demonstrating Shariah-compliant, interest-free banking paradigms.
@@ -92,7 +86,7 @@ export const DhibPage: React.FC<DhibPageProps> = ({ onNavigate, onShowToast }) =
       {/* 2. VISION AND MISSION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          
+
           <div className="bg-white p-8 rounded-2xl border border-forest/10 shadow-soft space-y-3">
             <span className="text-xs font-bold text-gold-dark uppercase tracking-wider">DHIB Vision</span>
             <h3 className="text-2xl font-editorial font-bold text-forest">Pioneering Fair Financial Horizons</h3>
@@ -127,7 +121,7 @@ export const DhibPage: React.FC<DhibPageProps> = ({ onNavigate, onShowToast }) =
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          
+
           <div className="bg-white p-6 rounded-2xl border border-forest/10 shadow-soft space-y-3">
             <div className="w-10 h-10 rounded-xl bg-forest text-gold flex items-center justify-center font-bold text-sm">
               01
@@ -171,80 +165,6 @@ export const DhibPage: React.FC<DhibPageProps> = ({ onNavigate, onShowToast }) =
         </div>
       </section>
 
-      {/* 6. EDUCATIONAL RESOURCES & LITERACY */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-forest/10 pb-4">
-          <div>
-            <span className="text-xs font-bold text-gold-dark uppercase tracking-wider">
-              Educational Downloads
-            </span>
-            <h3 className="text-2xl font-editorial font-bold text-forest mt-1">
-              DHIB Financial Literacy Primers
-            </h3>
-          </div>
-          <button
-            onClick={() => onNavigate('resources')}
-            className="text-xs font-bold text-forest hover:text-emerald-deep flex items-center space-x-1.5"
-          >
-            <span>View All Department Resources</span>
-            <ArrowRight className="w-3.5 h-3.5 text-gold" />
-          </button>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white p-6 rounded-2xl border border-forest/10 shadow-soft space-y-3">
-            <BookOpen className="w-5 h-5 text-gold" />
-            <h4 className="font-editorial text-base font-bold text-forest">
-              Consumer Guide: Understanding Interest-Free Banking
-            </h4>
-            <p className="text-xs text-charcoal-muted leading-relaxed">
-              Beginner-friendly manual detailing accounts, debit instruments, and ethical saving avenues.
-            </p>
-            <button
-              onClick={() => onShowToast('Download Initiated', 'DHIB Consumer Guide PDF downloaded successfully.', 'success')}
-              className="text-xs font-bold text-forest hover:text-gold-dark flex items-center space-x-1 pt-2"
-            >
-              <FileText className="w-3.5 h-3.5" />
-              <span>Download Primer (PDF)</span>
-            </button>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl border border-forest/10 shadow-soft space-y-3">
-            <Scale className="w-5 h-5 text-gold" />
-            <h4 className="font-editorial text-base font-bold text-forest">
-              AAOIFI Standards Summary Sheet
-            </h4>
-            <p className="text-xs text-charcoal-muted leading-relaxed">
-              Quick reference comparison table for Shariah standard compliance in commercial banking.
-            </p>
-            <button
-              onClick={() => onShowToast('Download Initiated', 'AAOIFI Reference PDF downloaded successfully.', 'success')}
-              className="text-xs font-bold text-forest hover:text-gold-dark flex items-center space-x-1 pt-2"
-            >
-              <FileText className="w-3.5 h-3.5" />
-              <span>Download Sheet (PDF)</span>
-            </button>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl border border-forest/10 shadow-soft space-y-3">
-            <Coins className="w-5 h-5 text-gold" />
-            <h4 className="font-editorial text-base font-bold text-forest">
-              Glossary of Islamic Financial Contracts
-            </h4>
-            <p className="text-xs text-charcoal-muted leading-relaxed">
-              Comprehensive bilingual Arabic-English dictionary of technical Fiqh al-Muamalat terms.
-            </p>
-            <button
-              onClick={() => onShowToast('Download Initiated', 'Islamic Financial Terms Glossary downloaded.', 'success')}
-              className="text-xs font-bold text-forest hover:text-gold-dark flex items-center space-x-1 pt-2"
-            >
-              <FileText className="w-3.5 h-3.5" />
-              <span>Download Glossary (PDF)</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
       {/* 7 & 8. CONTACT DHIB */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-surface-lightGreen rounded-3xl p-8 sm:p-12 border border-forest/15 flex flex-col md:flex-row items-center justify-between gap-6">
@@ -259,7 +179,7 @@ export const DhibPage: React.FC<DhibPageProps> = ({ onNavigate, onShowToast }) =
               For student laboratory visits, guest workshops, and curricular exchange regarding Islamic banking literacy.
             </p>
             <div className="text-[11px] font-mono text-charcoal-muted pt-1">
-              Official Desk: dhib.desk@dhiu.in [Placeholder]
+              Official Desk: <a href="mailto:dief@dhiu.in" className="hover:underline text-forest font-semibold">dief@dhiu.in</a>
             </div>
           </div>
           <button

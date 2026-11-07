@@ -32,7 +32,7 @@ interface AdminDrawerProps {
   onUpdateSubmissionStatus: (id: string, status: PaperSubmission['status']) => void;
   messages: ContactMessage[];
   onAddEvent: (event: Omit<EventItem, 'id'>) => void;
-  onAddResource: (resource: Omit<ResourceItem, 'id'>) => void;
+  onAddResource?: (resource: Omit<ResourceItem, 'id'>) => void;
   onResetData: () => void;
 }
 
@@ -45,10 +45,9 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
   onUpdateSubmissionStatus,
   messages,
   onAddEvent,
-  onAddResource,
   onResetData
 }) => {
-  const [activeTab, setActiveTab] = useState<'sbc' | 'tamweel' | 'contact' | 'newEvent' | 'newResource'>('sbc');
+  const [activeTab, setActiveTab] = useState<'sbc' | 'tamweel' | 'contact' | 'newEvent'>('sbc');
 
   // Form states for new event
   const [eventTitle, setEventTitle] = useState('');
@@ -57,14 +56,6 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
   const [eventVenue, setEventVenue] = useState('Department Seminar Hall, DHIU Campus');
   const [eventDesc, setEventDesc] = useState('');
   const [eventSpeaker, setEventSpeaker] = useState('[Designated Guest Speaker]');
-
-  // Form states for new resource
-  const [resTitle, setResTitle] = useState('');
-  const [resCategory, setResCategory] = useState<ResourceItem['category']>('Research Papers');
-  const [resAuthor, setResAuthor] = useState('Department Academic Team');
-  const [resYear, setResYear] = useState('2026');
-  const [resSize, setResSize] = useState('1.5 MB');
-  const [resDesc, setResDesc] = useState('');
 
   const [feedbackMsg, setFeedbackMsg] = useState<string | null>(null);
 
@@ -91,27 +82,6 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
     setEventDate('');
     setEventDesc('');
     setFeedbackMsg('New departmental event published to the portal!');
-    setTimeout(() => setFeedbackMsg(null), 3500);
-  };
-
-  const handleCreateResource = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!resTitle.trim()) return;
-
-    onAddResource({
-      title: resTitle,
-      category: resCategory,
-      author: resAuthor,
-      year: parseInt(resYear, 10) || 2026,
-      fileType: 'PDF',
-      fileSize: resSize,
-      language: 'English',
-      description: resDesc || 'Academic curricular and research reference document.'
-    });
-
-    setResTitle('');
-    setResDesc('');
-    setFeedbackMsg('New resource added to the departmental library!');
     setTimeout(() => setFeedbackMsg(null), 3500);
   };
 
@@ -204,18 +174,6 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
           >
             <Calendar className="w-3.5 h-3.5 text-gold" />
             <span>+ Add Event</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('newResource')}
-            className={`px-3 py-2 rounded-lg flex items-center space-x-2 transition shrink-0 ${
-              activeTab === 'newResource' 
-                ? 'bg-forest text-white shadow-sm' 
-                : 'text-charcoal hover:bg-white'
-            }`}
-          >
-            <FileCheck className="w-3.5 h-3.5 text-gold" />
-            <span>+ Add Resource</span>
           </button>
         </div>
 
@@ -509,100 +467,6 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
                 className="w-full py-2.5 bg-forest hover:bg-emerald-deep text-white font-semibold text-xs rounded-xl shadow transition"
               >
                 Publish Event to Portal
-              </button>
-            </form>
-          )}
-
-          {/* TAB 5: ADD RESOURCE */}
-          {activeTab === 'newResource' && (
-            <form onSubmit={handleCreateResource} className="space-y-4">
-              <div>
-                <h4 className="font-editorial text-base font-bold text-forest">
-                  Upload / Register Curricular Resource
-                </h4>
-                <p className="text-xs text-charcoal-muted">
-                  Add reading materials, syllabi guides, and research working papers to the Resource Library.
-                </p>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-charcoal mb-1">Document Title *</label>
-                <input
-                  type="text"
-                  required
-                  value={resTitle}
-                  onChange={(e) => setResTitle(e.target.value)}
-                  placeholder="e.g. Standard Guide to Murabaha Contractual Stipulations"
-                  className="w-full px-3 py-2 text-xs border border-gray-300 rounded-lg focus:border-forest focus:outline-none"
-                />
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-bold text-charcoal mb-1">Resource Category</label>
-                  <select
-                    value={resCategory}
-                    onChange={(e) => setResCategory(e.target.value as ResourceItem['category'])}
-                    className="w-full px-3 py-2 text-xs border border-gray-300 rounded-lg focus:border-forest focus:outline-none"
-                  >
-                    <option value="Research Papers">Research Papers</option>
-                    <option value="Books and Reading Materials">Books and Reading Materials</option>
-                    <option value="Islamic Economics Resources">Islamic Economics Resources</option>
-                    <option value="Islamic Finance Resources">Islamic Finance Resources</option>
-                    <option value="Academic Reports">Academic Reports</option>
-                    <option value="Lecture Materials">Lecture Materials</option>
-                    <option value="Journal Publications">Journal Publications</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-charcoal mb-1">Author / Working Group</label>
-                  <input
-                    type="text"
-                    value={resAuthor}
-                    onChange={(e) => setResAuthor(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-gray-300 rounded-lg focus:border-forest focus:outline-none"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-bold text-charcoal mb-1">Publication Year</label>
-                  <input
-                    type="text"
-                    value={resYear}
-                    onChange={(e) => setResYear(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-gray-300 rounded-lg focus:border-forest focus:outline-none"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold text-charcoal mb-1">File Size</label>
-                  <input
-                    type="text"
-                    value={resSize}
-                    onChange={(e) => setResSize(e.target.value)}
-                    className="w-full px-3 py-2 text-xs border border-gray-300 rounded-lg focus:border-forest focus:outline-none"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-charcoal mb-1">Abstract / Overview</label>
-                <textarea
-                  rows={3}
-                  value={resDesc}
-                  onChange={(e) => setResDesc(e.target.value)}
-                  placeholder="Brief summary of document contents and academic utility..."
-                  className="w-full px-3 py-2 text-xs border border-gray-300 rounded-lg focus:border-forest focus:outline-none"
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-2.5 bg-forest hover:bg-emerald-deep text-white font-semibold text-xs rounded-xl shadow transition"
-              >
-                Register Resource in Library
               </button>
             </form>
           )}

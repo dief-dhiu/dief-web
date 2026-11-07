@@ -133,68 +133,7 @@ export const INITIAL_EVENTS: EventItem[] = [
   }
 ];
 
-export const INITIAL_ARTICLES: JournalArticle[] = [
-  {
-    id: 'art-1',
-    title: 'Classical Contractual Foundations of Islamic Finance: Reassessing Ribawi Commodities in Modern Fiat Intermediation',
-    authors: ['[Contributing Academic Author]', '[Department Research Scholar]'],
-    abstract: 'This scholarly paper undertakes an epistemic re-examination of the six classical Ribawi commodities specified in prophetic traditions, investigating their contemporary application to modern fiat currency, fractional reserve mechanics, and digital payment rails. It argues for a Maqasid-grounded taxonomy that preserves purchasing power integrity without succumbing to hyper-formalism.',
-    keywords: ['Riba', 'Fiqh al-Mu’amalat', 'Monetary Economics', 'Maqasid al-Shariah', 'Fiat Currency'],
-    publicationDate: 'October 2026',
-    volume: 3,
-    issue: 2,
-    year: 2026,
-    pages: '14–38',
-    doi: '10.5892/tamweel.2026.0302.01 [Placeholder DOI]',
-    category: 'Theoretical Jurisprudence',
-    pdfUrl: '#'
-  },
-  {
-    id: 'art-2',
-    title: 'Sukuk Structuring Under Macroeconomic Volatility: An Analytical Review of Asset-Backed vs. Asset-Based Instruments',
-    authors: ['[Senior Islamic Capital Markets Fellow]', '[Visiting Researcher in Shariah Governance]'],
-    abstract: 'Asset-based Sukuk continue to dominate sovereign and multilateral debt issuance, yet questions persist regarding true risk-transfer and bankruptcy remoteness. This paper conducts an empirical comparative analysis of coupon yield performance and Shariah compliance debates during high-interest-rate global regimes.',
-    keywords: ['Sukuk', 'Asset-Backed', 'Asset-Based', 'Capital Markets', 'Credit Risk', 'AAOIFI Standards'],
-    publicationDate: 'October 2026',
-    volume: 3,
-    issue: 2,
-    year: 2026,
-    pages: '39–65',
-    doi: '10.5892/tamweel.2026.0302.02 [Placeholder DOI]',
-    category: 'Capital Markets & Sukuk',
-    pdfUrl: '#'
-  },
-  {
-    id: 'art-3',
-    title: 'Waqf-Based Social Finance as a Sustainable Counter-Cyclical Shock Absorber: Micro-Level Empirical Evidence',
-    authors: ['[Faculty Research Contributor]'],
-    abstract: 'Examining institutional endowments (Awqaf) and Cash Waqf schemes in developing agrarian economies, this study models how revolving Qard Hasan facilities mitigate harvest failures and debt spirals among vulnerable rural households, illustrating how Islamic social finance reinforces financial stability.',
-    keywords: ['Cash Waqf', 'Qard Hasan', 'Social Finance', 'Rural Economics', 'Financial Inclusion'],
-    publicationDate: 'May 2026',
-    volume: 3,
-    issue: 1,
-    year: 2026,
-    pages: '05–29',
-    doi: '10.5892/tamweel.2026.0301.01 [Placeholder DOI]',
-    category: 'Social Islamic Finance',
-    pdfUrl: '#'
-  },
-  {
-    id: 'art-4',
-    title: 'Algorithmic Smart Contracts in Mudarabah: Shariah Feasibility, Gharar Elimination, and Execution Autonomy',
-    authors: ['[Fintech & Shariah Law Researcher]', '[Department Academic Advisor]'],
-    abstract: 'Can autonomous code guarantee equitable profit-and-loss distribution in partnership contracts? This paper investigates the Shariah compliance parameters of self-executing smart contracts, analyzing whether automated oracle feeds introduce impermissible Gharar or enhance contractual transparency.',
-    keywords: ['Smart Contracts', 'Mudarabah', 'Islamic Fintech', 'Gharar', 'Decentralized Finance'],
-    publicationDate: 'May 2026',
-    volume: 3,
-    issue: 1,
-    year: 2026,
-    pages: '30–54',
-    doi: '10.5892/tamweel.2026.0301.02 [Placeholder DOI]',
-    category: 'Fintech & Digital Economy',
-    pdfUrl: '#'
-  }
-];
+export const INITIAL_ARTICLES: JournalArticle[] = [];
 
 export const INITIAL_RESOURCES: ResourceItem[] = [
   {

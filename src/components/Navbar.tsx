@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { PageId } from '../types';
 import { CrestLogo, IslamicStarIcon } from './IslamicPattern';
 import { 
@@ -16,8 +17,8 @@ import {
 } from 'lucide-react';
 
 interface NavbarProps {
-  currentPage: PageId;
-  onNavigate: (page: PageId) => void;
+  currentPage?: PageId;
+  onNavigate?: (page: PageId) => void;
   onOpenSearch: () => void;
   onOpenAdmin: () => void;
   pendingCount?: number;
@@ -32,6 +33,24 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Determine active page from current path if currentPage not explicitly passed
+  const getActivePage = (): PageId => {
+    if (currentPage) return currentPage;
+    const p = location.pathname;
+    if (p === '/' || p === '/home') return 'home';
+    if (p.startsWith('/about')) return 'about';
+    if (p.startsWith('/dhib')) return 'dhib';
+    if (p.startsWith('/sbc')) return 'sbc';
+    if (p.startsWith('/tamweel')) return 'tamweel';
+    if (p.startsWith('/activities')) return 'activities';
+    if (p.startsWith('/contact')) return 'contact';
+    return 'home';
+  };
+
+  const activePage = getActivePage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,7 +65,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   const navItemClass = (page: PageId) => {
-    const isActive = currentPage === page;
+    const isActive = activePage === page;
     return `relative py-2 text-sm font-medium tracking-wide transition-colors duration-200 ${
       isActive 
         ? 'text-forest font-semibold' 
@@ -54,8 +73,22 @@ export const Navbar: React.FC<NavbarProps> = ({
     }`;
   };
 
+  const pagePathMap: Record<PageId, string> = {
+    home: '/',
+    about: '/about',
+    dhib: '/dhib',
+    sbc: '/sbc',
+    tamweel: '/tamweel',
+    activities: '/activities',
+    contact: '/contact'
+  };
+
   const handleNavClick = (page: PageId) => {
-    onNavigate(page);
+    if (onNavigate) {
+      onNavigate(page);
+    } else {
+      navigate(pagePathMap[page] || '/');
+    }
     setMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -66,58 +99,30 @@ export const Navbar: React.FC<NavbarProps> = ({
         ? 'bg-white/95 backdrop-blur-md shadow-soft border-b border-forest/10 py-2.5' 
         : 'bg-ivory/95 backdrop-blur-sm border-b border-gold/20 py-3.5'
     }`}>
-      {/* Top micro affiliation banner */}
-      <div className="hidden lg:block border-b border-forest/5 pb-1.5 mb-2 text-xs text-charcoal-muted">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold"></span>
-            <span className="font-medium tracking-wider text-forest uppercase text-[11px]">
-              Institutional Affiliation:
-            </span>
-            <span className="font-semibold text-charcoal">Under Kulliyya of Sharia, Darul Huda Islamic University, Kerala, India</span>
-          </div>
-          <div className="flex items-center space-x-4 text-[11px] text-charcoal-muted">
-            <span className="font-arabic text-sm text-forest" dir="rtl">
-              قسم الاقتصاد والتمويل الإسلامي — كلية الشريعة
-            </span>
-            <span className="text-gray-300">|</span>
-            <button 
-              onClick={onOpenAdmin}
-              className="inline-flex items-center space-x-1.5 text-forest hover:text-gold transition font-medium"
-              title="Open Department Admin / CMS Hub"
-            >
-              <Settings className="w-3.5 h-3.5" />
-              <span>Admin Hub</span>
-              {pendingCount > 0 && (
-                <span className="px-1.5 py-0.2 text-[10px] bg-gold text-forest font-bold rounded-full">
-                  {pendingCount}
-                </span>
-              )}
-            </button>
-          </div>
-        </div>
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-6 lg:gap-8">
           
           {/* Brand & Department Title */}
           <div 
             onClick={() => handleNavClick('home')}
-            className="flex items-center space-x-3.5 cursor-pointer group select-none shrink-0 pr-2 lg:pr-4"
+            className="flex items-center space-x-3 sm:space-x-4 cursor-pointer group select-none shrink-0 pr-2 lg:pr-4 py-1"
           >
-            <CrestLogo size={42} className="group-hover:border-gold transition-colors duration-300" />
-            <div className="flex flex-col">
-              <span className="text-xs uppercase tracking-widest text-forest font-semibold font-sans">
+            <img 
+              src="/dief-logo.png" 
+              alt="Department of Islamic Economics and Finance Official Logo" 
+              className="h-14 sm:h-16 lg:h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="flex flex-col justify-center">
+              <span className="text-[10px] sm:text-xs uppercase tracking-widest text-forest/80 font-bold font-sans">
                 Department of
               </span>
-              <span className="text-lg sm:text-xl font-editorial font-bold text-forest tracking-tight group-hover:text-emerald-deep transition-colors leading-tight">
-                Islamic Economics & Finance
+              <span className="text-base sm:text-xl lg:text-2xl font-editorial font-bold text-forest tracking-tight group-hover:text-emerald-deep transition-colors leading-tight">
+                Islamic Economics &amp; Finance
               </span>
-              <span className="text-[11px] text-charcoal-muted flex items-center space-x-1">
+              <span className="text-[10px] sm:text-[11px] text-charcoal-muted flex items-center space-x-1.5 mt-0.5">
                 <span>Under Kulliyya of Sharia, DHIU</span>
                 <span className="text-gold">•</span>
-                <span className="font-arabic text-[12px] text-forest">كيرلا</span>
+                <span>Kerala, India</span>
               </span>
             </div>
           </div>
@@ -129,7 +134,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className={navItemClass('home')}
             >
               Home
-              {currentPage === 'home' && (
+              {activePage === 'home' && (
                 <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-forest rounded-full" />
               )}
             </button>
@@ -140,7 +145,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className={navItemClass('about')}
             >
               About
-              {currentPage === 'about' && (
+              {activePage === 'about' && (
                 <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-forest rounded-full" />
               )}
             </button>
@@ -151,7 +156,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className={navItemClass('dhib')}
             >
               DHIB
-              {currentPage === 'dhib' && (
+              {activePage === 'dhib' && (
                 <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-forest rounded-full" />
               )}
             </button>
@@ -161,7 +166,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className={navItemClass('sbc')}
             >
               SBC
-              {currentPage === 'sbc' && (
+              {activePage === 'sbc' && (
                 <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-forest rounded-full" />
               )}
             </button>
@@ -171,7 +176,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className={navItemClass('tamweel')}
             >
               Tamweel
-              {currentPage === 'tamweel' && (
+              {activePage === 'tamweel' && (
                 <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-forest rounded-full" />
               )}
             </button>
@@ -181,17 +186,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className={navItemClass('activities')}
             >
               Activities
-              {currentPage === 'activities' && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-forest rounded-full" />
-              )}
-            </button>
-
-            <button 
-              onClick={() => handleNavClick('resources')}
-              className={navItemClass('resources')}
-            >
-              Resources
-              {currentPage === 'resources' && (
+              {activePage === 'activities' && (
                 <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-forest rounded-full" />
               )}
             </button>
@@ -211,7 +206,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button 
               onClick={() => handleNavClick('contact')}
               className={`hidden sm:inline-flex items-center space-x-2 px-4 py-2 rounded-lg text-xs font-semibold tracking-wide transition shadow-sm hover:shadow ${
-                currentPage === 'contact'
+                activePage === 'contact'
                   ? 'bg-emerald-deep text-white ring-2 ring-gold'
                   : 'bg-forest hover:bg-emerald-deep text-white'
               }`}
@@ -243,13 +238,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="grid grid-cols-2 gap-2">
             <button 
               onClick={() => handleNavClick('home')}
-              className={`p-2.5 rounded-lg text-left text-xs font-semibold ${currentPage === 'home' ? 'bg-forest text-white' : 'bg-ivory text-charcoal'}`}
+              className={`p-2.5 rounded-lg text-left text-xs font-semibold ${activePage === 'home' ? 'bg-forest text-white' : 'bg-ivory text-charcoal'}`}
             >
               Home
             </button>
             <button 
               onClick={() => handleNavClick('about')}
-              className={`p-2.5 rounded-lg text-left text-xs font-semibold ${currentPage === 'about' ? 'bg-forest text-white' : 'bg-ivory text-charcoal'}`}
+              className={`p-2.5 rounded-lg text-left text-xs font-semibold ${activePage === 'about' ? 'bg-forest text-white' : 'bg-ivory text-charcoal'}`}
             >
               About Department
             </button>
@@ -260,21 +255,21 @@ export const Navbar: React.FC<NavbarProps> = ({
             <div className="space-y-1.5">
               <button 
                 onClick={() => handleNavClick('dhib')}
-                className={`w-full flex items-center space-x-2 p-2.5 rounded-lg text-xs font-medium text-left ${currentPage === 'dhib' ? 'bg-forest text-white' : 'hover:bg-surface-lightGreen text-charcoal'}`}
+                className={`w-full flex items-center space-x-2 p-2.5 rounded-lg text-xs font-medium text-left ${activePage === 'dhib' ? 'bg-forest text-white' : 'hover:bg-surface-lightGreen text-charcoal'}`}
               >
                 <Building2 className="w-4 h-4 text-gold shrink-0" />
                 <span>DHIB – Darul Huda Islamic Bank</span>
               </button>
               <button 
                 onClick={() => handleNavClick('sbc')}
-                className={`w-full flex items-center space-x-2 p-2.5 rounded-lg text-xs font-medium text-left ${currentPage === 'sbc' ? 'bg-forest text-white' : 'hover:bg-surface-lightGreen text-charcoal'}`}
+                className={`w-full flex items-center space-x-2 p-2.5 rounded-lg text-xs font-medium text-left ${activePage === 'sbc' ? 'bg-forest text-white' : 'hover:bg-surface-lightGreen text-charcoal'}`}
               >
                 <Briefcase className="w-4 h-4 text-gold shrink-0" />
                 <span>SBC – Shariah Business Consultancy</span>
               </button>
               <button 
                 onClick={() => handleNavClick('tamweel')}
-                className={`w-full flex items-center space-x-2 p-2.5 rounded-lg text-xs font-medium text-left ${currentPage === 'tamweel' ? 'bg-forest text-white' : 'hover:bg-surface-lightGreen text-charcoal'}`}
+                className={`w-full flex items-center space-x-2 p-2.5 rounded-lg text-xs font-medium text-left ${activePage === 'tamweel' ? 'bg-forest text-white' : 'hover:bg-surface-lightGreen text-charcoal'}`}
               >
                 <BookOpen className="w-4 h-4 text-gold shrink-0" />
                 <span>Tamweel – Academic Journal</span>
@@ -282,22 +277,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-2 pt-2 border-t border-gray-100">
+          <div className="grid grid-cols-2 gap-2 pt-2 border-t border-gray-100">
             <button 
               onClick={() => handleNavClick('activities')}
-              className={`p-2 text-center rounded-lg text-xs font-medium ${currentPage === 'activities' ? 'bg-forest text-white' : 'bg-ivory text-charcoal'}`}
+              className={`p-2 text-center rounded-lg text-xs font-medium ${activePage === 'activities' ? 'bg-forest text-white' : 'bg-ivory text-charcoal'}`}
             >
               Activities
             </button>
             <button 
-              onClick={() => handleNavClick('resources')}
-              className={`p-2 text-center rounded-lg text-xs font-medium ${currentPage === 'resources' ? 'bg-forest text-white' : 'bg-ivory text-charcoal'}`}
-            >
-              Resources
-            </button>
-            <button 
               onClick={() => handleNavClick('contact')}
-              className={`p-2 text-center rounded-lg text-xs font-medium ${currentPage === 'contact' ? 'bg-forest text-white' : 'bg-ivory text-charcoal'}`}
+              className={`p-2 text-center rounded-lg text-xs font-medium ${activePage === 'contact' ? 'bg-forest text-white' : 'bg-ivory text-charcoal'}`}
             >
               Contact
             </button>

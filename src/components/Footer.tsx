@@ -1,25 +1,25 @@
 import React from 'react';
 import { PageId } from '../types';
 import { CrestLogo, IslamicStarIcon } from './IslamicPattern';
-import { 
-  Building2, 
-  Briefcase, 
-  BookOpen, 
-  Mail, 
-  Phone, 
-  MapPin, 
+import {
+  Building2,
+  Briefcase,
+  BookOpen,
+  Mail,
+  Phone,
+  MapPin,
   ExternalLink,
   ShieldAlert,
   ArrowRight
 } from 'lucide-react';
 
 interface FooterProps {
-  onNavigate: (page: PageId) => void;
+  onNavigate: (page: PageId | string) => void;
   onOpenAdmin: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
-  const handleNav = (page: PageId) => {
+  const handleNav = (page: PageId | string) => {
     onNavigate(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -31,11 +31,28 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-forest-light/60">
-          
+
           {/* Col 1 & 2: Department Branding & Identity */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-start space-x-3.5">
-              <CrestLogo size={48} className="bg-white/5 border-gold/50" />
+            <div className="flex items-start space-x-4">
+              {/* Square pattern container with suitable light color for dark surface visibility */}
+              <div className="relative shrink-0 group">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white border-2 border-gold/60 shadow-elevated p-2 flex items-center justify-center relative overflow-hidden">
+                  {/* Subtle decorative Islamic pattern overlay */}
+                  <div className="absolute inset-0 pattern-light opacity-40 pointer-events-none"></div>
+                  {/* Fine gold corner geometric accents */}
+                  <div className="absolute top-1 left-1 w-2 h-2 border-t-2 border-l-2 border-gold/70"></div>
+                  <div className="absolute top-1 right-1 w-2 h-2 border-t-2 border-r-2 border-gold/70"></div>
+                  <div className="absolute bottom-1 left-1 w-2 h-2 border-b-2 border-l-2 border-gold/70"></div>
+                  <div className="absolute bottom-1 right-1 w-2 h-2 border-b-2 border-r-2 border-gold/70"></div>
+
+                  <img
+                    src="/dief-logo.png"
+                    alt="Department of Islamic Economics and Finance Official Logo"
+                    className="w-full h-full object-contain relative z-10 transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+              </div>
               <div>
                 <span className="text-[11px] tracking-widest text-gold uppercase font-semibold block">
                   Academic Department
@@ -50,7 +67,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
             </div>
 
             <p className="text-xs text-sage-subtle leading-relaxed pr-4">
-              Dedicated to pioneering ethical, Shariah-grounded economic thought and contemporary financial jurisprudence. We integrate classical epistemological rigor with modern analytical methodologies to cultivate transformative research and institutional leadership.
+              Dedicated to pioneering ethical, Shariah grounded economic thought and contemporary financial jurisprudence. We integrate classical epistemological rigor with modern analytical methodologies to cultivate transformative research and institutional leadership.
             </p>
 
             {/* Arabic inscription banner */}
@@ -63,10 +80,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
               </div>
               <IslamicStarIcon size={24} className="text-gold/60" />
             </div>
-
-            <div className="pt-2 text-xs text-sage-light">
-              <span className="font-medium text-white">One Department. Three Flagship Initiatives. One Unified Identity.</span>
-            </div>
           </div>
 
           {/* Col 3: The Three Initiatives */}
@@ -77,7 +90,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
             </h4>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <button 
+                <button
                   onClick={() => handleNav('dhib')}
                   className="group text-left text-sage-subtle hover:text-white transition flex items-center space-x-2"
                 >
@@ -89,7 +102,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   onClick={() => handleNav('sbc')}
                   className="group text-left text-sage-subtle hover:text-white transition flex items-center space-x-2"
                 >
@@ -101,7 +114,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   onClick={() => handleNav('tamweel')}
                   className="group text-left text-sage-subtle hover:text-white transition flex items-center space-x-2"
                 >
@@ -135,15 +148,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNav('resources')} className="hover:text-white transition flex items-center space-x-1.5">
-                  <ArrowRight className="w-3 h-3 text-gold/70" />
-                  <span>Curricular & Research Library</span>
-                </button>
-              </li>
-              <li>
                 <button onClick={() => handleNav('tamweel')} className="hover:text-white transition flex items-center space-x-1.5">
                   <ArrowRight className="w-3 h-3 text-gold/70" />
-                  <span>Call for Papers (Tamweel)</span>
+                  <span>Tamweel Journal &amp; Publications</span>
                 </button>
               </li>
               <li>
@@ -177,9 +184,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="w-3.5 h-3.5 text-gold shrink-0" />
-                <span className="text-[11px] font-mono text-sage-light">
-                  islamiceco@darulhudaiu.ac.in
-                </span>
+                <a href="mailto:dief@dhiu.in" className="text-[11px] font-mono text-sage-light hover:text-gold transition">
+                  dief@dhiu.in
+                </a>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="w-3.5 h-3.5 text-gold shrink-0" />

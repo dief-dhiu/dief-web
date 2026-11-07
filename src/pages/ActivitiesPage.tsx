@@ -1,125 +1,295 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { PageId, EventItem } from '../types';
-import { 
-  Calendar, 
-  Clock, 
-  MapPin, 
-  Filter, 
-  Search, 
-  ArrowRight, 
-  User, 
-  CheckCircle2, 
+import { ActivityRecord } from '../types/activity';
+import {
+  fetchPublicActivities,
+  fetchPublicFeaturedActivities,
+  fetchActivityCategories
+} from '../lib/activitiesService';
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  Filter,
+  Search,
+  ArrowRight,
+  User,
+  CheckCircle2,
   Share2,
   X,
-  ExternalLink
+  ExternalLink,
+  Star,
+  Users,
+  Image as ImageIcon,
+  Phone,
+  Loader2,
+  RefreshCw
 } from 'lucide-react';
 import { IslamicStarIcon } from '../components/IslamicPattern';
 
 interface ActivitiesPageProps {
   onNavigate: (page: PageId) => void;
-  events: EventItem[];
+  events?: EventItem[];
   selectedEventId?: string;
   onShowToast: (title: string, message: string, type?: 'success' | 'info' | 'warning') => void;
 }
 
 export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
   onNavigate,
-  events,
+  events = [],
   selectedEventId,
   onShowToast
 }) => {
+  const { activityId } = useParams<{ activityId?: string }>();
+  const navigate = useNavigate();
+  const effectiveEventId = activityId || selectedEventId;
+
+  // Live Data States
+  const [loading, setLoading] = useState(true);
+  const [activities, setActivities] = useState<ActivityRecord[]>([]);
+  const [featuredActivities, setFeaturedActivities] = useState<ActivityRecord[]>([]);
+  const [availableCategories, setAvailableCategories] = useState<string[]>(['All']);
+
+  // Filters
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
-  const [selectedYear, setSelectedYear] = useState<string>('All');
+  const [timelineFilter, setTimelineFilter] = useState<'All' | 'Upcoming' | 'Past'>('All');
   const [searchQuery, setSearchQuery] = useState('');
-  
-  const [activeModalEvent, setActiveModalEvent] = useState<EventItem | null>(
-    selectedEventId ? events.find(e => e.id === selectedEventId) || null : null
-  );
 
-  const categories = [
-    'All',
-    'Seminars',
-    'Conferences',
-    'Workshops',
-    'Guest Lectures',
-    'Student Activities',
-    'Internships',
-    'Academic Visits',
-    'Research Events'
-  ];
+  // Modals
+  const [activeModalActivity, setActiveModalActivity] = useState<ActivityRecord | null>(null);
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
-  const years = ['All', '2026', '2025'];
+  // Load live data from Supabase
+  const loadData = async () => {
+    setLoading(true);
+    try {
+      const [acts, featured, cats] = await Promise.all([
+        fetchPublicActivities(),
+        fetchPublicFeaturedActivities(),
+        fetchActivityCategories()
+      ]);
 
-  const filteredEvents = events.filter((ev) => {
-    const matchCat = selectedCategory === 'All' || ev.category === selectedCategory;
-    const matchYear = selectedYear === 'All' || ev.year.toString() === selectedYear;
-    const matchSearch = !searchQuery || 
-      ev.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      ev.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      ev.venue.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchCat && matchYear && matchSearch;
-  });
+      setActivities(acts);
+      setFeaturedActivities(featured);
+
+      // Extract unique categories from both categories table and live activities
+      const catNames = new Set<string>(['All']);
+      cats.forEach((c) => catNames.add(c.name));
+      acts.forEach((a) => catNames.add(a.category_name));
+      setAvailableCategories(Array.from(catNames));
+
+      // Handle effectiveEventId if passed from URL or external navigation
+      if (effectiveEventId) {
+        const found = acts.find((a) => a.id === effectiveEventId);
+        if (found) setActiveModalActivity(found);
+      }
+    } catch (err) {
+      console.warn('[ActivitiesPage] Error loading public activities:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleOpenActivityModal = (act: ActivityRecord) => {
+    setActiveModalActivity(act);
+    navigate(`/activities/${act.id}`);
+  };
+
+  const handleCloseActivityModal = () => {
+    setActiveModalActivity(null);
+    if (activityId) {
+      navigate('/activities');
+    }
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const today = new Date().toISOString().split('T')[0];
+
+  // Filtered Activities
+  const filteredActivities = useMemo(() => {
+    return activities.filter((act) => {
+      // Category filter
+      if (selectedCategory !== 'All' && act.category_name !== selectedCategory) {
+        return false;
+      }
+
+      // Timeline filter
+      if (timelineFilter === 'Upcoming' && act.start_date < today) {
+        return false;
+      }
+      if (timelineFilter === 'Past' && act.start_date >= today) {
+        return false;
+      }
+
+      // Search query
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase();
+        const matchesTitle = act.title.toLowerCase().includes(q);
+        const matchesDesc = act.short_description.toLowerCase().includes(q);
+        const matchesVenue = act.venue.toLowerCase().includes(q);
+        const matchesSpeaker = act.speaker_details?.toLowerCase().includes(q);
+        if (!matchesTitle && !matchesDesc && !matchesVenue && !matchesSpeaker) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+  }, [activities, selectedCategory, timelineFilter, searchQuery, today]);
 
   return (
     <div className="space-y-16 py-8">
-      
-      {/* HEADER BANNER */}
+
+      {/* 1. HEADER BANNER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
           <div className="absolute inset-0 pattern-dark-islamic opacity-30 pointer-events-none"></div>
 
           <div className="relative z-10 max-w-3xl space-y-4">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gold/20 text-gold text-xs font-semibold border border-gold/30">
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-gold/20 text-gold text-xs font-semibold border border-gold/30">
               <Calendar className="w-3.5 h-3.5" />
-              <span>Departmental Chronicle &amp; Events</span>
+              <span>Departmental Chronicle &amp; Academic Events</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-editorial font-bold text-white tracking-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-editorial font-bold text-white tracking-tight leading-tight">
               Academic Activities &amp; Events Archive
             </h1>
 
-            <div className="font-arabic text-lg sm:text-xl text-sage-light" dir="rtl">
-              سجل المؤتمرات والندوات والأنشطة الأكاديمية
-            </div>
+
 
             <p className="text-sm sm:text-base text-sage-subtle leading-relaxed">
-              Explore our comprehensive archive of national conferences, specialized jurisprudence workshops, student field immersions, and executive roundtables hosted by the Department of Islamic Economics and Finance.
+              Explore our live chronicle of national conferences, specialized Shariah jurisprudence workshops, student research colloquiums, and executive roundtables hosted by the Department of Islamic Economics and Finance.
             </p>
           </div>
         </div>
       </section>
 
-      {/* FILTERS & SEARCH CONTROLS */}
+      {/* 2. FEATURED ACTIVITIES SPOTLIGHT (If available) */}
+      {featuredActivities.length > 0 && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-4">
+            <div className="flex items-center space-x-2 text-forest">
+              <IslamicStarIcon className="w-4 h-4 text-gold" />
+              <h2 className="text-lg font-editorial font-bold">Featured Academic Highlights</h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {featuredActivities.map((act) => {
+                const isUpcoming = act.start_date >= today;
+                return (
+                  <div
+                    key={act.id}
+                    onClick={() => handleOpenActivityModal(act)}
+                    className="bg-white rounded-3xl border-2 border-gold/40 shadow-soft hover:shadow-elevated transition-all overflow-hidden flex flex-col justify-between cursor-pointer group relative"
+                  >
+                    <div className="relative aspect-[16/9] overflow-hidden bg-forest/10">
+                      {act.featured_image_url ? (
+                        <img
+                          src={act.featured_image_url}
+                          alt={act.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex flex-col items-center justify-center text-forest/40">
+                          <Calendar className="w-12 h-12 mb-2" />
+                          <span className="text-xs">DIEF Academic Event</span>
+                        </div>
+                      )}
+
+                      <div className="absolute top-3 left-3 flex items-center space-x-2">
+                        <span className="bg-forest text-gold text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shadow border border-gold/30">
+                          {act.category_name}
+                        </span>
+                        <span className="bg-amber-400 text-forest text-[10px] font-bold px-2 py-0.5 rounded shadow flex items-center space-x-1">
+                          <Star className="w-3 h-3 fill-forest" />
+                          <span>Featured</span>
+                        </span>
+                      </div>
+
+                      {isUpcoming && (
+                        <div className="absolute top-3 right-3 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded shadow">
+                          Upcoming Event
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="p-6 sm:p-7 space-y-3 flex-1 flex flex-col justify-between">
+                      <div className="space-y-2">
+                        <div className="flex items-center space-x-2 text-xs font-semibold text-gold-dark">
+                          <Calendar className="w-3.5 h-3.5" />
+                          <span>
+                            {new Date(act.start_date).toLocaleDateString('en-GB', {
+                              day: 'numeric',
+                              month: 'long',
+                              year: 'numeric'
+                            })}
+                            {act.start_time ? ` • ${act.start_time}` : ''}
+                          </span>
+                        </div>
+
+                        <h3 className="font-editorial text-xl font-bold text-forest group-hover:text-gold transition-colors leading-snug">
+                          {act.title}
+                        </h3>
+
+                        <p className="text-xs sm:text-sm text-charcoal-muted line-clamp-2 leading-relaxed">
+                          {act.short_description}
+                        </p>
+                      </div>
+
+                      <div className="pt-4 border-t border-sand flex items-center justify-between text-xs font-bold text-forest group-hover:text-gold-dark transition">
+                        <span className="flex items-center space-x-1 text-muted">
+                          <MapPin className="w-3.5 h-3.5 text-gold shrink-0" />
+                          <span className="truncate max-w-[200px] sm:max-w-xs">{act.venue}</span>
+                        </span>
+                        <span className="inline-flex items-center space-x-1">
+                          <span>Explore Details</span>
+                          <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 3. FILTERS & SEARCH CONTROLS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-2xl p-6 border border-forest/10 shadow-soft space-y-4">
-          
+
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+
             {/* Search */}
-            <div className="relative w-full md:w-80">
-              <Search className="w-4 h-4 text-charcoal-muted absolute left-3 top-3" />
+            <div className="relative w-full md:w-96">
+              <Search className="w-4 h-4 text-charcoal-muted absolute left-3.5 top-3" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search events by topic, speaker, venue..."
-                className="w-full pl-9 pr-4 py-2 text-xs bg-ivory/60 border border-gray-200 rounded-xl focus:border-forest focus:outline-none font-medium"
+                placeholder="Search activities by topic, speaker, or venue..."
+                className="w-full pl-10 pr-4 py-2 text-xs bg-ivory/60 border border-gray-200 rounded-xl focus:border-forest focus:outline-none font-medium text-forest placeholder:text-muted"
               />
             </div>
 
-            {/* Year Selector */}
+            {/* Timeline Selector */}
             <div className="flex items-center space-x-2 text-xs font-semibold w-full md:w-auto justify-end">
-              <span className="text-charcoal-muted">Filter Year:</span>
-              {years.map((y) => (
+              <span className="text-charcoal-muted mr-1">Timeline:</span>
+              {(['All', 'Upcoming', 'Past'] as const).map((t) => (
                 <button
-                  key={y}
-                  onClick={() => setSelectedYear(y)}
-                  className={`px-3 py-1.5 rounded-lg transition ${
-                    selectedYear === y
-                      ? 'bg-forest text-white'
+                  key={t}
+                  onClick={() => setTimelineFilter(t)}
+                  className={`px-3 py-1.5 rounded-lg transition ${timelineFilter === t
+                      ? 'bg-forest text-white shadow-sm'
                       : 'bg-surface-lightGreen text-charcoal hover:bg-white'
-                  }`}
+                    }`}
                 >
-                  {y}
+                  {t === 'All' ? 'All Activities' : t}
                 </button>
               ))}
             </div>
@@ -127,15 +297,14 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
 
           {/* Category Tabs */}
           <div className="pt-2 border-t border-gray-100 flex items-center space-x-2 overflow-x-auto pb-1 text-xs font-semibold">
-            {categories.map((cat) => (
+            {availableCategories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition ${
-                  selectedCategory === cat
+                className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition ${selectedCategory === cat
                     ? 'bg-forest text-white shadow-sm'
                     : 'bg-ivory text-charcoal hover:bg-surface-lightGreen'
-                }`}
+                  }`}
               >
                 {cat}
               </button>
@@ -145,156 +314,327 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
         </div>
       </section>
 
-      {/* EVENTS GRID */}
+      {/* 4. ACTIVITIES DIRECTORY GRID */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {filteredEvents.length === 0 ? (
-          <div className="text-center py-16 bg-white rounded-3xl border border-gray-200 p-8">
-            <IslamicStarIcon size={36} className="mx-auto text-gold mb-3" />
+        {loading ? (
+          <div className="py-20 text-center space-y-3">
+            <Loader2 className="w-8 h-8 animate-spin text-gold mx-auto" />
+            <p className="text-xs text-muted font-medium">Loading academic activities...</p>
+          </div>
+        ) : filteredActivities.length === 0 ? (
+          <div className="text-center py-16 bg-white rounded-3xl border border-gray-200 p-8 space-y-3">
+            <IslamicStarIcon size={36} className="mx-auto text-gold mb-1" />
             <h3 className="font-editorial text-xl font-bold text-forest">No matching activities found</h3>
-            <p className="text-xs text-charcoal-muted mt-1">Try clearing filters or search keywords.</p>
+            <p className="text-xs text-charcoal-muted max-w-sm mx-auto">
+              No published events match your selected filters. Try choosing "All Activities" or adjusting your keywords.
+            </p>
+            <button
+              onClick={() => {
+                setSelectedCategory('All');
+                setTimelineFilter('All');
+                setSearchQuery('');
+              }}
+              className="px-4 py-2 rounded-xl bg-forest text-white text-xs font-semibold hover:bg-forest-light transition-colors"
+            >
+              Reset Filters
+            </button>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredEvents.map((ev) => (
-              <div
-                key={ev.id}
-                onClick={() => setActiveModalEvent(ev)}
-                className="bg-white rounded-2xl border border-forest/10 hover:border-gold/60 shadow-soft hover:shadow-elevated transition-all overflow-hidden flex flex-col justify-between cursor-pointer group"
-              >
-                <div>
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <img
-                      src={ev.image}
-                      alt={ev.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-3 left-3 bg-forest text-gold text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shadow">
-                      {ev.category}
-                    </div>
-                    {ev.isUpcoming && (
-                      <div className="absolute top-3 right-3 bg-white/95 text-forest text-[10px] font-bold px-2 py-0.5 rounded shadow">
-                        Upcoming
+            {filteredActivities.map((act) => {
+              const isUpcoming = act.start_date >= today;
+
+              return (
+                <div
+                  key={act.id}
+                  onClick={() => handleOpenActivityModal(act)}
+                  className="bg-white rounded-2xl border border-forest/10 hover:border-gold/60 shadow-soft hover:shadow-elevated transition-all overflow-hidden flex flex-col justify-between cursor-pointer group"
+                >
+                  <div>
+                    {/* Poster */}
+                    <div className="relative aspect-[16/10] overflow-hidden bg-sand">
+                      {act.featured_image_url ? (
+                        <img
+                          src={act.featured_image_url}
+                          alt={act.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex flex-col items-center justify-center text-forest/40">
+                          <ImageIcon className="w-8 h-8 mb-1" />
+                          <span className="text-[10px]">Academic Event</span>
+                        </div>
+                      )}
+
+                      <div className="absolute top-3 left-3 bg-forest text-gold text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shadow">
+                        {act.category_name}
                       </div>
-                    )}
+
+                      {isUpcoming ? (
+                        <div className="absolute top-3 right-3 bg-white/95 text-forest text-[10px] font-bold px-2 py-0.5 rounded shadow">
+                          Upcoming
+                        </div>
+                      ) : (
+                        <div className="absolute top-3 right-3 bg-black/60 text-white text-[10px] font-medium px-2 py-0.5 rounded shadow">
+                          Archive
+                        </div>
+                      )}
+
+                      {act.gallery && act.gallery.length > 0 && (
+                        <div className="absolute bottom-2 right-2 bg-black/70 text-white text-[10px] px-2 py-0.5 rounded-full flex items-center space-x-1">
+                          <ImageIcon className="w-3 h-3" />
+                          <span>+{act.gallery.length} photos</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-6 space-y-3">
+                      <div className="flex items-center space-x-2 text-xs font-semibold text-gold-dark">
+                        <Calendar className="w-3.5 h-3.5" />
+                        <span>
+                          {new Date(act.start_date).toLocaleDateString('en-GB', {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric'
+                          })}
+                          {act.start_time ? ` • ${act.start_time}` : ''}
+                        </span>
+                      </div>
+
+                      <h3 className="font-editorial text-lg font-bold text-forest group-hover:text-gold transition-colors leading-snug line-clamp-2">
+                        {act.title}
+                      </h3>
+
+                      <p className="text-xs text-charcoal-muted line-clamp-3 leading-relaxed">
+                        {act.short_description}
+                      </p>
+                    </div>
                   </div>
 
-                  <div className="p-6 space-y-3">
-                    <div className="flex items-center space-x-2 text-xs font-semibold text-gold-dark">
-                      <Calendar className="w-3.5 h-3.5" />
-                      <span>{ev.date}</span>
+                  <div className="p-6 pt-0 space-y-3">
+                    <div className="text-[11px] text-charcoal-muted space-y-1 border-t border-gray-100 pt-3">
+                      <div className="flex items-center space-x-1.5 truncate">
+                        <MapPin className="w-3 h-3 text-gold shrink-0" />
+                        <span className="truncate">{act.venue}</span>
+                      </div>
+                      {act.speaker_details && (
+                        <div className="flex items-center space-x-1.5 text-forest font-medium truncate">
+                          <User className="w-3 h-3 text-gold shrink-0" />
+                          <span className="truncate">{act.speaker_details}</span>
+                        </div>
+                      )}
                     </div>
 
-                    <h3 className="font-editorial text-lg font-bold text-forest group-hover:text-emerald-deep leading-snug">
-                      {ev.title}
-                    </h3>
-
-                    <p className="text-xs text-charcoal-muted line-clamp-3 leading-relaxed">
-                      {ev.description}
-                    </p>
+                    <div className="pt-1 flex items-center justify-between text-xs font-bold text-forest group-hover:text-gold-dark transition">
+                      <span>View Event Details</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </div>
                 </div>
-
-                <div className="p-6 pt-0 space-y-3">
-                  <div className="text-[11px] text-charcoal-muted space-y-1 border-t border-gray-100 pt-3">
-                    <div className="flex items-center space-x-1.5 truncate">
-                      <MapPin className="w-3 h-3 text-gold shrink-0" />
-                      <span className="truncate">{ev.venue}</span>
-                    </div>
-                    {ev.speakerPlaceholder && (
-                      <div className="flex items-center space-x-1.5 text-forest font-medium truncate">
-                        <User className="w-3 h-3 text-gold shrink-0" />
-                        <span className="truncate">{ev.speakerPlaceholder}</span>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="pt-1 flex items-center justify-between text-xs font-bold text-forest group-hover:text-gold-dark transition">
-                    <span>View Event Details</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </section>
 
-      {/* EVENT DETAIL MODAL */}
-      {activeModalEvent && (
+      {/* 5. EVENT DETAIL MODAL */}
+      {activeModalActivity && (
         <div className="fixed inset-0 z-50 bg-forest-dark/70 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn">
-          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-gold/40 shadow-2xl relative overflow-hidden">
-            
-            <div className="relative aspect-[16/9] w-full overflow-hidden">
-              <img src={activeModalEvent.image} alt={activeModalEvent.title} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest/90 via-forest/40 to-transparent"></div>
+          <div className="bg-white rounded-3xl max-w-3xl w-full max-h-[92vh] overflow-y-auto border border-gold/40 shadow-2xl relative overflow-hidden flex flex-col">
+
+            {/* Modal Header / Banner */}
+            <div className="relative aspect-[16/9] w-full overflow-hidden bg-forest flex-shrink-0">
+              {activeModalActivity.featured_image_url ? (
+                <img
+                  src={activeModalActivity.featured_image_url}
+                  alt={activeModalActivity.title}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center text-white/50">
+                  <Calendar className="w-16 h-16 mb-2" />
+                  <span className="text-sm font-editorial">DIEF Academic Event</span>
+                </div>
+              )}
+
+              <div className="absolute inset-0 bg-gradient-to-t from-forest/95 via-forest/40 to-transparent"></div>
+
               <button
-                onClick={() => setActiveModalEvent(null)}
-                className="absolute top-4 right-4 bg-white/80 hover:bg-white text-charcoal p-1.5 rounded-full shadow transition"
+                onClick={handleCloseActivityModal}
+                className="absolute top-4 right-4 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full shadow transition"
               >
                 <X className="w-5 h-5" />
               </button>
-              <div className="absolute bottom-4 left-6 right-6 text-white space-y-1">
-                <span className="text-[10px] font-bold tracking-wider uppercase bg-gold text-forest px-2.5 py-0.5 rounded">
-                  {activeModalEvent.category}
-                </span>
-                <h3 className="font-editorial text-2xl font-bold text-white leading-snug">
-                  {activeModalEvent.title}
+
+              <div className="absolute bottom-4 left-6 right-6 text-white space-y-1.5">
+                <div className="flex items-center space-x-2">
+                  <span className="text-[10px] font-bold tracking-wider uppercase bg-gold text-forest px-2.5 py-0.5 rounded">
+                    {activeModalActivity.category_name}
+                  </span>
+                  {activeModalActivity.start_date >= today && (
+                    <span className="text-[10px] font-bold uppercase bg-emerald-500 text-white px-2 py-0.5 rounded">
+                      Upcoming
+                    </span>
+                  )}
+                </div>
+                <h3 className="font-editorial text-2xl sm:text-3xl font-bold text-white leading-tight">
+                  {activeModalActivity.title}
                 </h3>
               </div>
             </div>
 
-            <div className="p-6 sm:p-8 space-y-5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-surface-lightGreen/40 p-4 rounded-xl border border-forest/10">
+            {/* Modal Body */}
+            <div className="p-6 sm:p-8 space-y-6 overflow-y-auto">
+
+              {/* Meta Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-surface-lightGreen/50 p-4 rounded-2xl border border-forest/10">
                 <div className="flex items-center space-x-2">
                   <Calendar className="w-4 h-4 text-gold shrink-0" />
-                  <span><strong>Date:</strong> {activeModalEvent.date}</span>
+                  <span>
+                    <strong>Date:</strong>{' '}
+                    {new Date(activeModalActivity.start_date).toLocaleDateString('en-GB', {
+                      day: 'numeric',
+                      month: 'long',
+                      year: 'numeric'
+                    })}
+                  </span>
                 </div>
-                {activeModalEvent.time && (
+                {activeModalActivity.start_time && (
                   <div className="flex items-center space-x-2">
                     <Clock className="w-4 h-4 text-gold shrink-0" />
-                    <span><strong>Time:</strong> {activeModalEvent.time}</span>
+                    <span>
+                      <strong>Time:</strong> {activeModalActivity.start_time}{' '}
+                      {activeModalActivity.end_time ? `– ${activeModalActivity.end_time}` : ''}
+                    </span>
                   </div>
                 )}
                 <div className="flex items-center space-x-2 sm:col-span-2">
                   <MapPin className="w-4 h-4 text-gold shrink-0" />
-                  <span><strong>Venue:</strong> {activeModalEvent.venue}</span>
+                  <span><strong>Venue:</strong> {activeModalActivity.venue}</span>
                 </div>
-                {activeModalEvent.speakerPlaceholder && (
+                {activeModalActivity.speaker_details && (
                   <div className="flex items-center space-x-2 sm:col-span-2">
                     <User className="w-4 h-4 text-gold shrink-0" />
-                    <span><strong>Facilitator:</strong> {activeModalEvent.speakerPlaceholder}</span>
+                    <span><strong>Distinguished Speakers:</strong> {activeModalActivity.speaker_details}</span>
+                  </div>
+                )}
+                {activeModalActivity.organizing_body && (
+                  <div className="flex items-center space-x-2 sm:col-span-2">
+                    <Users className="w-4 h-4 text-gold shrink-0" />
+                    <span><strong>Organizers:</strong> {activeModalActivity.organizing_body}</span>
                   </div>
                 )}
               </div>
 
-              <div className="space-y-2 text-xs sm:text-sm text-charcoal-light leading-relaxed">
+              {/* Descriptions */}
+              <div className="space-y-3 text-xs sm:text-sm text-charcoal-light leading-relaxed">
                 <h4 className="font-editorial text-base font-bold text-forest">Session Overview</h4>
-                <p>{activeModalEvent.description}</p>
-                {activeModalEvent.fullDetails && (
-                  <p>{activeModalEvent.fullDetails}</p>
+                <p className="bg-sand/20 p-4 rounded-xl border border-sand-dark/40 font-medium text-forest/90">
+                  {activeModalActivity.short_description}
+                </p>
+                {activeModalActivity.full_description && (
+                  <div className="whitespace-pre-line text-forest/80 pt-2">
+                    {activeModalActivity.full_description}
+                  </div>
                 )}
               </div>
 
-              <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
+              {/* Photo Gallery if present */}
+              {activeModalActivity.gallery && activeModalActivity.gallery.length > 0 && (
+                <div className="space-y-3 pt-2 border-t border-gray-100">
+                  <h4 className="font-editorial text-sm font-bold text-forest flex items-center space-x-1.5">
+                    <ImageIcon className="w-4 h-4 text-gold" />
+                    <span>Event Photo Chronicle ({activeModalActivity.gallery.length} Images)</span>
+                  </h4>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    {activeModalActivity.gallery.map((img, idx) => (
+                      <div
+                        key={img.id || idx}
+                        onClick={() => setLightboxImage(img.image_url)}
+                        className="aspect-video rounded-xl overflow-hidden border border-sand-dark cursor-pointer group hover:border-gold transition-colors relative"
+                      >
+                        <img
+                          src={img.image_url}
+                          alt={img.caption || `Photo ${idx + 1}`}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                        />
+                        {img.caption && (
+                          <div className="absolute inset-x-0 bottom-0 bg-black/60 text-white text-[9px] p-1 truncate">
+                            {img.caption}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Contact Information */}
+              {activeModalActivity.contact_info && (
+                <div className="flex items-center space-x-2 text-xs text-forest bg-forest/5 p-3 rounded-xl border border-forest/10">
+                  <Phone className="w-3.5 h-3.5 text-gold shrink-0" />
+                  <span><strong>Queries &amp; Contact:</strong> {activeModalActivity.contact_info}</span>
+                </div>
+              )}
+
+              {/* Action Buttons */}
+              <div className="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3">
                 <button
-                  onClick={() => onShowToast('Event Saved', 'Event dates bookmarked to your calendar notification list.', 'info')}
+                  onClick={() => onShowToast('Activity Saved', 'Dates bookmarked to your session.', 'info')}
                   className="px-4 py-2 bg-ivory hover:bg-white text-forest border border-forest/20 rounded-xl text-xs font-semibold transition"
                 >
                   Bookmark Event
                 </button>
-                <button
-                  onClick={() => {
-                    setActiveModalEvent(null);
-                    onNavigate('contact');
-                  }}
-                  className="px-5 py-2 bg-forest hover:bg-emerald-deep text-white rounded-xl text-xs font-bold transition shadow"
-                >
-                  Inquire Attendance / Registration
-                </button>
+
+                <div className="flex items-center space-x-3">
+                  {activeModalActivity.registration_url ? (
+                    <a
+                      href={activeModalActivity.registration_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center space-x-1.5 px-5 py-2.5 bg-forest hover:bg-forest-light text-white rounded-xl text-xs font-bold transition shadow"
+                    >
+                      <span>Register for Event</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-gold" />
+                    </a>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        handleCloseActivityModal();
+                        onNavigate('contact');
+                      }}
+                      className="px-5 py-2.5 bg-forest hover:bg-forest-light text-white rounded-xl text-xs font-bold transition shadow"
+                    >
+                      Inquire Attendance / Registration
+                    </button>
+                  )}
+                </div>
               </div>
 
             </div>
           </div>
+        </div>
+      )}
+
+      {/* Lightbox for gallery images */}
+      {lightboxImage && (
+        <div
+          className="fixed inset-0 z-60 bg-black/90 flex items-center justify-center p-4 backdrop-blur-md"
+          onClick={() => setLightboxImage(null)}
+        >
+          <button
+            onClick={() => setLightboxImage(null)}
+            className="absolute top-6 right-6 p-2 rounded-full bg-white/20 text-white hover:bg-white/30"
+          >
+            <X className="w-6 h-6" />
+          </button>
+          <img
+            src={lightboxImage}
+            alt="Enlarged gallery view"
+            className="max-w-full max-h-[85vh] rounded-xl object-contain shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
         </div>
       )}
 

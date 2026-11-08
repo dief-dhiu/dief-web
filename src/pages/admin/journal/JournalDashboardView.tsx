@@ -1,14 +1,14 @@
 import React from 'react';
 import { JournalDashboardStats, JournalSubmission, JournalArticleRecord } from '../../../types/journal';
-import { 
-  BookOpen, 
-  FileText, 
-  CheckCircle2, 
-  Clock, 
-  XCircle, 
-  AlertCircle, 
-  Calendar, 
-  ArrowRight, 
+import {
+  BookOpen,
+  FileText,
+  CheckCircle2,
+  Clock,
+  XCircle,
+  AlertCircle,
+  Calendar,
+  ArrowRight,
   ExternalLink,
   PlusCircle,
   UploadCloud
@@ -57,9 +57,9 @@ export const JournalDashboardView: React.FC<JournalDashboardViewProps> = ({
 
   return (
     <div className="space-y-6">
-      
+
       {/* 1. Header Banner & Quick Action Buttons */}
-      <div className="bg-forest rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
+      <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
         <div className="absolute inset-0 pattern-dark-islamic opacity-25 pointer-events-none"></div>
 
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -100,11 +100,11 @@ export const JournalDashboardView: React.FC<JournalDashboardViewProps> = ({
 
       {/* 2. Key Statistics Counters */}
       <div className="grid grid-cols-2 lg:grid-cols-6 gap-3 sm:gap-4">
-        
+
         {/* Total Issues */}
-        <div 
+        <div
           onClick={() => onSelectTab('issues')}
-          className="bg-white p-4 rounded-2xl border border-forest/10 shadow-soft hover:shadow-elevated hover:border-gold transition cursor-pointer group"
+          className="bg-white p-4 rounded-2xl border border-forest/15 shadow-soft hover:shadow-elevated hover:border-gold transition cursor-pointer group"
         >
           <div className="flex items-center justify-between">
             <span className="text-[10px] font-bold text-charcoal-muted uppercase tracking-wider">
@@ -121,9 +121,9 @@ export const JournalDashboardView: React.FC<JournalDashboardViewProps> = ({
         </div>
 
         {/* Total Published Articles */}
-        <div 
+        <div
           onClick={() => onSelectTab('articles')}
-          className="bg-white p-4 rounded-2xl border border-forest/10 shadow-soft hover:shadow-elevated hover:border-gold transition cursor-pointer group"
+          className="bg-white p-4 rounded-2xl border border-forest/15 shadow-soft hover:shadow-elevated hover:border-gold transition cursor-pointer group"
         >
           <div className="flex items-center justify-between">
             <span className="text-[10px] font-bold text-charcoal-muted uppercase tracking-wider">
@@ -138,148 +138,13 @@ export const JournalDashboardView: React.FC<JournalDashboardViewProps> = ({
             Active on Portal
           </div>
         </div>
-
-        {/* Awaiting Screening */}
-        <div 
-          onClick={() => onSelectTab('submissions')}
-          className="bg-white p-4 rounded-2xl border border-forest/10 shadow-soft hover:shadow-elevated hover:border-blue-400 transition cursor-pointer group"
-        >
-          <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold text-charcoal-muted uppercase tracking-wider">
-              Awaiting Screening
-            </span>
-            <Clock className="w-4 h-4 text-blue-600 group-hover:scale-110 transition-transform" />
-          </div>
-          <div className="text-2xl sm:text-3xl font-editorial font-bold text-blue-700 mt-1">
-            {loading ? '—' : stats.awaitingScreening}
-          </div>
-          <div className="text-[10px] text-blue-600 font-medium mt-0.5">
-            New Submissions
-          </div>
-        </div>
-
-        {/* Under Review */}
-        <div 
-          onClick={() => onSelectTab('submissions')}
-          className="bg-white p-4 rounded-2xl border border-forest/10 shadow-soft hover:shadow-elevated hover:border-amber-400 transition cursor-pointer group"
-        >
-          <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold text-charcoal-muted uppercase tracking-wider">
-              Under Review
-            </span>
-            <AlertCircle className="w-4 h-4 text-amber-600 group-hover:scale-110 transition-transform" />
-          </div>
-          <div className="text-2xl sm:text-3xl font-editorial font-bold text-amber-700 mt-1">
-            {loading ? '—' : stats.underReview}
-          </div>
-          <div className="text-[10px] text-amber-600 font-medium mt-0.5">
-            Peer Review In-Progress
-          </div>
-        </div>
-
-        {/* Accepted */}
-        <div 
-          onClick={() => onSelectTab('submissions')}
-          className="bg-white p-4 rounded-2xl border border-forest/10 shadow-soft hover:shadow-elevated hover:border-emerald-400 transition cursor-pointer group"
-        >
-          <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold text-charcoal-muted uppercase tracking-wider">
-              Accepted
-            </span>
-            <CheckCircle2 className="w-4 h-4 text-emerald-600 group-hover:scale-110 transition-transform" />
-          </div>
-          <div className="text-2xl sm:text-3xl font-editorial font-bold text-emerald-700 mt-1">
-            {loading ? '—' : stats.accepted}
-          </div>
-          <div className="text-[10px] text-emerald-600 font-medium mt-0.5">
-            Ready for Issue Assign
-          </div>
-        </div>
-
-        {/* Rejected */}
-        <div 
-          onClick={() => onSelectTab('submissions')}
-          className="bg-white p-4 rounded-2xl border border-forest/10 shadow-soft hover:shadow-elevated hover:border-rose-400 transition cursor-pointer group"
-        >
-          <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold text-charcoal-muted uppercase tracking-wider">
-              Rejected
-            </span>
-            <XCircle className="w-4 h-4 text-rose-600 group-hover:scale-110 transition-transform" />
-          </div>
-          <div className="text-2xl sm:text-3xl font-editorial font-bold text-rose-700 mt-1">
-            {loading ? '—' : stats.rejected}
-          </div>
-          <div className="text-[10px] text-rose-600 font-medium mt-0.5">
-            Archived Decisions
-          </div>
-        </div>
-
       </div>
 
       {/* 3. Two-Column Live Tables: Recent Submissions & Recent Articles */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        
-        {/* Left: Recently Updated Manuscript Submissions */}
-        <div className="bg-white rounded-3xl border border-forest/10 p-6 shadow-soft space-y-4">
-          <div className="flex items-center justify-between border-b border-gray-100 pb-3">
-            <div className="flex items-center space-x-2">
-              <Clock className="w-4 h-4 text-gold-dark" />
-              <h2 className="font-editorial text-base font-bold text-forest">
-                Recent Manuscript Activity
-              </h2>
-            </div>
-            <button
-              onClick={() => onSelectTab('submissions')}
-              className="text-xs text-forest hover:text-gold-dark font-semibold transition flex items-center space-x-1"
-            >
-              <span>View All ({stats.awaitingScreening + stats.underReview + stats.accepted + stats.rejected})</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-
-          {stats.recentlyUpdatedSubmissions.length === 0 ? (
-            <div className="py-8 text-center text-xs text-charcoal-muted bg-ivory/50 rounded-2xl border border-dashed border-gray-200">
-              No manuscript submissions recorded yet. Authors can submit papers via the public Tamweel page.
-            </div>
-          ) : (
-            <div className="space-y-3">
-              {stats.recentlyUpdatedSubmissions.map((sub) => (
-                <div
-                  key={sub.id}
-                  onClick={() => onOpenSubmission(sub)}
-                  className="p-3.5 rounded-xl border border-gray-100 hover:border-gold hover:bg-surface-lightGreen/30 transition cursor-pointer flex items-start justify-between gap-3 group"
-                >
-                  <div className="space-y-1 min-w-0 flex-1">
-                    <div className="flex items-center space-x-2">
-                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded border ${getStatusBadge(sub.status)}`}>
-                        {sub.status}
-                      </span>
-                      <span className="text-[10px] text-charcoal-muted truncate font-mono">
-                        {sub.track}
-                      </span>
-                    </div>
-
-                    <h3 className="text-xs font-bold text-forest group-hover:text-emerald-deep leading-snug line-clamp-1">
-                      {sub.title}
-                    </h3>
-
-                    <div className="text-[11px] text-charcoal-muted flex items-center space-x-2">
-                      <span className="font-medium text-charcoal">{sub.author_name}</span>
-                      <span>•</span>
-                      <span>{new Date(sub.created_at).toLocaleDateString()}</span>
-                    </div>
-                  </div>
-
-                  <ArrowRight className="w-4 h-4 text-charcoal-muted group-hover:text-gold group-hover:translate-x-1 transition-all shrink-0 mt-2" />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
 
         {/* Right: Recently Published Articles */}
-        <div className="bg-white rounded-3xl border border-forest/10 p-6 shadow-soft space-y-4">
+        <div className="bg-white rounded-3xl border border-forest/15 p-6 shadow-soft space-y-4">
           <div className="flex items-center justify-between border-b border-gray-100 pb-3">
             <div className="flex items-center space-x-2">
               <CheckCircle2 className="w-4 h-4 text-emerald-600" />
@@ -297,7 +162,7 @@ export const JournalDashboardView: React.FC<JournalDashboardViewProps> = ({
           </div>
 
           {stats.recentlyPublishedArticles.length === 0 ? (
-            <div className="py-8 text-center text-xs text-charcoal-muted bg-ivory/50 rounded-2xl border border-dashed border-gray-200">
+            <div className="py-8 text-center text-xs text-charcoal-muted bg-forest/5 rounded-2xl border border-dashed border-gray-200">
               No published articles in the database yet. Click "Publish Article" to create one.
             </div>
           ) : (
@@ -305,7 +170,7 @@ export const JournalDashboardView: React.FC<JournalDashboardViewProps> = ({
               {stats.recentlyPublishedArticles.map((art) => (
                 <div
                   key={art.id}
-                  className="p-3.5 rounded-xl border border-gray-100 hover:border-gold hover:bg-surface-lightGreen/30 transition flex items-start justify-between gap-3 group"
+                  className="p-3.5 rounded-xl border border-gray-100 hover:border-gold hover:bg-forest/5 transition flex items-start justify-between gap-3 group"
                 >
                   <div className="space-y-1 min-w-0 flex-1">
                     <div className="flex items-center space-x-2 text-[10px]">

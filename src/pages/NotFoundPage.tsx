@@ -50,7 +50,7 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onOpenSearch }) => {
             {onOpenSearch && (
               <button
                 onClick={onOpenSearch}
-                className="px-6 py-3 bg-surface-lightGreen hover:bg-white text-forest border border-forest/20 font-bold text-xs sm:text-sm rounded-xl transition flex items-center space-x-2"
+                className="px-6 py-3 bg-forest/5 hover:bg-forest/10 text-forest border border-forest/15 font-bold text-xs sm:text-sm rounded-xl transition flex items-center space-x-2"
               >
                 <Search className="w-4 h-4 text-gold-dark" />
                 <span>Search Portal Database</span>
@@ -66,7 +66,7 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onOpenSearch }) => {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
               <button
                 onClick={() => navigate('/tamweel')}
-                className="p-4 rounded-xl border border-forest/10 hover:border-gold/60 hover:bg-surface-lightGreen/40 transition group"
+                className="p-4 rounded-xl border border-forest/10 hover:border-gold/60 hover:bg-forest/5 transition group"
               >
                 <div className="flex items-center space-x-2 text-forest font-bold text-xs">
                   <BookOpen className="w-4 h-4 text-gold" />
@@ -77,7 +77,7 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onOpenSearch }) => {
 
               <button
                 onClick={() => navigate('/activities')}
-                className="p-4 rounded-xl border border-forest/10 hover:border-gold/60 hover:bg-surface-lightGreen/40 transition group"
+                className="p-4 rounded-xl border border-forest/10 hover:border-gold/60 hover:bg-forest/5 transition group"
               >
                 <div className="flex items-center space-x-2 text-forest font-bold text-xs">
                   <Calendar className="w-4 h-4 text-gold" />
@@ -88,7 +88,7 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onOpenSearch }) => {
 
               <button
                 onClick={() => navigate('/contact')}
-                className="p-4 rounded-xl border border-forest/10 hover:border-gold/60 hover:bg-surface-lightGreen/40 transition group"
+                className="p-4 rounded-xl border border-forest/10 hover:border-gold/60 hover:bg-forest/5 transition group"
               >
                 <div className="flex items-center space-x-2 text-forest font-bold text-xs">
                   <Mail className="w-4 h-4 text-gold" />

@@ -37,8 +37,8 @@ export const FacultyDetailModal: React.FC<FacultyDetailModalProps> = ({
   const nextStatus = profile.status === 'Published' ? 'Draft' : 'Published';
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
-      <div className="relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl border border-forest/10 overflow-hidden my-8 animate-in fade-in zoom-in-95 duration-150">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-forest-dark/80 backdrop-blur-sm overflow-y-auto">
+      <div className="relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl border border-forest/15 overflow-hidden my-8 animate-in fade-in zoom-in-95 duration-150">
         {/* Header Banner */}
         <div className="bg-forest p-6 text-white relative">
           <button
@@ -99,7 +99,7 @@ export const FacultyDetailModal: React.FC<FacultyDetailModalProps> = ({
         {/* Content Body */}
         <div className="p-6 sm:p-8 space-y-6 max-h-[60vh] overflow-y-auto">
           {/* Quick Contact & Details */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-surface-lightGreen/30 p-4 rounded-2xl border border-forest/10 text-xs text-charcoal">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-forest/5 p-4 rounded-2xl border border-forest/15 text-xs text-charcoal">
             {profile.email && (
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-forest shrink-0" />
@@ -231,7 +231,7 @@ export const FacultyDetailModal: React.FC<FacultyDetailModalProps> = ({
                 onClose();
                 onEdit(profile);
               }}
-              className="px-4 py-2 bg-forest text-white text-xs font-semibold rounded-xl hover:bg-forest/90 transition-colors flex items-center gap-1.5 shadow-sm"
+              className="px-4 py-2 bg-forest text-white text-xs font-semibold rounded-xl hover:bg-emerald-deep transition-colors flex items-center gap-1.5 shadow-soft"
             >
               <Pencil className="w-3.5 h-3.5" /> Edit Profile
             </button>

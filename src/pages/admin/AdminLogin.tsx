@@ -176,7 +176,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onNavigate }) => {
                     disabled={isSubmitting}
                     autoComplete="email"
                     required
-                    className="w-full pl-10 pr-4 py-3 bg-ivory/50 border border-gray-200 rounded-xl text-xs sm:text-sm focus:border-forest focus:bg-white focus:outline-none transition disabled:opacity-60"
+                    className="w-full pl-10 pr-4 py-3 bg-forest/5 border border-gray-200 rounded-xl text-xs sm:text-sm focus:border-forest focus:bg-white focus:outline-none transition disabled:opacity-60"
                   />
                 </div>
               </div>
@@ -209,7 +209,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onNavigate }) => {
                     disabled={isSubmitting}
                     autoComplete="current-password"
                     required
-                    className="w-full pl-10 pr-4 py-3 bg-ivory/50 border border-gray-200 rounded-xl text-xs sm:text-sm focus:border-forest focus:bg-white focus:outline-none transition disabled:opacity-60"
+                    className="w-full pl-10 pr-4 py-3 bg-forest/5 border border-gray-200 rounded-xl text-xs sm:text-sm focus:border-forest focus:bg-white focus:outline-none transition disabled:opacity-60"
                   />
                 </div>
               </div>
@@ -249,7 +249,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onNavigate }) => {
           </div>
 
           {/* Quick Help Card */}
-          <div className="bg-surface-lightGreen/60 rounded-2xl p-4 border border-forest/10 text-xs text-charcoal-muted flex items-start space-x-3">
+          <div className="bg-forest/5 rounded-2xl p-4 border border-forest/10 text-xs text-charcoal-muted flex items-start space-x-3">
             <KeyRound className="w-4 h-4 text-gold-dark shrink-0 mt-0.5" />
             <div className="text-[11px] leading-relaxed">
               <strong className="text-forest block">Role-Based Clearance:</strong>
@@ -320,7 +320,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onNavigate }) => {
                     placeholder="admin@darulhudaiu.ac.in"
                     required
                     disabled={resetSubmitting}
-                    className="w-full px-3.5 py-2.5 bg-ivory/60 border border-gray-200 rounded-xl text-xs focus:border-forest focus:outline-none"
+                    className="w-full px-3.5 py-2.5 bg-forest/5 border border-gray-200 rounded-xl text-xs focus:border-forest focus:outline-none"
                   />
                 </div>
 
@@ -354,7 +354,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onNavigate }) => {
       )}
 
       {/* Footer */}
-      <footer className="py-4 text-center text-xs text-charcoal-muted border-t border-forest/5">
+      <footer className="py-4 text-center text-xs text-charcoal-muted border-t border-forest/10">
         Department of Islamic Economics and Finance • Darul Huda Islamic University, Kerala
       </footer>
 

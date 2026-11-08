@@ -40,12 +40,32 @@ export default {
         surface: {
           lightGreen: '#E9EFE8',
           card: '#FFFFFF',
+        },
+        brand: {
+          deep: '#123D2B',
+          primary: '#174C38',
+          hover: '#13402F',
+          subtle: '#E9EFE8',
+          bg: '#F7F6F0',
+          navy: '#0D2D20',
+          light: '#D6E0D5',
+        },
+        sand: {
+          DEFAULT: '#EFECE1',
+          light: '#F7F6F0',
+          dark: '#DDD8C4',
+        },
+        muted: {
+          DEFAULT: '#626B66',
+          light: '#8A948F',
+          dark: '#4A524D',
         }
       },
       fontFamily: {
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
-        display: ['"Cinzel"', '"Playfair Display"', 'serif'],
-        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+        serif: ['"Source Serif 4"', 'Georgia', 'serif'],
+        display: ['"Source Serif 4"', 'Georgia', 'serif'],
+        editorial: ['"Source Serif 4"', 'Georgia', 'serif'],
+        sans: ['"Inter"', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         arabic: ['"Amiri"', '"Noto Naskh Arabic"', 'serif'],
       },
       boxShadow: {

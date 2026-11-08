@@ -79,9 +79,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               Contact the Department
             </h1>
 
-
-
-            <p className="text-sm sm:text-base text-sage-subtle leading-relaxed">
+            <p className="text-sm sm:text-base text-sage-light leading-relaxed">
               We welcome academic correspondence, research partnership queries, visiting scholar appointments, student enquiries, and media requests.
             </p>
           </div>
@@ -95,7 +93,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
           {/* Left Column: Official Contact Information & Placeholders */}
           <div className="lg:col-span-5 space-y-6">
 
-            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-forest/10 shadow-soft space-y-6">
+            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-forest/15 shadow-soft space-y-6">
               <div className="border-b border-gray-100 pb-4">
                 <span className="text-xs font-bold text-gold-dark uppercase tracking-wider block">
                   Institutional Secretariat
@@ -153,7 +151,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
             </div>
 
             {/* Simulated Campus Google Maps Interactive Card */}
-            <div className="bg-white rounded-2xl p-6 border border-forest/10 shadow-soft space-y-3">
+            <div className="bg-white rounded-2xl p-6 border border-forest/15 shadow-soft space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-bold text-forest uppercase tracking-wider">
                   Campus Geography &amp; Location Map
@@ -162,7 +160,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               </div>
 
               {/* Map Preview Graphic */}
-              <div className="relative rounded-xl overflow-hidden aspect-[16/9] border border-gray-200 bg-surface-lightGreen flex items-center justify-center group">
+              <div className="relative rounded-xl overflow-hidden aspect-[16/9] border border-forest/15 bg-forest/5 flex items-center justify-center group">
                 <div className="absolute inset-0 pattern-islamic-subtle opacity-70"></div>
                 <div className="relative z-10 text-center p-4">
                   <MapPin className="w-8 h-8 text-forest mx-auto mb-1 animate-bounce" />
@@ -172,7 +170,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                     href="https://maps.google.com/?q=Darul+Huda+Islamic+University+Chemmad"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-3 inline-flex items-center space-x-1.5 px-3 py-1.5 bg-forest text-white rounded-lg text-[11px] font-semibold hover:bg-emerald-deep transition shadow"
+                    className="mt-3 inline-flex items-center space-x-1.5 px-3 py-1.5 bg-forest text-white rounded-lg text-[11px] font-semibold hover:bg-emerald-deep transition shadow-soft"
                   >
                     <span>Open in Google Maps</span>
                     <ExternalLink className="w-3 h-3 text-gold" />
@@ -205,7 +203,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       setSubject('');
                       setMessage('');
                     }}
-                    className="px-5 py-2.5 bg-forest text-white text-xs font-bold rounded-xl hover:bg-emerald-deep transition"
+                    className="px-5 py-2.5 bg-forest text-white text-xs font-bold rounded-xl hover:bg-emerald-deep transition shadow-soft"
                   >
                     Send Another Message
                   </button>
@@ -235,7 +233,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="e.g. Dr. Rashid Ahmad"
-                      className={`w-full px-3.5 py-2.5 text-xs bg-ivory/40 border rounded-xl focus:border-forest focus:outline-none ${formErrors.name ? 'border-red-500' : 'border-gray-300'
+                      className={`w-full px-3.5 py-2.5 text-xs bg-forest/5 border rounded-xl focus:border-forest focus:outline-none ${formErrors.name ? 'border-red-500' : 'border-forest/15'
                         }`}
                     />
                     {formErrors.name && (
@@ -252,7 +250,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="e.g. rashid@example.com"
-                      className={`w-full px-3.5 py-2.5 text-xs bg-ivory/40 border rounded-xl focus:border-forest focus:outline-none ${formErrors.email ? 'border-red-500' : 'border-gray-300'
+                      className={`w-full px-3.5 py-2.5 text-xs bg-forest/5 border rounded-xl focus:border-forest focus:outline-none ${formErrors.email ? 'border-red-500' : 'border-forest/15'
                         }`}
                     />
                     {formErrors.email && (
@@ -269,7 +267,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                     <select
                       value={category}
                       onChange={(e) => setCategory(e.target.value)}
-                      className="w-full px-3.5 py-2.5 text-xs bg-ivory/40 border border-gray-300 rounded-xl focus:border-forest focus:outline-none"
+                      className="w-full px-3.5 py-2.5 text-xs bg-forest/5 border border-forest/15 rounded-xl focus:border-forest focus:outline-none"
                     >
                       <option value="Academic Admissions & Curriculum">Academic Admissions &amp; Curriculum</option>
                       <option value="Research & Tamweel Journal Inquiry">Research &amp; Tamweel Journal Inquiry</option>
@@ -289,7 +287,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       value={subject}
                       onChange={(e) => setSubject(e.target.value)}
                       placeholder="e.g. Request for Postgraduate Syllabus"
-                      className={`w-full px-3.5 py-2.5 text-xs bg-ivory/40 border rounded-xl focus:border-forest focus:outline-none ${formErrors.subject ? 'border-red-500' : 'border-gray-300'
+                      className={`w-full px-3.5 py-2.5 text-xs bg-forest/5 border rounded-xl focus:border-forest focus:outline-none ${formErrors.subject ? 'border-red-500' : 'border-forest/15'
                         }`}
                     />
                     {formErrors.subject && (
@@ -307,7 +305,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Please specify details regarding your inquiry, institutional background, or required materials..."
-                    className={`w-full px-3.5 py-2.5 text-xs bg-ivory/40 border rounded-xl focus:border-forest focus:outline-none ${formErrors.message ? 'border-red-500' : 'border-gray-300'
+                    className={`w-full px-3.5 py-2.5 text-xs bg-forest/5 border rounded-xl focus:border-forest focus:outline-none ${formErrors.message ? 'border-red-500' : 'border-forest/15'
                       }`}
                   ></textarea>
                   {formErrors.message && (
@@ -317,7 +315,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 bg-forest hover:bg-emerald-deep text-white font-semibold text-xs sm:text-sm rounded-xl shadow transition flex items-center justify-center space-x-2"
+                  className="w-full py-3.5 bg-forest hover:bg-emerald-deep text-white font-semibold text-xs sm:text-sm rounded-xl shadow-soft transition flex items-center justify-center space-x-2"
                 >
                   <Send className="w-4 h-4 text-gold" />
                   <span>Send Message </span>

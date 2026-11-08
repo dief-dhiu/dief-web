@@ -154,7 +154,7 @@ export const FacultyFormModal: React.FC<FacultyFormModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-forest-dark/80 backdrop-blur-sm">
       <div className="bg-white rounded-3xl max-w-3xl w-full border border-forest/15 shadow-2xl overflow-hidden flex flex-col max-h-[94vh]">
 
         {/* Header */}
@@ -172,7 +172,7 @@ export const FacultyFormModal: React.FC<FacultyFormModalProps> = ({
               </p>
             </div>
           </div>
-          <button onClick={onClose} className="p-2 rounded-full hover:bg-white/10 text-ivory/80 hover:text-white transition-colors">
+          <button onClick={onClose} className="p-2 rounded-full hover:bg-white/10 text-white/80 hover:text-white transition-colors">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -188,7 +188,7 @@ export const FacultyFormModal: React.FC<FacultyFormModalProps> = ({
 
           {/* ── Section 1: Identity ── */}
           <div className="space-y-4">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-forest border-b border-sand pb-1">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-forest border-b border-forest/15 pb-1">
               Identity & Role
               <span className="text-muted font-normal ml-2 normal-case">* required</span>
             </h3>
@@ -198,7 +198,7 @@ export const FacultyFormModal: React.FC<FacultyFormModalProps> = ({
                 <label className="block text-xs font-semibold text-forest mb-1.5">Full Name *</label>
                 <input type="text" value={fullName} onChange={e => setFullName(e.target.value)}
                   placeholder="e.g. Dr. Khalid Hassan Al-Rashidi"
-                  className="w-full px-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50"
+                  className="w-full px-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30"
                   required />
               </div>
 
@@ -206,7 +206,7 @@ export const FacultyFormModal: React.FC<FacultyFormModalProps> = ({
                 <label className="block text-xs font-semibold text-forest mb-1.5">Designation *</label>
                 <input type="text" value={designation} onChange={e => setDesignation(e.target.value)}
                   placeholder="e.g. Associate Professor, Head of Department"
-                  className="w-full px-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50"
+                  className="w-full px-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30"
                   required />
               </div>
             </div>
@@ -215,7 +215,7 @@ export const FacultyFormModal: React.FC<FacultyFormModalProps> = ({
               <div>
                 <label className="block text-xs font-semibold text-forest mb-1.5">Category *</label>
                 <select value={categoryName} onChange={e => handleCategoryChange(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest focus:outline-none focus:ring-2 focus:ring-gold/50"
+                  className="w-full px-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest focus:outline-none focus:ring-2 focus:ring-forest/30"
                   required>
                   {categories.map(c => <option key={c.id || c.name} value={c.name}>{c.name}</option>)}
                 </select>
@@ -224,7 +224,7 @@ export const FacultyFormModal: React.FC<FacultyFormModalProps> = ({
               <div>
                 <label className="block text-xs font-semibold text-forest mb-1.5">Employment Type</label>
                 <select value={employmentType} onChange={e => setEmploymentType(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest focus:outline-none focus:ring-2 focus:ring-gold/50">
+                  className="w-full px-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest focus:outline-none focus:ring-2 focus:ring-forest/30">
                   <option value="">— Unspecified —</option>
                   <option>Full-time</option>
                   <option>Part-time</option>
@@ -238,20 +238,20 @@ export const FacultyFormModal: React.FC<FacultyFormModalProps> = ({
             <div>
               <label className="block text-xs font-semibold text-forest mb-1.5">Academic Department</label>
               <input type="text" value={department} onChange={e => setDepartment(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50"
+                className="w-full px-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30"
               />
             </div>
           </div>
 
           {/* ── Section 2: Photo ── */}
           <div className="space-y-4">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-forest border-b border-sand pb-1">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-forest border-b border-forest/15 pb-1">
               Profile Photograph
             </h3>
 
-            <div className="bg-sand/30 p-5 rounded-2xl border border-sand-dark/40 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div className="bg-forest/5 p-5 rounded-2xl border border-forest/15 flex flex-col sm:flex-row items-start sm:items-center gap-4">
               {/* Preview */}
-              <div className="w-24 h-24 rounded-2xl overflow-hidden border-2 border-gold/40 bg-sand flex-shrink-0 flex items-center justify-center">
+              <div className="w-24 h-24 rounded-2xl overflow-hidden border-2 border-gold/40 bg-forest/5 flex-shrink-0 flex items-center justify-center">
                 {photoPreview ? (
                   <img src={photoPreview} alt="Preview" className="w-full h-full object-cover" />
                 ) : (
@@ -262,7 +262,7 @@ export const FacultyFormModal: React.FC<FacultyFormModalProps> = ({
               <div className="flex-1 space-y-2">
                 <input type="file" ref={photoInputRef} onChange={handlePhotoChange} accept="image/*" className="hidden" />
                 <button type="button" onClick={() => photoInputRef.current?.click()}
-                  className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-forest text-white hover:bg-forest-light text-xs font-semibold shadow-sm transition-colors">
+                  className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-forest text-white hover:bg-emerald-deep text-xs font-semibold shadow-soft transition-colors">
                   <Upload className="w-4 h-4 text-gold" />
                   <span>{photoPreview ? 'Replace Photo' : 'Upload Photo'}</span>
                 </button>
@@ -277,7 +277,7 @@ export const FacultyFormModal: React.FC<FacultyFormModalProps> = ({
                 <input type="url" value={photoUrl}
                   onChange={e => { setPhotoUrl(e.target.value); if (!photoFile) setPhotoPreview(e.target.value || null); }}
                   placeholder="https://…"
-                  className="w-full px-3 py-1.5 rounded-lg border border-sand-dark bg-white text-xs text-forest placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-gold"
+                  className="w-full px-3 py-1.5 rounded-lg border border-forest/15 bg-white text-xs text-forest placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-forest"
                 />
               </div>
             </div>
@@ -285,7 +285,7 @@ export const FacultyFormModal: React.FC<FacultyFormModalProps> = ({
 
           {/* ── Section 3: Biography & Academics ── */}
           <div className="space-y-4">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-forest border-b border-sand pb-1">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-forest border-b border-forest/15 pb-1">
               Biography & Academic Profile
             </h3>
 
@@ -293,21 +293,21 @@ export const FacultyFormModal: React.FC<FacultyFormModalProps> = ({
               <label className="block text-xs font-semibold text-forest mb-1.5">Short Biography (Card Preview)</label>
               <textarea value={shortBio} onChange={e => setShortBio(e.target.value)} rows={2}
                 placeholder="A one to two sentence academic profile summary shown on faculty cards…"
-                className="w-full px-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50" />
+                className="w-full px-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30" />
             </div>
 
             <div>
               <label className="block text-xs font-semibold text-forest mb-1.5">Full Biography (Detail View)</label>
               <textarea value={fullBio} onChange={e => setFullBio(e.target.value)} rows={4}
                 placeholder="Comprehensive academic biography, career background, and institutional contributions…"
-                className="w-full px-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50" />
+                className="w-full px-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30" />
             </div>
 
             <div>
               <label className="block text-xs font-semibold text-forest mb-1.5">Academic Qualifications</label>
               <input type="text" value={qualifications} onChange={e => setQualifications(e.target.value)}
                 placeholder="e.g. Ph.D. in Economics, Calicut University · M.A. in Islamic Finance, INCEIF"
-                className="w-full px-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50" />
+                className="w-full px-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30" />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -315,13 +315,13 @@ export const FacultyFormModal: React.FC<FacultyFormModalProps> = ({
                 <label className="block text-xs font-semibold text-forest mb-1.5">Areas of Specialization</label>
                 <textarea value={specializations} onChange={e => setSpecializations(e.target.value)} rows={2}
                   placeholder="e.g. Islamic Banking, Fiqh al-Muamalat, Zakat Institutions"
-                  className="w-full px-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50" />
+                  className="w-full px-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30" />
               </div>
               <div>
                 <label className="block text-xs font-semibold text-forest mb-1.5">Research Interests</label>
                 <textarea value={researchInterests} onChange={e => setResearchInterests(e.target.value)} rows={2}
                   placeholder="e.g. Sukuk Structuring, Ethical Investment Screening, Waqf Management"
-                  className="w-full px-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50" />
+                  className="w-full px-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30" />
               </div>
             </div>
 
@@ -329,13 +329,13 @@ export const FacultyFormModal: React.FC<FacultyFormModalProps> = ({
               <label className="block text-xs font-semibold text-forest mb-1.5">Publications / Selected Works (Optional)</label>
               <textarea value={publications} onChange={e => setPublications(e.target.value)} rows={3}
                 placeholder="List notable papers, books or chapters authored…"
-                className="w-full px-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50" />
+                className="w-full px-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30" />
             </div>
           </div>
 
           {/* ── Section 4: Contact & Links ── */}
           <div className="space-y-4">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-forest border-b border-sand pb-1">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-forest border-b border-forest/15 pb-1">
               Contact & Professional Links (Optional)
             </h3>
 
@@ -346,7 +346,7 @@ export const FacultyFormModal: React.FC<FacultyFormModalProps> = ({
                   <Mail className="w-4 h-4 text-muted absolute left-3.5 top-3" />
                   <input type="email" value={email} onChange={e => setEmail(e.target.value)}
                     placeholder="faculty@darulhudaiu.ac.in"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50" />
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30" />
                 </div>
               </div>
               <div>
@@ -355,7 +355,7 @@ export const FacultyFormModal: React.FC<FacultyFormModalProps> = ({
                   <Phone className="w-4 h-4 text-muted absolute left-3.5 top-3" />
                   <input type="text" value={officeInfo} onChange={e => setOfficeInfo(e.target.value)}
                     placeholder="+91 XXX XXX XXXX or Room 204"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50" />
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30" />
                 </div>
               </div>
             </div>
@@ -366,13 +366,13 @@ export const FacultyFormModal: React.FC<FacultyFormModalProps> = ({
                 <LinkIcon className="w-4 h-4 text-muted absolute left-3.5 top-3" />
                 <input type="text" value={profileLinks} onChange={e => setProfileLinks(e.target.value)}
                   placeholder="https://orcid.org/… · https://scholar.google.com/…"
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50" />
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30" />
               </div>
             </div>
           </div>
 
           {/* ── Section 5: Publication & Ordering ── */}
-          <div className="space-y-4 p-5 rounded-2xl bg-sand/20 border border-sand-dark/40">
+          <div className="space-y-4 p-5 rounded-2xl bg-forest/5 border border-forest/15">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-forest">
               Publication Settings
             </h3>
@@ -381,7 +381,7 @@ export const FacultyFormModal: React.FC<FacultyFormModalProps> = ({
               <div>
                 <label className="block text-xs font-semibold text-forest mb-1.5">Publication Status</label>
                 <select value={status} onChange={e => setStatus(e.target.value as FacultyPublicationStatus)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest font-semibold focus:outline-none focus:ring-2 focus:ring-gold/50">
+                  className="w-full px-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest font-semibold focus:outline-none focus:ring-2 focus:ring-forest/30">
                   <option value="Draft">Draft — Internal Only</option>
                   <option value="Published">Published — Publicly Visible</option>
                   <option value="Archived">Archived — Hidden</option>
@@ -393,20 +393,20 @@ export const FacultyFormModal: React.FC<FacultyFormModalProps> = ({
                 <label className="block text-xs font-semibold text-forest mb-1.5">Display Order</label>
                 <input type="number" value={displayOrder} onChange={e => setDisplayOrder(Number(e.target.value))}
                   min={0} step={1}
-                  className="w-full px-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest focus:outline-none focus:ring-2 focus:ring-gold/50" />
+                  className="w-full px-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest focus:outline-none focus:ring-2 focus:ring-forest/30" />
                 <p className="text-[11px] text-muted mt-1">Lower numbers appear first on the public page.</p>
               </div>
             </div>
           </div>
 
           {/* Footer */}
-          <div className="pt-4 border-t border-sand flex items-center justify-end space-x-3">
+          <div className="pt-4 border-t border-forest/15 flex items-center justify-end space-x-3">
             <button type="button" onClick={onClose} disabled={submitting}
-              className="px-5 py-2.5 rounded-xl border border-sand-dark text-forest font-semibold text-sm hover:bg-sand transition-colors">
+              className="px-5 py-2.5 rounded-xl border border-forest/15 text-forest font-semibold text-sm hover:bg-forest/10 transition-colors">
               Cancel
             </button>
             <button type="submit" disabled={submitting}
-              className="inline-flex items-center space-x-2 px-6 py-2.5 bg-forest hover:bg-forest-light text-white rounded-xl text-sm font-semibold shadow-md transition disabled:opacity-50">
+              className="inline-flex items-center space-x-2 px-6 py-2.5 bg-forest hover:bg-emerald-deep text-white rounded-xl text-sm font-semibold shadow-soft transition disabled:opacity-50">
               {submitting
                 ? <><Loader2 className="w-4 h-4 animate-spin text-gold" /><span>Saving…</span></>
                 : <><CheckCircle2 className="w-4 h-4 text-gold" /><span>{profileToEdit ? 'Save Changes' : 'Create Profile'}</span></>}

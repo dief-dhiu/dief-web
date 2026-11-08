@@ -184,7 +184,7 @@ export const FacultyListView: React.FC<FacultyListViewProps> = ({
         {/* Add button */}
         <button
           onClick={onOpenNewModal}
-          className="flex items-center gap-2 px-4 py-2 bg-forest text-white text-sm font-semibold rounded-lg hover:bg-forest/90 transition-colors shrink-0"
+          className="flex items-center gap-2 px-4 py-2 bg-forest text-white text-sm font-semibold rounded-lg hover:bg-emerald-deep transition-colors shrink-0 shadow-soft"
         >
           <Plus className="w-4 h-4" />
           Add Member
@@ -200,7 +200,7 @@ export const FacultyListView: React.FC<FacultyListViewProps> = ({
       {/* Empty state */}
       {filtered.length === 0 && (
         <div className="flex flex-col items-center justify-center py-20 text-center">
-          <div className="w-16 h-16 rounded-2xl bg-forest/8 flex items-center justify-center mb-4">
+          <div className="w-16 h-16 rounded-2xl bg-forest/5 flex items-center justify-center mb-4">
             <Users className="w-7 h-7 text-forest/40" />
           </div>
           <h3 className="text-base font-semibold text-charcoal mb-1">
@@ -214,7 +214,7 @@ export const FacultyListView: React.FC<FacultyListViewProps> = ({
           {profiles.length === 0 && (
             <button
               onClick={onOpenNewModal}
-              className="flex items-center gap-2 px-4 py-2 bg-forest text-white text-sm font-semibold rounded-lg hover:bg-forest/90 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-forest text-white text-sm font-semibold rounded-lg hover:bg-emerald-deep transition-colors shadow-soft"
             >
               <Plus className="w-4 h-4" />
               Add First Member
@@ -229,12 +229,12 @@ export const FacultyListView: React.FC<FacultyListViewProps> = ({
           {filtered.map((profile) => (
             <div
               key={profile.id}
-              className="bg-white rounded-2xl border border-forest/10 shadow-soft hover:shadow-elevated transition-all flex flex-col overflow-hidden"
+              className="bg-white rounded-2xl border border-forest/15 shadow-soft hover:shadow-elevated transition-all flex flex-col overflow-hidden"
             >
               {/* Card header */}
               <div className="flex items-start gap-4 p-5">
                 {/* Photo */}
-                <div className="w-14 h-14 rounded-xl overflow-hidden bg-forest/8 border border-gold/30 shrink-0 flex items-center justify-center">
+                <div className="w-14 h-14 rounded-xl overflow-hidden bg-forest/5 border border-gold/30 shrink-0 flex items-center justify-center">
                   {profile.photo_url ? (
                     <img
                       src={profile.photo_url}
@@ -273,7 +273,7 @@ export const FacultyListView: React.FC<FacultyListViewProps> = ({
               )}
 
               {/* Meta row */}
-              <div className="mt-auto px-5 py-2.5 bg-surface-lightGreen/30 border-t border-forest/5 flex items-center justify-between text-[10px] text-charcoal-muted">
+              <div className="mt-auto px-5 py-2.5 bg-forest/5 border-t border-forest/10 flex items-center justify-between text-[10px] text-charcoal-muted">
                 <span>Order: <strong className="text-forest">{profile.display_order ?? '—'}</strong></span>
                 <span>{profile.updated_at ? new Date(profile.updated_at).toLocaleDateString() : '—'}</span>
               </div>
@@ -282,7 +282,7 @@ export const FacultyListView: React.FC<FacultyListViewProps> = ({
               <div className="flex items-center gap-1 px-4 py-3 border-t border-gray-100">
                 <button
                   onClick={() => onViewProfile(profile)}
-                  className="flex items-center gap-1 px-2.5 py-1.5 text-[11px] font-semibold text-forest bg-forest/8 hover:bg-forest/15 rounded-lg transition-colors"
+                  className="flex items-center gap-1 px-2.5 py-1.5 text-[11px] font-semibold text-forest bg-forest/5 hover:bg-forest/10 rounded-lg transition-colors"
                   title="View details"
                 >
                   <Eye className="w-3.5 h-3.5" />

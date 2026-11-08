@@ -43,6 +43,7 @@ import { AdminDrawer } from './components/AdminDrawer';
 import { NotificationToast, ToastData } from './components/NotificationToast';
 import { ScrollToTop } from './components/ScrollToTop';
 import { LegacyHashRedirect } from './components/LegacyHashRedirect';
+import { OpeningAnimation } from './components/OpeningAnimation';
 
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
@@ -55,6 +56,29 @@ import { NotFoundPage } from './pages/NotFoundPage';
 
 export function AppContent() {
   const navigate = useNavigate();
+
+  // Institutional Opening Animation state (runs once per browser session for public visitors)
+  const [showOpeningAnimation, setShowOpeningAnimation] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    if (window.location.pathname.startsWith('/admin')) return false;
+
+    // Support ?intro=1 or ?intro=true to preview/test opening animation on demand
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('intro') === '1' || params.get('intro') === 'true') {
+      return true;
+    }
+
+    try {
+      if (sessionStorage.getItem('dief_intro_seen')) return false;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        sessionStorage.setItem('dief_intro_seen', 'true');
+        return false;
+      }
+    } catch {
+      return false;
+    }
+    return true;
+  });
 
   // Persistent Portal State
   const [events, setEvents] = useState<EventItem[]>(() => {
@@ -277,6 +301,11 @@ export function AppContent() {
           toasts={toasts}
           onDismiss={(id) => setToasts((prev) => prev.filter((t) => t.id !== id))}
         />
+
+        {/* Institutional Opening Animation (Session-based, non-blocking) */}
+        {showOpeningAnimation && (
+          <OpeningAnimation onComplete={() => setShowOpeningAnimation(false)} />
+        )}
       </div>
     );
   };

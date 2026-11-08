@@ -86,7 +86,7 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-forest-dark/70 backdrop-blur-sm flex justify-end animate-fadeIn">
+    <div className="fixed inset-0 z-50 overflow-hidden bg-forest-dark/80 backdrop-blur-sm flex justify-end animate-fadeIn">
       <div 
         className="w-full max-w-3xl bg-white h-full shadow-2xl flex flex-col border-l border-gold/40 relative overflow-hidden"
         onClick={(e) => e.stopPropagation()}
@@ -111,20 +111,20 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
           </div>
           <button 
             onClick={onClose}
-            className="p-1.5 rounded-lg text-sage-light hover:text-white hover:bg-forest-light/40 transition"
+            className="p-1.5 rounded-lg text-sage-light hover:text-white hover:bg-emerald-deep/40 transition"
           >
             <X className="w-6 h-6" />
           </button>
         </div>
 
         {/* Navigation Tabs */}
-        <div className="bg-ivory border-b border-gray-200 px-4 flex items-center space-x-2 overflow-x-auto py-2 text-xs font-semibold">
+        <div className="bg-forest/5 border-b border-forest/10 px-4 flex items-center space-x-2 overflow-x-auto py-2 text-xs font-semibold">
           <button
             onClick={() => setActiveTab('sbc')}
             className={`px-3 py-2 rounded-lg flex items-center space-x-2 transition shrink-0 ${
               activeTab === 'sbc' 
-                ? 'bg-forest text-white shadow-sm' 
-                : 'text-charcoal hover:bg-white'
+                ? 'bg-forest text-white shadow-soft' 
+                : 'text-charcoal hover:bg-forest/10'
             }`}
           >
             <Briefcase className="w-3.5 h-3.5 text-gold" />
@@ -138,8 +138,8 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
             onClick={() => setActiveTab('tamweel')}
             className={`px-3 py-2 rounded-lg flex items-center space-x-2 transition shrink-0 ${
               activeTab === 'tamweel' 
-                ? 'bg-forest text-white shadow-sm' 
-                : 'text-charcoal hover:bg-white'
+                ? 'bg-forest text-white shadow-soft' 
+                : 'text-charcoal hover:bg-forest/10'
             }`}
           >
             <BookOpen className="w-3.5 h-3.5 text-gold" />
@@ -153,8 +153,8 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
             onClick={() => setActiveTab('contact')}
             className={`px-3 py-2 rounded-lg flex items-center space-x-2 transition shrink-0 ${
               activeTab === 'contact' 
-                ? 'bg-forest text-white shadow-sm' 
-                : 'text-charcoal hover:bg-white'
+                ? 'bg-forest text-white shadow-soft' 
+                : 'text-charcoal hover:bg-forest/10'
             }`}
           >
             <Mail className="w-3.5 h-3.5 text-gold" />
@@ -168,8 +168,8 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
             onClick={() => setActiveTab('newEvent')}
             className={`px-3 py-2 rounded-lg flex items-center space-x-2 transition shrink-0 ${
               activeTab === 'newEvent' 
-                ? 'bg-forest text-white shadow-sm' 
-                : 'text-charcoal hover:bg-white'
+                ? 'bg-forest text-white shadow-soft' 
+                : 'text-charcoal hover:bg-forest/10'
             }`}
           >
             <Calendar className="w-3.5 h-3.5 text-gold" />
@@ -211,7 +211,7 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
                   {consultations.map((item) => (
                     <div 
                       key={item.id}
-                      className="border border-forest/10 rounded-xl p-4 bg-surface-lightGreen/20 hover:bg-white transition shadow-sm space-y-2.5"
+                      className="border border-forest/15 rounded-xl p-4 bg-forest/5 hover:bg-white transition shadow-sm space-y-2.5"
                     >
                       <div className="flex items-start justify-between">
                         <div>
@@ -276,7 +276,7 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
                   {submissions.map((sub) => (
                     <div 
                       key={sub.id}
-                      className="border border-forest/10 rounded-xl p-4 bg-surface-lightGreen/20 hover:bg-white transition shadow-sm space-y-2.5"
+                      className="border border-forest/15 rounded-xl p-4 bg-forest/5 hover:bg-white transition shadow-sm space-y-2.5"
                     >
                       <div className="flex items-start justify-between">
                         <div>
@@ -349,7 +349,7 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
                   {messages.map((m) => (
                     <div 
                       key={m.id}
-                      className="border border-forest/10 rounded-xl p-4 bg-surface-lightGreen/20 space-y-2"
+                      className="border border-forest/15 rounded-xl p-4 bg-forest/5 space-y-2"
                     >
                       <div className="flex items-start justify-between">
                         <div>
@@ -394,7 +394,7 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
                   value={eventTitle}
                   onChange={(e) => setEventTitle(e.target.value)}
                   placeholder="e.g. International Symposium on Green Sukuk Frameworks"
-                  className="w-full px-3 py-2 text-xs border border-gray-300 rounded-lg focus:border-forest focus:outline-none"
+                  className="w-full px-3 py-2 text-xs border border-forest/20 rounded-lg focus:border-forest focus:outline-none"
                 />
               </div>
 
@@ -404,7 +404,7 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
                   <select
                     value={eventCategory}
                     onChange={(e) => setEventCategory(e.target.value as EventItem['category'])}
-                    className="w-full px-3 py-2 text-xs border border-gray-300 rounded-lg focus:border-forest focus:outline-none"
+                    className="w-full px-3 py-2 text-xs border border-forest/20 rounded-lg focus:border-forest focus:outline-none"
                   >
                     <option value="Seminars">Seminars</option>
                     <option value="Conferences">Conferences</option>
@@ -425,7 +425,7 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
                     value={eventDate}
                     onChange={(e) => setEventDate(e.target.value)}
                     placeholder="e.g. January 18, 2027"
-                    className="w-full px-3 py-2 text-xs border border-gray-300 rounded-lg focus:border-forest focus:outline-none"
+                    className="w-full px-3 py-2 text-xs border border-forest/20 rounded-lg focus:border-forest focus:outline-none"
                   />
                 </div>
               </div>
@@ -436,7 +436,7 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
                   type="text"
                   value={eventVenue}
                   onChange={(e) => setEventVenue(e.target.value)}
-                  className="w-full px-3 py-2 text-xs border border-gray-300 rounded-lg focus:border-forest focus:outline-none"
+                  className="w-full px-3 py-2 text-xs border border-forest/20 rounded-lg focus:border-forest focus:outline-none"
                 />
               </div>
 
@@ -447,7 +447,7 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
                   value={eventSpeaker}
                   onChange={(e) => setEventSpeaker(e.target.value)}
                   placeholder="[Speaker / Panelist to be announced]"
-                  className="w-full px-3 py-2 text-xs border border-gray-300 rounded-lg focus:border-forest focus:outline-none"
+                  className="w-full px-3 py-2 text-xs border border-forest/20 rounded-lg focus:border-forest focus:outline-none"
                 />
               </div>
 
@@ -458,13 +458,13 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
                   value={eventDesc}
                   onChange={(e) => setEventDesc(e.target.value)}
                   placeholder="Summary of the academic topics, learning objectives, and attendees..."
-                  className="w-full px-3 py-2 text-xs border border-gray-300 rounded-lg focus:border-forest focus:outline-none"
+                  className="w-full px-3 py-2 text-xs border border-forest/20 rounded-lg focus:border-forest focus:outline-none"
                 ></textarea>
               </div>
 
               <button
                 type="submit"
-                className="w-full py-2.5 bg-forest hover:bg-emerald-deep text-white font-semibold text-xs rounded-xl shadow transition"
+                className="w-full py-2.5 bg-forest hover:bg-emerald-deep text-white font-semibold text-xs rounded-xl shadow-soft transition"
               >
                 Publish Event to Portal
               </button>

@@ -146,13 +146,13 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
 
       {/* 1. HEADER BANNER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
+        <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden shadow-2xl border-2 border-gold/40">
           <div className="absolute inset-0 pattern-dark-islamic opacity-30 pointer-events-none"></div>
 
           <div className="relative z-10 max-w-3xl space-y-4">
             <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-gold/20 text-gold text-xs font-semibold border border-gold/30">
               <Calendar className="w-3.5 h-3.5" />
-              <span>Departmental Chronicle &amp; Academic Events</span>
+              <span>Departmental Activities &amp; Academic Events</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-editorial font-bold text-white tracking-tight leading-tight">
@@ -161,7 +161,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
 
 
 
-            <p className="text-sm sm:text-base text-sage-subtle leading-relaxed">
+            <p className="text-sm sm:text-base text-sage-light leading-relaxed">
               Explore our live chronicle of national conferences, specialized Shariah jurisprudence workshops, student research colloquiums, and executive roundtables hosted by the Department of Islamic Economics and Finance.
             </p>
           </div>
@@ -173,7 +173,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-4">
             <div className="flex items-center space-x-2 text-forest">
-              <IslamicStarIcon className="w-4 h-4 text-gold" />
+
               <h2 className="text-lg font-editorial font-bold">Featured Academic Highlights</h2>
             </div>
 
@@ -201,7 +201,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                       )}
 
                       <div className="absolute top-3 left-3 flex items-center space-x-2">
-                        <span className="bg-forest text-gold text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shadow border border-gold/30">
+                        <span className="bg-forest text-gold text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shadow">
                           {act.category_name}
                         </span>
                         <span className="bg-amber-400 text-forest text-[10px] font-bold px-2 py-0.5 rounded shadow flex items-center space-x-1">
@@ -240,7 +240,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                         </p>
                       </div>
 
-                      <div className="pt-4 border-t border-sand flex items-center justify-between text-xs font-bold text-forest group-hover:text-gold-dark transition">
+                      <div className="pt-4 border-t border-forest/15 flex items-center justify-between text-xs font-bold text-forest group-hover:text-gold-dark transition">
                         <span className="flex items-center space-x-1 text-muted">
                           <MapPin className="w-3.5 h-3.5 text-gold shrink-0" />
                           <span className="truncate max-w-[200px] sm:max-w-xs">{act.venue}</span>
@@ -261,7 +261,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
 
       {/* 3. FILTERS & SEARCH CONTROLS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-2xl p-6 border border-forest/10 shadow-soft space-y-4">
+        <div className="bg-white rounded-2xl p-6 border border-forest/15 shadow-soft space-y-4">
 
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
 
@@ -273,7 +273,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search activities by topic, speaker, or venue..."
-                className="w-full pl-10 pr-4 py-2 text-xs bg-ivory/60 border border-gray-200 rounded-xl focus:border-forest focus:outline-none font-medium text-forest placeholder:text-muted"
+                className="w-full pl-10 pr-4 py-2 text-xs bg-forest/5 border border-forest/15 rounded-xl focus:border-forest focus:outline-none font-medium text-forest placeholder:text-charcoal-muted"
               />
             </div>
 
@@ -284,9 +284,9 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                 <button
                   key={t}
                   onClick={() => setTimelineFilter(t)}
-                  className={`px-3 py-1.5 rounded-lg transition ${timelineFilter === t
-                      ? 'bg-forest text-white shadow-sm'
-                      : 'bg-surface-lightGreen text-charcoal hover:bg-white'
+                  className={`px-3 py-1.5 rounded-lg transition text-xs font-semibold ${timelineFilter === t
+                    ? 'bg-forest text-white shadow-soft'
+                    : 'bg-forest/5 text-forest hover:bg-forest/10 border border-forest/15'
                     }`}
                 >
                   {t === 'All' ? 'All Activities' : t}
@@ -296,14 +296,14 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
           </div>
 
           {/* Category Tabs */}
-          <div className="pt-2 border-t border-gray-100 flex items-center space-x-2 overflow-x-auto pb-1 text-xs font-semibold">
+          <div className="pt-2 border-t border-forest/10 flex items-center space-x-2 overflow-x-auto pb-1 text-xs font-semibold">
             {availableCategories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition ${selectedCategory === cat
-                    ? 'bg-forest text-white shadow-sm'
-                    : 'bg-ivory text-charcoal hover:bg-surface-lightGreen'
+                className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition text-xs font-semibold ${selectedCategory === cat
+                  ? 'bg-forest text-white shadow-soft'
+                  : 'bg-forest/5 text-forest hover:bg-forest/10 border border-forest/15'
                   }`}
               >
                 {cat}
@@ -334,7 +334,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                 setTimelineFilter('All');
                 setSearchQuery('');
               }}
-              className="px-4 py-2 rounded-xl bg-forest text-white text-xs font-semibold hover:bg-forest-light transition-colors"
+              className="px-4 py-2 rounded-xl bg-forest text-white text-xs font-semibold hover:bg-emerald-deep transition-colors shadow-soft"
             >
               Reset Filters
             </button>
@@ -348,11 +348,11 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                 <div
                   key={act.id}
                   onClick={() => handleOpenActivityModal(act)}
-                  className="bg-white rounded-2xl border border-forest/10 hover:border-gold/60 shadow-soft hover:shadow-elevated transition-all overflow-hidden flex flex-col justify-between cursor-pointer group"
+                  className="bg-white rounded-2xl border border-forest/15 hover:border-gold/60 shadow-soft hover:shadow-elevated transition-all overflow-hidden flex flex-col justify-between cursor-pointer group"
                 >
                   <div>
                     {/* Poster */}
-                    <div className="relative aspect-[16/10] overflow-hidden bg-sand">
+                    <div className="relative aspect-[16/10] overflow-hidden bg-forest/10">
                       {act.featured_image_url ? (
                         <img
                           src={act.featured_image_url}
@@ -375,7 +375,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                           Upcoming
                         </div>
                       ) : (
-                        <div className="absolute top-3 right-3 bg-black/60 text-white text-[10px] font-medium px-2 py-0.5 rounded shadow">
+                        <div className="absolute top-3 right-3 bg-forest-dark/80 text-white text-[10px] font-medium px-2 py-0.5 rounded shadow">
                           Archive
                         </div>
                       )}
@@ -440,7 +440,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
 
       {/* 5. EVENT DETAIL MODAL */}
       {activeModalActivity && (
-        <div className="fixed inset-0 z-50 bg-forest-dark/70 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn">
+        <div className="fixed inset-0 z-50 bg-forest-dark/80 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn">
           <div className="bg-white rounded-3xl max-w-3xl w-full max-h-[92vh] overflow-y-auto border border-gold/40 shadow-2xl relative overflow-hidden flex flex-col">
 
             {/* Modal Header / Banner */}
@@ -488,7 +488,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
             <div className="p-6 sm:p-8 space-y-6 overflow-y-auto">
 
               {/* Meta Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-surface-lightGreen/50 p-4 rounded-2xl border border-forest/10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-forest/5 p-4 rounded-2xl border border-forest/15">
                 <div className="flex items-center space-x-2">
                   <Calendar className="w-4 h-4 text-gold shrink-0" />
                   <span>
@@ -530,11 +530,11 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
               {/* Descriptions */}
               <div className="space-y-3 text-xs sm:text-sm text-charcoal-light leading-relaxed">
                 <h4 className="font-editorial text-base font-bold text-forest">Session Overview</h4>
-                <p className="bg-sand/20 p-4 rounded-xl border border-sand-dark/40 font-medium text-forest/90">
+                <p className="bg-forest/5 p-4 rounded-xl border border-forest/15 font-medium text-charcoal">
                   {activeModalActivity.short_description}
                 </p>
                 {activeModalActivity.full_description && (
-                  <div className="whitespace-pre-line text-forest/80 pt-2">
+                  <div className="whitespace-pre-line text-charcoal-light pt-2">
                     {activeModalActivity.full_description}
                   </div>
                 )}
@@ -552,7 +552,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                       <div
                         key={img.id || idx}
                         onClick={() => setLightboxImage(img.image_url)}
-                        className="aspect-video rounded-xl overflow-hidden border border-sand-dark cursor-pointer group hover:border-gold transition-colors relative"
+                        className="aspect-video rounded-xl overflow-hidden border border-forest/15 cursor-pointer group hover:border-gold transition-colors relative"
                       >
                         <img
                           src={img.image_url}
@@ -572,7 +572,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
 
               {/* Contact Information */}
               {activeModalActivity.contact_info && (
-                <div className="flex items-center space-x-2 text-xs text-forest bg-forest/5 p-3 rounded-xl border border-forest/10">
+                <div className="flex items-center space-x-2 text-xs text-forest bg-forest/5 p-3 rounded-xl border border-forest/15">
                   <Phone className="w-3.5 h-3.5 text-gold shrink-0" />
                   <span><strong>Queries &amp; Contact:</strong> {activeModalActivity.contact_info}</span>
                 </div>
@@ -582,7 +582,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
               <div className="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3">
                 <button
                   onClick={() => onShowToast('Activity Saved', 'Dates bookmarked to your session.', 'info')}
-                  className="px-4 py-2 bg-ivory hover:bg-white text-forest border border-forest/20 rounded-xl text-xs font-semibold transition"
+                  className="px-4 py-2 bg-forest/5 hover:bg-forest/10 text-forest border border-forest/15 rounded-xl text-xs font-semibold transition"
                 >
                   Bookmark Event
                 </button>
@@ -593,7 +593,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                       href={activeModalActivity.registration_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center space-x-1.5 px-5 py-2.5 bg-forest hover:bg-forest-light text-white rounded-xl text-xs font-bold transition shadow"
+                      className="inline-flex items-center space-x-1.5 px-5 py-2.5 bg-forest hover:bg-emerald-deep text-white rounded-xl text-xs font-bold transition shadow-soft"
                     >
                       <span>Register for Event</span>
                       <ExternalLink className="w-3.5 h-3.5 text-gold" />
@@ -604,7 +604,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                         handleCloseActivityModal();
                         onNavigate('contact');
                       }}
-                      className="px-5 py-2.5 bg-forest hover:bg-forest-light text-white rounded-xl text-xs font-bold transition shadow"
+                      className="px-5 py-2.5 bg-forest hover:bg-emerald-deep text-white rounded-xl text-xs font-bold transition shadow-soft"
                     >
                       Inquire Attendance / Registration
                     </button>

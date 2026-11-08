@@ -24,7 +24,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
     return (
       <div className="min-h-screen bg-ivory flex flex-col items-center justify-center p-4">
         <div className="bg-white rounded-2xl p-8 border border-forest/15 shadow-elevated max-w-md w-full text-center space-y-4">
-          <div className="w-14 h-14 mx-auto rounded-2xl bg-forest/10 flex items-center justify-center">
+          <div className="w-14 h-14 mx-auto rounded-2xl bg-forest/5 flex items-center justify-center">
             <Loader2 className="w-7 h-7 text-forest animate-spin" />
           </div>
           <div className="space-y-1">
@@ -63,7 +63,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
           <div className="pt-2 space-y-3">
             <button
               onClick={() => onNavigate('/admin/login')}
-              className="w-full py-3 bg-forest hover:bg-emerald-deep text-white text-xs font-bold rounded-xl shadow transition"
+              className="w-full py-3 bg-forest hover:bg-emerald-deep text-white text-xs font-bold rounded-xl shadow-soft transition"
             >
               Proceed to Department Admin Login
             </button>
@@ -100,7 +100,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
             </p>
           </div>
 
-          <div className="p-4 bg-ivory rounded-xl border border-gray-200 text-left text-xs text-charcoal-muted space-y-2">
+          <div className="p-4 bg-forest/5 rounded-xl border border-gray-200 text-left text-xs text-charcoal-muted space-y-2">
             <div className="font-bold text-forest flex items-center space-x-1.5">
               <ShieldAlert className="w-4 h-4 text-gold-dark" />
               <span>Administrative Provisioning Protocol</span>
@@ -157,7 +157,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
               </p>
             </div>
 
-            <div className="p-4 bg-surface-lightGreen/50 rounded-xl border border-forest/10 text-left text-xs space-y-1.5">
+            <div className="p-4 bg-forest/5 rounded-xl border border-forest/15 text-left text-xs space-y-1.5">
               <div className="font-bold text-forest">Permitted Roles:</div>
               <div className="flex flex-wrap gap-1.5 pt-1">
                 {effectiveRequiredRoles.map((r) => (
@@ -171,7 +171,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
             <div className="pt-2 flex flex-col sm:flex-row gap-3">
               <button
                 onClick={() => onNavigate('/admin')}
-                className="flex-1 py-3 bg-forest hover:bg-emerald-deep text-white text-xs font-bold rounded-xl shadow transition flex items-center justify-center space-x-2"
+                className="flex-1 py-3 bg-forest hover:bg-emerald-deep text-white text-xs font-bold rounded-xl shadow-soft transition flex items-center justify-center space-x-2"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 <span>Return to Admin Overview</span>

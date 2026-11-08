@@ -5,17 +5,14 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     color: #252B27;
     background-color: #F7F6F0;
   }
 
-  h1, h2, h3, .font-editorial {
-    font-family: 'Playfair Display', Georgia, serif;
-  }
-
-  .font-display {
-    font-family: 'Cinzel', 'Playfair Display', serif;
+  h1, h2, h3, h4, h5, h6, .font-editorial, .font-serif, .font-display {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-style: normal;
   }
 
   .font-arabic {

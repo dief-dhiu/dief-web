@@ -38,7 +38,7 @@ export const DhibPage: React.FC<DhibPageProps> = ({ onNavigate, onShowToast }) =
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-editorial font-bold text-white tracking-tight">
                 DHIB <br />
-                <span className="italic text-gold">Darul Huda Islamic Bank</span>
+                <span className="text-gold">Darul Huda Islamic Bank</span>
               </h1>
 
 
@@ -49,7 +49,7 @@ export const DhibPage: React.FC<DhibPageProps> = ({ onNavigate, onShowToast }) =
 
               {/* MANDATORY LEGAL & OPERATIONAL STATUS DECLARATION */}
               <div className="mt-4 p-4 rounded-xl bg-forest-dark/90 border border-gold/40 text-xs text-sage-light flex items-start space-x-3">
-                <ShieldAlert className="w-5 h-5 text-gold shrink-0 mt-0.5" />
+
                 <div>
                   <strong className="text-white block mb-0.5">Academic &amp; Operational Disclosure:</strong>
                   DHIB is an institutional educational initiative and simulation sandbox established by the Department of Islamic Economics and Finance. It does <em>not</em> function as a commercial, state-licensed deposit-taking bank or provide regulated retail banking services.
@@ -66,18 +66,6 @@ export const DhibPage: React.FC<DhibPageProps> = ({ onNavigate, onShowToast }) =
               </div>
             </div>
 
-            <div className="lg:col-span-4 hidden lg:block">
-              <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-gold/40 space-y-4 text-center">
-                <IslamicStarIcon size={44} className="mx-auto text-gold" />
-                <div className="font-editorial text-xl font-bold text-white">Ethical Finance Laboratory</div>
-                <p className="text-xs text-sage-light leading-relaxed">
-                  Experiential learning platform connecting student researchers with real-world participatory risk-sharing architectures.
-                </p>
-                <div className="text-[11px] font-bold text-gold uppercase tracking-wider">
-                  Darul Huda Islamic University
-                </div>
-              </div>
-            </div>
 
           </div>
         </div>

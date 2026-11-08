@@ -85,7 +85,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-editorial font-bold text-white tracking-tight">
                 SBC <br />
-                <span className="italic text-gold">Shariah Business Consultancy</span>
+                <span className="text-gold">Shariah Business Consultancy</span>
               </h1>
 
 
@@ -96,7 +96,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
 
               {/* MANDATORY LEGAL & AUDIT STATUS DECLARATION */}
               <div className="mt-4 p-4 rounded-xl bg-forest-dark/90 border border-gold/40 text-xs text-sage-light flex items-start space-x-3">
-                <ShieldAlert className="w-5 h-5 text-gold shrink-0 mt-0.5" />
+
                 <div>
                   <strong className="text-white block mb-0.5">Advisory Scope Declaration:</strong>
                   SBC provides academic and commercial ethical guidance rooted in Fiqh al-Mu’amalat. It does <em>not</em> function as a statutory state-licensing fatwa council, nor does it conduct formal regulatory external audits unless explicitly contracted under accredited supervisory terms.
@@ -119,18 +119,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
               </div>
             </div>
 
-            <div className="lg:col-span-4 hidden lg:block">
-              <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-gold/40 space-y-4 text-center">
-                <IslamicStarIcon size={44} className="mx-auto text-gold" />
-                <div className="font-editorial text-xl font-bold text-white">Ethical Business Guidance</div>
-                <p className="text-xs text-sage-light leading-relaxed">
-                  Tailored commercial advisory for SMEs, startups, cooperatives, and established corporations.
-                </p>
-                <div className="text-[11px] font-bold text-gold uppercase tracking-wider">
-                  Department of Islamic Economics and Finance
-                </div>
-              </div>
-            </div>
+
 
           </div>
         </div>
@@ -288,7 +277,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
             {/* Left Description */}
             <div className="lg:col-span-5 space-y-4">
               <div className="inline-flex items-center space-x-2 text-xs font-bold text-gold-dark uppercase tracking-wider">
-                <Sparkles className="w-3.5 h-3.5" />
+
                 <span>Confidential Advisory Desk</span>
               </div>
               <h2 className="text-3xl sm:text-4xl font-editorial font-bold text-forest leading-tight">

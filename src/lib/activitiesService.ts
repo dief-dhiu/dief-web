@@ -1,4 +1,5 @@
 import { supabase } from './supabase';
+import { deleteStorageFiles } from './storageCleanupService';
 import {
   ActivityRecord,
   ActivityCategory,
@@ -70,14 +71,10 @@ export async function uploadActivityImage(
 
 export async function deleteActivityStorageImage(imageUrl: string): Promise<void> {
   try {
-    // Extract relative storage path if URL points to activities bucket
-    const marker = '/activities/';
-    const index = imageUrl.indexOf(marker);
-    if (index === -1) return;
-
-    const relativePath = decodeURIComponent(imageUrl.substring(index + marker.length));
-    await supabase.storage.from('activities').remove([relativePath]);
-    await logActivityAudit('IMAGE_DELETED', 'storage/activities', relativePath);
+    await deleteStorageFiles([imageUrl], {
+      fallbackBucket: 'activities',
+      actionDescription: 'Direct activity storage image deletion'
+    });
   } catch (err) {
     console.warn('[ActivityStorage] Could not delete image from storage:', err);
   }
@@ -380,19 +377,35 @@ export async function updateActivity(
   const current = await fetchActivityById(id);
   if (!current) throw new Error('Activity record not found.');
 
-  let featuredImageUrl = updates.featured_image_url !== undefined ? updates.featured_image_url : current.featured_image_url;
+  const oldFeaturedImageUrl = current.featured_image_url;
+  let newFeaturedImageUrl = updates.featured_image_url !== undefined ? updates.featured_image_url : oldFeaturedImageUrl;
+  let hasNewPosterUploaded = false;
 
+  // 1. Upload new poster if provided
   if (featuredImageFile) {
-    featuredImageUrl = await uploadActivityImage(featuredImageFile, 'posters');
-    // If there was an old uploaded image, we can keep or delete
+    newFeaturedImageUrl = await uploadActivityImage(featuredImageFile, 'posters');
+    hasNewPosterUploaded = true;
+  }
+
+  // 2. Fetch URLs of gallery items queued for removal BEFORE database row deletion
+  let galleryUrlsToRemove: string[] = [];
+  if (removedGalleryIds && removedGalleryIds.length > 0) {
+    const { data: galleryItems } = await supabase
+      .from('activity_gallery')
+      .select('id, image_url')
+      .in('id', removedGalleryIds);
+    if (galleryItems) {
+      galleryUrlsToRemove = galleryItems.map(g => g.image_url).filter(Boolean);
+    }
   }
 
   const updatePayload: Record<string, any> = {
     ...updates,
-    featured_image_url: featuredImageUrl,
+    featured_image_url: newFeaturedImageUrl,
     updated_at: new Date().toISOString()
   };
 
+  // 3. Update database record with new payload
   const { data: updatedRecord, error: updateError } = await supabase
     .from('activities')
     .update(updatePayload)
@@ -404,7 +417,7 @@ export async function updateActivity(
     throw new Error(`Failed to update activity: ${updateError.message}`);
   }
 
-  // Remove gallery items if specified
+  // 4. Remove deleted gallery items from database
   if (removedGalleryIds && removedGalleryIds.length > 0) {
     await supabase
       .from('activity_gallery')
@@ -412,7 +425,7 @@ export async function updateActivity(
       .in('id', removedGalleryIds);
   }
 
-  // Upload new gallery files
+  // 5. Upload new gallery files
   if (newGalleryFiles && newGalleryFiles.length > 0) {
     const existingCount = current.gallery ? current.gallery.length : 0;
     for (let i = 0; i < newGalleryFiles.length; i++) {
@@ -429,6 +442,27 @@ export async function updateActivity(
         console.warn('[ActivityService] New gallery image upload failed:', galErr);
       }
     }
+  }
+
+  // 6. NOW that the database update succeeded, safely delete replaced files from Storage
+  // A. If a new poster was uploaded and old poster is different, delete old poster
+  if (hasNewPosterUploaded && oldFeaturedImageUrl && oldFeaturedImageUrl !== newFeaturedImageUrl) {
+    await deleteStorageFiles([oldFeaturedImageUrl], {
+      excludeRecordId: id,
+      excludeTable: 'activities',
+      fallbackBucket: 'activities',
+      actionDescription: `Replace poster for activity "${current.title}"`
+    });
+  }
+
+  // B. Delete removed gallery images from Storage
+  if (galleryUrlsToRemove.length > 0) {
+    await deleteStorageFiles(galleryUrlsToRemove, {
+      excludeRecordId: id,
+      excludeTable: 'activity_gallery',
+      fallbackBucket: 'activities',
+      actionDescription: `Remove gallery images for activity "${current.title}"`
+    });
   }
 
   const fresh = await fetchActivityById(id);
@@ -468,16 +502,50 @@ export async function toggleActivityFeatured(
 }
 
 export async function deleteActivity(id: string): Promise<void> {
+  // 1. Fetch full activity record with gallery images
   const current = await fetchActivityById(id);
+  if (!current) {
+    throw new Error('Activity record not found or already deleted.');
+  }
+
+  // 2. Collect all associated storage files
+  const fileUrls: string[] = [];
+  if (current.featured_image_url) {
+    fileUrls.push(current.featured_image_url);
+  }
+  if (current.gallery && current.gallery.length > 0) {
+    current.gallery.forEach(g => {
+      if (g.image_url) fileUrls.push(g.image_url);
+    });
+  }
+
+  // 3. Delete files from Storage FIRST
+  if (fileUrls.length > 0) {
+    const storageResult = await deleteStorageFiles(fileUrls, {
+      excludeRecordId: id,
+      excludeTable: 'activities',
+      fallbackBucket: 'activities',
+      actionDescription: `Delete activity "${current.title}"`
+    });
+
+    // If Storage deletion fails, PRESERVE the database record and display a meaningful error
+    if (!storageResult.success && storageResult.errors.length > 0) {
+      const errMsg = storageResult.errors.map(e => `${e.path}: ${e.error}`).join('; ');
+      throw new Error(`Storage file deletion failed. Database record preserved. Error: ${errMsg}`);
+    }
+  }
+
+  // 4. Only delete the database record after the required Storage deletion succeeds
   const { error } = await supabase
     .from('activities')
     .delete()
     .eq('id', id);
 
-  if (error) throw new Error(`Failed to delete activity: ${error.message}`);
+  if (error) throw new Error(`Failed to delete activity from database: ${error.message}`);
   await logActivityAudit('ACTIVITY_DELETED', 'activities', id, {
-    title: current?.title || id,
-    status: current?.status
+    title: current.title,
+    status: current.status,
+    deleted_files: fileUrls.length
   });
 }
 

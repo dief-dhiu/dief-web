@@ -1,37 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  JournalSubmission, 
-  JournalIssue, 
-  ManuscriptWorkflowStatus, 
-  JournalReviewAssignment, 
-  JournalEditorialNote, 
-  JournalSubmissionStatusHistory 
+import {
+  JournalSubmission,
+  JournalIssue,
+  ManuscriptWorkflowStatus,
+  JournalReviewAssignment,
+  JournalEditorialNote,
+  JournalSubmissionStatusHistory
 } from '../../../types/journal';
-import { 
-  fetchSubmissionDetails, 
-  updateSubmissionStatus, 
-  addEditorialNote, 
-  assignReviewer, 
+import {
+  fetchSubmissionDetails,
+  updateSubmissionStatus,
+  addEditorialNote,
+  assignReviewer,
   getSignedManuscriptUrl,
   convertSubmissionToPublishedArticle
 } from '../../../lib/journalService';
 import { useAuth } from '../../../contexts/AuthContext';
-import { 
-  FileText, 
-  Search, 
-  Filter, 
-  Download, 
-  Clock, 
-  CheckCircle2, 
-  AlertCircle, 
-  XCircle, 
-  UserCheck, 
-  MessageSquare, 
-  History, 
-  Send, 
-  BookOpen, 
-  ShieldAlert, 
-  Loader2, 
+import {
+  FileText,
+  Search,
+  Filter,
+  Download,
+  Clock,
+  CheckCircle2,
+  AlertCircle,
+  XCircle,
+  UserCheck,
+  MessageSquare,
+  History,
+  Send,
+  BookOpen,
+  ShieldAlert,
+  Loader2,
   Lock,
   ChevronRight,
   ExternalLink
@@ -159,7 +159,7 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
 
       onShowToast('Status Updated', `Manuscript marked as "${newStatus}".`, 'success');
       setStatusNote('');
-      
+
       // Reload details and table
       await loadDetails({ ...selectedSub, status: newStatus });
       onRefresh();
@@ -289,9 +289,9 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
 
   return (
     <div className="space-y-6">
-      
+
       {/* Top Header & Search Controls */}
-      <div className="bg-white rounded-3xl border border-forest/10 p-6 shadow-soft space-y-4">
+      <div className="bg-white rounded-3xl border border-forest/15 p-6 shadow-soft space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <div className="text-[10px] font-bold text-gold-dark uppercase tracking-wider flex items-center space-x-1.5">
@@ -317,7 +317,7 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by manuscript title, author, track..."
-              className="w-full pl-10 pr-4 py-2 bg-ivory/60 border border-gray-200 rounded-xl text-xs focus:border-forest focus:outline-none"
+              className="w-full pl-10 pr-4 py-2 bg-forest/5 border border-forest/15 rounded-xl text-xs text-forest focus:border-forest focus:outline-none"
             />
           </div>
 
@@ -326,11 +326,10 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
               <button
                 key={st}
                 onClick={() => setFilterStatus(st)}
-                className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition ${
-                  filterStatus === st
-                    ? 'bg-forest text-gold shadow-sm'
-                    : 'bg-surface-lightGreen/50 text-charcoal hover:bg-white'
-                }`}
+                className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition ${filterStatus === st
+                    ? 'bg-forest text-gold shadow-sm font-bold'
+                    : 'bg-forest/5 text-charcoal hover:bg-forest/10'
+                  }`}
               >
                 {st}
               </button>
@@ -340,7 +339,7 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
       </div>
 
       {/* Submissions List */}
-      <div className="bg-white rounded-3xl border border-forest/10 shadow-soft overflow-hidden">
+      <div className="bg-white rounded-3xl border border-forest/15 shadow-soft overflow-hidden">
         {loading ? (
           <div className="p-12 text-center text-xs text-charcoal-muted flex flex-col items-center justify-center space-y-2">
             <Loader2 className="w-6 h-6 animate-spin text-forest" />
@@ -355,7 +354,7 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="border-b border-gray-200 text-charcoal-muted uppercase text-[10px] tracking-wider bg-ivory/40">
+                <tr className="border-b border-gray-200 text-charcoal-muted uppercase text-[10px] tracking-wider bg-forest/5">
                   <th className="py-3 px-4">Title &amp; Track</th>
                   <th className="py-3 px-4">Author Details</th>
                   <th className="py-3 px-4">Status</th>
@@ -365,10 +364,10 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {filteredSubs.map((sub) => (
-                  <tr 
-                    key={sub.id} 
+                  <tr
+                    key={sub.id}
                     onClick={() => loadDetails(sub)}
-                    className="hover:bg-surface-lightGreen/20 transition-colors cursor-pointer"
+                    className="hover:bg-forest/5 transition-colors cursor-pointer"
                   >
                     <td className="py-3.5 px-4 max-w-sm">
                       <div className="font-bold text-forest leading-snug line-clamp-1">
@@ -400,7 +399,7 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
                           e.stopPropagation();
                           loadDetails(sub);
                         }}
-                        className="px-3 py-1 bg-forest/10 hover:bg-forest text-forest hover:text-gold font-bold rounded-lg text-xs transition"
+                        className="px-3 py-1 bg-forest/5 hover:bg-forest text-forest hover:text-gold font-bold rounded-lg text-xs transition border border-forest/15"
                       >
                         Manage
                       </button>
@@ -417,7 +416,7 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
       {selectedSub && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-forest-dark/80 backdrop-blur-sm animate-fadeIn">
           <div className="bg-white rounded-3xl border border-forest/20 shadow-2xl p-6 sm:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto space-y-6 text-xs">
-            
+
             {/* Header */}
             <div className="flex items-start justify-between border-b border-gray-100 pb-4">
               <div className="space-y-1">
@@ -450,12 +449,12 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
             </div>
 
             {/* Quick Actions Bar (Download & Publish) */}
-            <div className="p-4 bg-ivory rounded-2xl border border-gray-200 flex flex-wrap items-center justify-between gap-3">
+            <div className="p-4 bg-forest/5 rounded-2xl border border-forest/15 flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center space-x-2">
                 <button
                   onClick={() => handleDownloadManuscript(selectedSub)}
                   disabled={downloadingFile}
-                  className="px-4 py-2 bg-forest hover:bg-emerald-deep text-gold text-xs font-bold rounded-xl shadow transition flex items-center space-x-1.5"
+                  className="px-4 py-2 bg-forest hover:bg-emerald-deep text-gold text-xs font-bold rounded-xl shadow-soft transition flex items-center space-x-1.5"
                 >
                   {downloadingFile ? (
                     <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -481,7 +480,7 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
             </div>
 
             {/* Abstract & Meta */}
-            <div className="space-y-2 p-4 bg-surface-lightGreen/40 rounded-2xl border border-forest/10">
+            <div className="space-y-2 p-4 bg-forest/5 rounded-2xl border border-forest/15">
               <div className="font-bold text-forest text-xs">Abstract</div>
               <p className="text-charcoal-light leading-relaxed">{selectedSub.abstract}</p>
               <div className="flex flex-wrap gap-1.5 pt-2">
@@ -498,11 +497,10 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
               <div className="flex border-b border-gray-200 space-x-2 overflow-x-auto">
                 <button
                   onClick={() => setActiveActionTab('status')}
-                  className={`pb-2.5 px-3 font-bold transition flex items-center space-x-1.5 border-b-2 ${
-                    activeActionTab === 'status'
+                  className={`pb-2.5 px-3 font-bold transition flex items-center space-x-1.5 border-b-2 ${activeActionTab === 'status'
                       ? 'border-forest text-forest'
                       : 'border-transparent text-charcoal-muted hover:text-forest'
-                  }`}
+                    }`}
                 >
                   <Clock className="w-3.5 h-3.5" />
                   <span>Workflow Status</span>
@@ -510,11 +508,10 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
 
                 <button
                   onClick={() => setActiveActionTab('reviews')}
-                  className={`pb-2.5 px-3 font-bold transition flex items-center space-x-1.5 border-b-2 ${
-                    activeActionTab === 'reviews'
+                  className={`pb-2.5 px-3 font-bold transition flex items-center space-x-1.5 border-b-2 ${activeActionTab === 'reviews'
                       ? 'border-forest text-forest'
                       : 'border-transparent text-charcoal-muted hover:text-forest'
-                  }`}
+                    }`}
                 >
                   <UserCheck className="w-3.5 h-3.5" />
                   <span>Reviewers ({reviews.length})</span>
@@ -522,11 +519,10 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
 
                 <button
                   onClick={() => setActiveActionTab('notes')}
-                  className={`pb-2.5 px-3 font-bold transition flex items-center space-x-1.5 border-b-2 ${
-                    activeActionTab === 'notes'
+                  className={`pb-2.5 px-3 font-bold transition flex items-center space-x-1.5 border-b-2 ${activeActionTab === 'notes'
                       ? 'border-forest text-forest'
                       : 'border-transparent text-charcoal-muted hover:text-forest'
-                  }`}
+                    }`}
                 >
                   <MessageSquare className="w-3.5 h-3.5" />
                   <span>Editorial Notes ({notes.length})</span>
@@ -534,11 +530,10 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
 
                 <button
                   onClick={() => setActiveActionTab('history')}
-                  className={`pb-2.5 px-3 font-bold transition flex items-center space-x-1.5 border-b-2 ${
-                    activeActionTab === 'history'
+                  className={`pb-2.5 px-3 font-bold transition flex items-center space-x-1.5 border-b-2 ${activeActionTab === 'history'
                       ? 'border-forest text-forest'
                       : 'border-transparent text-charcoal-muted hover:text-forest'
-                  }`}
+                    }`}
                 >
                   <History className="w-3.5 h-3.5" />
                   <span>Audit History ({history.length})</span>
@@ -547,7 +542,7 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
 
               {/* TAB 1: WORKFLOW STATUS */}
               {activeActionTab === 'status' && (
-                <form onSubmit={handleUpdateStatus} className="p-4 bg-ivory rounded-2xl border border-gray-200 space-y-3">
+                <form onSubmit={handleUpdateStatus} className="p-4 bg-forest/5 rounded-2xl border border-forest/15 space-y-3">
                   <div className="font-bold text-forest">Change Workflow Status</div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
@@ -579,7 +574,7 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
                     <button
                       type="submit"
                       disabled={updatingStatus || newStatus === selectedSub.status}
-                      className="px-4 py-2 bg-forest hover:bg-emerald-deep text-white font-bold rounded-xl shadow transition disabled:opacity-50"
+                      className="px-4 py-2 bg-forest hover:bg-emerald-deep text-white font-bold rounded-xl shadow-soft transition disabled:opacity-50"
                     >
                       {updatingStatus ? 'Updating...' : 'Update Status'}
                     </button>
@@ -591,7 +586,7 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
               {activeActionTab === 'reviews' && (
                 <div className="space-y-4">
                   {/* Assign Form */}
-                  <form onSubmit={handleAssignReviewer} className="p-4 bg-ivory rounded-2xl border border-gray-200 space-y-3">
+                  <form onSubmit={handleAssignReviewer} className="p-4 bg-forest/5 rounded-2xl border border-forest/15 space-y-3">
                     <div className="font-bold text-forest">Assign Double-Blind Peer Reviewer</div>
                     <div className="grid grid-cols-1 sm:grid-cols-4 gap-2">
                       <input
@@ -628,7 +623,7 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
                       <button
                         type="submit"
                         disabled={addingReviewer}
-                        className="px-4 py-2 bg-forest hover:bg-emerald-deep text-white font-bold rounded-xl shadow transition"
+                        className="px-4 py-2 bg-forest hover:bg-emerald-deep text-white font-bold rounded-xl shadow-soft transition"
                       >
                         {addingReviewer ? 'Assigning...' : 'Assign Reviewer'}
                       </button>
@@ -641,7 +636,7 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
                       <p className="text-charcoal-muted text-center py-4">No reviewers assigned to this manuscript yet.</p>
                     ) : (
                       reviews.map((rev) => (
-                        <div key={rev.id} className="p-3 bg-surface-lightGreen/30 rounded-xl border border-forest/10 flex items-center justify-between">
+                        <div key={rev.id} className="p-3 bg-forest/5 rounded-xl border border-forest/15 flex items-center justify-between">
                           <div>
                             <div className="font-bold text-forest">{rev.reviewer_name}</div>
                             <div className="text-[11px] text-charcoal-muted">{rev.reviewer_email} • {rev.reviewer_affiliation || 'External Scholar'}</div>
@@ -670,12 +665,12 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
                       value={newEditorialNote}
                       onChange={(e) => setNewEditorialNote(e.target.value)}
                       required
-                      className="flex-1 px-3 py-2 bg-ivory/60 border border-gray-200 rounded-xl focus:border-forest focus:outline-none"
+                      className="flex-1 px-3 py-2 bg-forest/5 border border-gray-200 rounded-xl focus:border-forest focus:outline-none text-forest"
                     />
                     <button
                       type="submit"
                       disabled={addingNote}
-                      className="px-4 py-2 bg-forest hover:bg-emerald-deep text-white font-bold rounded-xl shadow transition"
+                      className="px-4 py-2 bg-forest hover:bg-emerald-deep text-white font-bold rounded-xl shadow-soft transition"
                     >
                       {addingNote ? 'Saving...' : 'Add Note'}
                     </button>
@@ -686,7 +681,7 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
                       <p className="text-charcoal-muted text-center py-4">No editorial notes recorded yet.</p>
                     ) : (
                       notes.map((n) => (
-                        <div key={n.id} className="p-3 bg-ivory rounded-xl border border-gray-200 space-y-1">
+                        <div key={n.id} className="p-3 bg-forest/5 rounded-xl border border-forest/15 space-y-1">
                           <div className="flex items-center justify-between text-[10px] text-charcoal-muted">
                             <span className="font-bold text-forest">{n.author_name}</span>
                             <span>{new Date(n.created_at).toLocaleString()}</span>
@@ -751,7 +746,7 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
                   value={targetIssueId}
                   onChange={(e) => setTargetIssueId(e.target.value)}
                   required
-                  className="w-full px-3 py-2 bg-ivory/60 border border-gray-200 rounded-xl focus:border-forest focus:outline-none"
+                  className="w-full px-3 py-2 bg-forest/5 border border-forest/15 rounded-xl text-forest focus:border-forest focus:outline-none"
                 >
                   <option value="">Select Target Issue...</option>
                   {issues.map(iss => (
@@ -769,7 +764,7 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
                   value={publishPageRange}
                   onChange={(e) => setPublishPageRange(e.target.value)}
                   placeholder="e.g. 14–38"
-                  className="w-full px-3 py-2 bg-ivory/60 border border-gray-200 rounded-xl focus:border-forest focus:outline-none"
+                  className="w-full px-3 py-2 bg-forest/5 border border-forest/15 rounded-xl text-forest focus:border-forest focus:outline-none"
                 />
               </div>
 
@@ -780,7 +775,7 @@ export const JournalSubmissionsView: React.FC<JournalSubmissionsViewProps> = ({
                   value={publishDoi}
                   onChange={(e) => setPublishDoi(e.target.value)}
                   placeholder="e.g. 10.5892/tamweel.2026.0302.05"
-                  className="w-full px-3 py-2 bg-ivory/60 border border-gray-200 rounded-xl focus:border-forest focus:outline-none"
+                  className="w-full px-3 py-2 bg-forest/5 border border-forest/15 rounded-xl text-forest focus:border-forest focus:outline-none"
                 />
               </div>
 

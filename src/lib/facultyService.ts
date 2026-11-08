@@ -1,4 +1,5 @@
 import { supabase } from './supabase';
+import { deleteStorageFiles } from './storageCleanupService';
 import {
   FacultyProfile,
   FacultyCategory,
@@ -66,12 +67,10 @@ export async function uploadFacultyPhoto(file: File): Promise<string> {
 
 export async function deleteFacultyStoragePhoto(photoUrl: string): Promise<void> {
   try {
-    const marker = '/faculty/';
-    const index = photoUrl.indexOf(marker);
-    if (index === -1) return;
-    const relativePath = decodeURIComponent(photoUrl.substring(index + marker.length));
-    await supabase.storage.from('faculty').remove([relativePath]);
-    await logFacultyAudit('PHOTO_DELETED', 'storage/faculty', relativePath);
+    await deleteStorageFiles([photoUrl], {
+      fallbackBucket: 'faculty',
+      actionDescription: 'Direct faculty storage photo deletion'
+    });
   } catch (err) {
     console.warn('[FacultyStorage] Could not remove photo from storage:', err);
   }
@@ -284,10 +283,17 @@ export async function updateFacultyProfile(
   updates: Partial<FacultyProfileInput>,
   photoFile?: File | null
 ): Promise<FacultyProfile> {
-  let photoUrl = updates.photo_url;
+  const current = await fetchFacultyProfileById(id);
+  if (!current) throw new Error('Faculty profile not found.');
 
+  const oldPhotoUrl = current.photo_url;
+  let photoUrl = updates.photo_url !== undefined ? updates.photo_url : oldPhotoUrl;
+  let hasNewPhotoUploaded = false;
+
+  // 1. Upload new photo if provided
   if (photoFile) {
     photoUrl = await uploadFacultyPhoto(photoFile);
+    hasNewPhotoUploaded = true;
   }
 
   const payload: Record<string, any> = {
@@ -308,6 +314,7 @@ export async function updateFacultyProfile(
     }
   });
 
+  // 2. Update database record
   const { data, error } = await supabase
     .from('faculty_profiles')
     .update(payload)
@@ -316,6 +323,16 @@ export async function updateFacultyProfile(
     .single();
 
   if (error) throw new Error(`Failed to update profile: ${error.message}`);
+
+  // 3. NOW that the database update succeeded, safely delete replaced old photo from Storage
+  if (hasNewPhotoUploaded && oldPhotoUrl && oldPhotoUrl !== photoUrl) {
+    await deleteStorageFiles([oldPhotoUrl], {
+      excludeRecordId: id,
+      excludeTable: 'faculty_profiles',
+      fallbackBucket: 'faculty',
+      actionDescription: `Replace photo for faculty "${current.full_name}"`
+    });
+  }
 
   await logFacultyAudit('PROFILE_UPDATED', 'faculty_profiles', id, {
     changes: Object.keys(updates),
@@ -339,13 +356,35 @@ export async function setFacultyProfileStatus(
 }
 
 export async function deleteFacultyProfile(id: string): Promise<void> {
+  // 1. Fetch current profile to retrieve associated photograph
   const profile = await fetchFacultyProfileById(id);
+  if (!profile) {
+    throw new Error('Faculty profile not found or already deleted.');
+  }
 
+  // 2. Delete Storage photo FIRST
+  if (profile.photo_url) {
+    const storageResult = await deleteStorageFiles([profile.photo_url], {
+      excludeRecordId: id,
+      excludeTable: 'faculty_profiles',
+      fallbackBucket: 'faculty',
+      actionDescription: `Delete faculty profile "${profile.full_name}"`
+    });
+
+    // If Storage deletion fails, PRESERVE database record and throw meaningful error
+    if (!storageResult.success && storageResult.errors.length > 0) {
+      const errMsg = storageResult.errors.map(e => `${e.path}: ${e.error}`).join('; ');
+      throw new Error(`Storage file deletion failed. Faculty profile record preserved. Error: ${errMsg}`);
+    }
+  }
+
+  // 3. Once storage deletion succeeds, delete database record
   const { error } = await supabase.from('faculty_profiles').delete().eq('id', id);
-  if (error) throw new Error(`Failed to delete profile: ${error.message}`);
+  if (error) throw new Error(`Failed to delete profile from database: ${error.message}`);
 
   await logFacultyAudit('PROFILE_DELETED', 'faculty_profiles', id, {
-    name: profile?.full_name || id
+    name: profile.full_name,
+    had_photo: Boolean(profile.photo_url)
   });
 }
 

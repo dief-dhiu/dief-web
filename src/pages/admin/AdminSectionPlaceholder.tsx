@@ -169,7 +169,7 @@ export const AdminSectionPlaceholder: React.FC<AdminSectionPlaceholderProps> = (
           </h2>
         </div>
 
-        <div className="p-4 rounded-2xl bg-surface-lightGreen/50 border border-forest/15 text-xs text-charcoal-light space-y-2">
+        <div className="p-4 rounded-2xl bg-forest/5 border border-forest/15 text-xs text-charcoal-light space-y-2">
           <div className="flex items-center space-x-2 font-bold text-forest">
             <CheckCircle2 className="w-4 h-4 text-emerald-600" />
             <span>Phase 1 Authentication &amp; RLS Verified</span>
@@ -185,7 +185,7 @@ export const AdminSectionPlaceholder: React.FC<AdminSectionPlaceholderProps> = (
           </h3>
           <ul className="space-y-2 text-xs text-charcoal-light">
             {current.capabilities.map((cap, i) => (
-              <li key={i} className="flex items-start space-x-2.5 p-3 rounded-xl bg-ivory/60 border border-gray-100">
+              <li key={i} className="flex items-start space-x-2.5 p-3 rounded-xl bg-forest/5 border border-gray-100">
                 <span className="w-5 h-5 rounded-full bg-forest/10 text-forest flex items-center justify-center shrink-0 font-bold text-[10px] mt-0.5">
                   {i + 1}
                 </span>

@@ -251,7 +251,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-forest-dark/80 backdrop-blur-sm animate-fade-in">
       <div className="bg-white rounded-3xl max-w-4xl w-full border border-forest/15 shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
         
         {/* Header */}
@@ -271,7 +271,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
           </div>
           <button 
             onClick={onClose}
-            className="p-2 rounded-full hover:bg-white/10 text-ivory/80 hover:text-white transition-colors"
+            className="p-2 rounded-full hover:bg-white/10 text-white/80 hover:text-white transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -288,7 +288,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
 
           {/* Section 1: Basic Information */}
           <div className="space-y-4">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-forest border-b border-sand pb-1 flex items-center justify-between">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-forest border-b border-forest/15 pb-1 flex items-center justify-between">
               <span>Event Details</span>
               <span className="text-[11px] text-muted font-normal">* Indicates required field</span>
             </h3>
@@ -302,7 +302,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="e.g., National Seminar on Contemporary Islamic Banking & Shariah Audit Architecture"
-                className="w-full px-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50"
+                className="w-full px-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30"
                 required
               />
             </div>
@@ -315,7 +315,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
                 <select
                   value={categoryName}
                   onChange={(e) => setCategoryName(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest focus:outline-none focus:ring-2 focus:ring-gold/50"
+                  className="w-full px-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest focus:outline-none focus:ring-2 focus:ring-forest/30"
                   required
                 >
                   {categories.map((c) => (
@@ -335,7 +335,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
                   value={organizingBody}
                   onChange={(e) => setOrganizingBody(e.target.value)}
                   placeholder="e.g., Department of Islamic Economics and Finance"
-                  className="w-full px-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50"
+                  className="w-full px-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30"
                 />
               </div>
             </div>
@@ -349,7 +349,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
                 onChange={(e) => setShortDescription(e.target.value)}
                 rows={2}
                 placeholder="A concise 1-2 sentence overview for cards and listings..."
-                className="w-full px-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50"
+                className="w-full px-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30"
                 required
               />
             </div>
@@ -363,14 +363,14 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
                 onChange={(e) => setFullDescription(e.target.value)}
                 rows={4}
                 placeholder="Comprehensive description of topics, session schedules, participating scholars, and outcomes..."
-                className="w-full px-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50"
+                className="w-full px-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30"
               />
             </div>
           </div>
 
           {/* Section 2: Date, Time & Location */}
           <div className="space-y-4 pt-2">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-forest border-b border-sand pb-1">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-forest border-b border-forest/15 pb-1">
               Date, Timing & Venue
             </h3>
 
@@ -383,7 +383,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
                   type="date"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest focus:outline-none focus:ring-2 focus:ring-gold/50"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest focus:outline-none focus:ring-2 focus:ring-forest/30"
                   required
                 />
               </div>
@@ -397,7 +397,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
                   value={startTime}
                   onChange={(e) => setStartTime(e.target.value)}
                   placeholder="09:30 AM"
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30"
                 />
               </div>
 
@@ -409,7 +409,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
                   type="date"
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest focus:outline-none focus:ring-2 focus:ring-gold/50"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest focus:outline-none focus:ring-2 focus:ring-forest/30"
                 />
               </div>
 
@@ -422,7 +422,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
                   value={endTime}
                   onChange={(e) => setEndTime(e.target.value)}
                   placeholder="04:30 PM"
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30"
                 />
               </div>
             </div>
@@ -439,7 +439,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
                     value={venue}
                     onChange={(e) => setVenue(e.target.value)}
                     placeholder="e.g., DIEF Academic Auditorium, DHIU Chemmad"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30"
                     required
                   />
                 </div>
@@ -456,7 +456,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
                     value={speakerDetails}
                     onChange={(e) => setSpeakerDetails(e.target.value)}
                     placeholder="e.g., Dr. Luqmanul Hakeem, Guest Shariah Scholars"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30"
                   />
                 </div>
               </div>
@@ -465,13 +465,13 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
 
           {/* Section 3: Media & Poster Upload */}
           <div className="space-y-4 pt-2">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-forest border-b border-sand pb-1 flex items-center justify-between">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-forest border-b border-forest/15 pb-1 flex items-center justify-between">
               <span>Event Poster & Gallery</span>
               <span className="text-[11px] text-muted font-normal">Stored securely in Supabase Storage (`activities` bucket)</span>
             </h3>
 
             {/* Featured Poster Upload */}
-            <div className="bg-sand/30 p-5 rounded-2xl border border-sand-dark/40 space-y-4">
+            <div className="bg-forest/5 p-5 rounded-2xl border border-forest/15 space-y-4">
               <div className="flex items-center justify-between">
                 <div>
                   <h4 className="text-sm font-semibold text-forest">Featured Poster / Banner Image</h4>
@@ -506,8 +506,8 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
                     </div>
                   </div>
                 ) : (
-                  <div className="w-full sm:w-48 h-32 rounded-xl border-2 border-dashed border-sand-dark bg-white flex flex-col items-center justify-center text-muted text-xs flex-shrink-0">
-                    <ImageIcon className="w-8 h-8 text-sand-dark mb-1" />
+                  <div className="w-full sm:w-48 h-32 rounded-xl border-2 border-dashed border-forest/20 bg-white flex flex-col items-center justify-center text-muted text-xs flex-shrink-0">
+                    <ImageIcon className="w-8 h-8 text-forest/30 mb-1" />
                     <span>No Poster Set</span>
                   </div>
                 )}
@@ -523,7 +523,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
                   <button
                     type="button"
                     onClick={() => posterInputRef.current?.click()}
-                    className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-forest text-white hover:bg-forest-light text-xs font-semibold transition-colors shadow-sm"
+                    className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-forest text-white hover:bg-emerald-deep text-xs font-semibold transition-colors shadow-soft"
                   >
                     <Upload className="w-4 h-4 text-gold" />
                     <span>{posterPreview ? 'Change Poster Image' : 'Upload Poster Image'}</span>
@@ -537,14 +537,14 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
                       if (!posterFile) setPosterPreview(e.target.value || null);
                     }}
                     placeholder="https://images.unsplash.com/..."
-                    className="w-full px-3.5 py-1.5 rounded-lg border border-sand-dark bg-white text-xs text-forest placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-gold"
+                    className="w-full px-3.5 py-1.5 rounded-lg border border-forest/15 bg-white text-xs text-forest placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-forest"
                   />
                 </div>
               </div>
             </div>
 
             {/* Gallery Images Upload */}
-            <div className="bg-sand/30 p-5 rounded-2xl border border-sand-dark/40 space-y-4">
+            <div className="bg-forest/5 p-5 rounded-2xl border border-forest/15 space-y-4">
               <div className="flex items-center justify-between">
                 <div>
                   <h4 className="text-sm font-semibold text-forest">Additional Photo Gallery</h4>
@@ -562,7 +562,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
                   <button
                     type="button"
                     onClick={() => galleryInputRef.current?.click()}
-                    className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-white border border-sand-dark hover:bg-sand text-forest text-xs font-semibold transition-colors"
+                    className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-white border border-forest/20 hover:bg-forest/5 text-forest text-xs font-semibold transition-colors"
                   >
                     <Plus className="w-3.5 h-3.5 text-gold" />
                     <span>Add Photos</span>
@@ -574,7 +574,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
               <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3">
                 {/* Existing Gallery Images */}
                 {existingGallery.map((item) => (
-                  <div key={item.id} className="relative aspect-video rounded-lg overflow-hidden border border-sand-dark group">
+                  <div key={item.id} className="relative aspect-video rounded-lg overflow-hidden border border-forest/15 group">
                     <img src={item.image_url} alt="Gallery" className="w-full h-full object-cover" />
                     <button
                       type="button"
@@ -605,7 +605,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
                 ))}
 
                 {existingGallery.length === 0 && newGalleryPreviews.length === 0 && (
-                  <div className="col-span-full py-4 text-center text-xs text-muted border border-dashed border-sand-dark rounded-xl">
+                  <div className="col-span-full py-4 text-center text-xs text-muted border border-dashed border-forest/20 rounded-xl">
                     No additional gallery photos added yet.
                   </div>
                 )}
@@ -615,7 +615,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
 
           {/* Section 4: Registration, Contact & Publication */}
           <div className="space-y-4 pt-2">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-forest border-b border-sand pb-1">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-forest border-b border-forest/15 pb-1">
               Registration, Contact & Status
             </h3>
 
@@ -631,7 +631,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
                     value={registrationUrl}
                     onChange={(e) => setRegistrationUrl(e.target.value)}
                     placeholder="https://forms.gle/... or https://dief.dhiu.in/register/..."
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30"
                   />
                 </div>
               </div>
@@ -647,13 +647,13 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
                     value={contactInfo}
                     onChange={(e) => setContactInfo(e.target.value)}
                     placeholder="e.g., dief@dhiu.in | +91 494 2460575"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30"
                   />
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-2xl bg-sand/20 border border-sand-dark/40 items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-2xl bg-forest/5 border border-forest/15 items-center">
               <div>
                 <label className="block text-xs font-semibold text-forest mb-1.5">
                   Publication Status
@@ -661,7 +661,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
                 <select
                   value={status}
                   onChange={(e) => setStatus(e.target.value as ActivityPublicationStatus)}
-                  className="w-full px-3.5 py-2 rounded-xl border border-sand-dark bg-white text-sm text-forest font-semibold focus:outline-none focus:ring-2 focus:ring-gold/50"
+                  className="w-full px-3.5 py-2 rounded-xl border border-forest/15 bg-white text-sm text-forest font-semibold focus:outline-none focus:ring-2 focus:ring-forest/30"
                 >
                   <option value="Draft">Draft (Internal Only)</option>
                   <option value="Published">Published (Publicly Visible)</option>
@@ -678,7 +678,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
                   id="featuredToggle"
                   checked={isFeatured}
                   onChange={(e) => setIsFeatured(e.target.checked)}
-                  className="w-5 h-5 text-forest rounded border-sand-dark focus:ring-gold accent-forest"
+                  className="w-5 h-5 text-forest rounded border-forest/20 focus:ring-forest accent-forest"
                 />
                 <label htmlFor="featuredToggle" className="cursor-pointer">
                   <div className="text-sm font-semibold text-forest flex items-center space-x-1.5">
@@ -694,12 +694,12 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
           </div>
 
           {/* Form Actions Footer */}
-          <div className="pt-6 border-t border-sand flex items-center justify-end space-x-3">
+          <div className="pt-6 border-t border-forest/15 flex items-center justify-end space-x-3">
             <button
               type="button"
               onClick={onClose}
               disabled={submitting}
-              className="px-5 py-2.5 rounded-xl border border-sand-dark text-forest font-semibold text-sm hover:bg-sand transition-colors"
+              className="px-5 py-2.5 rounded-xl border border-forest/15 text-forest font-semibold text-sm hover:bg-forest/10 transition-colors"
             >
               Cancel
             </button>
@@ -707,7 +707,7 @@ export const ActivityFormModal: React.FC<ActivityFormModalProps> = ({
             <button
               type="submit"
               disabled={submitting}
-              className="inline-flex items-center space-x-2 px-6 py-2.5 bg-forest hover:bg-forest-light text-white rounded-xl text-sm font-semibold shadow-md transition-all disabled:opacity-50"
+              className="inline-flex items-center space-x-2 px-6 py-2.5 bg-forest hover:bg-emerald-deep text-white rounded-xl text-sm font-semibold shadow-soft transition-all disabled:opacity-50"
             >
               {submitting ? (
                 <>

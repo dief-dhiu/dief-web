@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../../../contexts/AuthContext';
-import { 
-  ActivityRecord, 
-  ActivityCategory, 
+import {
+  ActivityRecord,
+  ActivityCategory,
   ActivitiesDashboardStats,
   ActivityPublicationStatus
 } from '../../../types/activity';
@@ -22,13 +22,13 @@ import { ActivitiesListView } from './ActivitiesListView';
 import { ActivityFormModal } from './ActivityFormModal';
 import { ActivityDetailModal } from './ActivityDetailModal';
 import { ActivityCategoriesModal } from './ActivityCategoriesModal';
-import { 
-  LayoutDashboard, 
-  Calendar, 
-  Tag, 
-  PlusCircle, 
-  RefreshCw, 
-  ExternalLink 
+import {
+  LayoutDashboard,
+  Calendar,
+  Tag,
+  PlusCircle,
+  RefreshCw,
+  ExternalLink
 } from 'lucide-react';
 
 interface ActivitiesCMSProps {
@@ -179,19 +179,18 @@ export const ActivitiesCMS: React.FC<ActivitiesCMSProps> = ({ onNavigate, onShow
 
   return (
     <div className="space-y-6">
-      
+
       {/* 1. Sub-navigation Tabs */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-sand pb-4">
-        
+      <div className="bg-white rounded-2xl border border-forest/15 p-2 shadow-soft flex flex-wrap items-center justify-between gap-2">
+
         {/* Tab Buttons */}
         <div className="flex items-center space-x-2">
           <button
             onClick={() => setActiveTab('overview')}
-            className={`inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
-              activeTab === 'overview'
-                ? 'bg-forest text-white shadow-sm'
-                : 'text-forest hover:bg-sand/60'
-            }`}
+            className={`inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${activeTab === 'overview'
+                ? 'bg-forest text-white shadow-soft hover:bg-emerald-deep'
+                : 'text-forest hover:bg-forest/10'
+              }`}
           >
             <LayoutDashboard className="w-4 h-4 text-gold" />
             <span>Dashboard Overview</span>
@@ -199,11 +198,10 @@ export const ActivitiesCMS: React.FC<ActivitiesCMSProps> = ({ onNavigate, onShow
 
           <button
             onClick={() => setActiveTab('list')}
-            className={`inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
-              activeTab === 'list'
-                ? 'bg-forest text-white shadow-sm'
-                : 'text-forest hover:bg-sand/60'
-            }`}
+            className={`inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${activeTab === 'list'
+                ? 'bg-forest text-white shadow-soft hover:bg-emerald-deep'
+                : 'text-forest hover:bg-forest/10'
+              }`}
           >
             <Calendar className="w-4 h-4 text-gold" />
             <span>All Activities ({activities.length})</span>
@@ -214,7 +212,7 @@ export const ActivitiesCMS: React.FC<ActivitiesCMSProps> = ({ onNavigate, onShow
         <div className="flex items-center space-x-2">
           <button
             onClick={() => setIsCategoriesModalOpen(true)}
-            className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl border border-sand-dark text-forest hover:bg-sand text-xs font-semibold transition-colors"
+            className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl border border-forest/20 text-forest hover:bg-forest/5 text-xs font-semibold transition-colors"
           >
             <Tag className="w-3.5 h-3.5 text-gold" />
             <span>Manage Categories</span>
@@ -223,14 +221,14 @@ export const ActivitiesCMS: React.FC<ActivitiesCMSProps> = ({ onNavigate, onShow
           <button
             onClick={loadAllData}
             title="Refresh All"
-            className="p-2 rounded-xl border border-sand-dark text-forest hover:bg-sand transition-colors"
+            className="p-2 rounded-xl border border-forest/20 text-forest hover:bg-forest/5 transition-colors"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
           </button>
 
           <button
             onClick={() => onNavigate('/activities')}
-            className="inline-flex items-center space-x-1 px-3 py-1.5 rounded-xl bg-forest/5 hover:bg-forest/10 text-forest text-xs font-semibold transition-colors border border-forest/10"
+            className="inline-flex items-center space-x-1 px-3 py-1.5 rounded-xl bg-forest/5 hover:bg-forest/10 text-forest text-xs font-semibold transition-colors border border-forest/15"
           >
             <span>Live Public Page</span>
             <ExternalLink className="w-3 h-3 text-gold" />

@@ -135,14 +135,14 @@ export const JournalCMS: React.FC<JournalCMSProps> = ({ onNavigate, onShowToast 
     <div className="space-y-6">
       
       {/* CMS Module Sub-Navigation Bar */}
-      <div className="bg-white rounded-2xl border border-forest/10 p-2 shadow-soft flex flex-wrap items-center justify-between gap-2">
+      <div className="bg-white rounded-2xl border border-forest/15 p-2 shadow-soft flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center space-x-1 overflow-x-auto w-full sm:w-auto">
           <button
             onClick={() => setActiveTab('overview')}
             className={`px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 ${
               activeTab === 'overview'
-                ? 'bg-forest text-gold shadow-sm'
-                : 'text-charcoal hover:bg-surface-lightGreen/60'
+                ? 'bg-forest text-gold shadow-sm font-bold'
+                : 'text-charcoal hover:bg-forest/5'
             }`}
           >
             <LayoutDashboard className="w-4 h-4" />
@@ -153,8 +153,8 @@ export const JournalCMS: React.FC<JournalCMSProps> = ({ onNavigate, onShowToast 
             onClick={() => setActiveTab('issues')}
             className={`px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 ${
               activeTab === 'issues'
-                ? 'bg-forest text-gold shadow-sm'
-                : 'text-charcoal hover:bg-surface-lightGreen/60'
+                ? 'bg-forest text-gold shadow-sm font-bold'
+                : 'text-charcoal hover:bg-forest/5'
             }`}
           >
             <BookOpen className="w-4 h-4" />
@@ -170,8 +170,8 @@ export const JournalCMS: React.FC<JournalCMSProps> = ({ onNavigate, onShowToast 
             onClick={() => setActiveTab('articles')}
             className={`px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 ${
               activeTab === 'articles'
-                ? 'bg-forest text-gold shadow-sm'
-                : 'text-charcoal hover:bg-surface-lightGreen/60'
+                ? 'bg-forest text-gold shadow-sm font-bold'
+                : 'text-charcoal hover:bg-forest/5'
             }`}
           >
             <FileText className="w-4 h-4" />
@@ -194,9 +194,9 @@ export const JournalCMS: React.FC<JournalCMSProps> = ({ onNavigate, onShowToast 
             disabled={!canAccessSubmissions}
             className={`px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 ${
               activeTab === 'submissions'
-                ? 'bg-forest text-gold shadow-sm'
+                ? 'bg-forest text-gold shadow-sm font-bold'
                 : canAccessSubmissions
-                ? 'text-charcoal hover:bg-surface-lightGreen/60'
+                ? 'text-charcoal hover:bg-forest/5'
                 : 'text-gray-300 opacity-60 cursor-not-allowed'
             }`}
             title={!canAccessSubmissions ? 'Restricted to Super Admin & Journal Editor' : 'Manuscript Workflow'}
@@ -218,7 +218,7 @@ export const JournalCMS: React.FC<JournalCMSProps> = ({ onNavigate, onShowToast 
         <button
           onClick={loadAllData}
           disabled={loading}
-          className="p-2 border border-forest/20 hover:border-forest text-forest rounded-xl transition self-end sm:self-center"
+          className="p-2 border border-forest/20 hover:border-forest text-forest rounded-xl transition self-end sm:self-center hover:bg-forest/5"
           title="Refresh All Journal Datasets"
         >
           <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />

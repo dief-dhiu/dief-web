@@ -58,12 +58,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
 
       {/* HEADER BANNER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
+        <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden shadow-2xl border-2 border-gold/40">
           <div className="absolute inset-0 pattern-dark-islamic opacity-30 pointer-events-none"></div>
 
           <div className="relative z-10 max-w-4xl space-y-4">
             <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gold/20 text-gold text-xs font-semibold border border-gold/30">
-              <IslamicStarIcon size={12} className="text-gold" />
+
               <span>Academic Prospectus &amp; Overview</span>
             </div>
 
@@ -71,7 +71,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
               About the Department
             </h1>
 
-            <p className="text-sm sm:text-base text-sage-subtle leading-relaxed pt-2 max-w-3xl">
+            <p className="text-sm sm:text-base text-sage-light leading-relaxed pt-2 max-w-3xl">
               Offering a rigorous and holistic academic environment focused on Islamic economic ideologies rooted in Shari’ah principles and modern financial understanding. Founded with the aim of Islamizing modern financial practices.
             </p>
           </div>
@@ -83,7 +83,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-6 space-y-5">
             <div className="inline-flex items-center space-x-2 text-xs font-bold text-gold-dark uppercase tracking-wider">
-              <Compass className="w-3.5 h-3.5" />
+
               <span>Academic Environment</span>
             </div>
             <h2 className="text-3xl font-editorial font-bold text-forest leading-tight">
@@ -110,7 +110,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-forest/80 via-transparent to-transparent"></div>
-              <div className="absolute bottom-4 left-4 right-4 text-white text-xs p-3.5 bg-forest/85 backdrop-blur-md rounded-xl border border-gold/30">
+              <div className="absolute bottom-4 left-4 right-4 text-white text-xs p-3.5 bg-forest/90 backdrop-blur-md rounded-xl border border-gold/30">
                 <span className="font-bold text-gold">Kulliyya of Sharia Mandate:</span> Blending the classical scholarship of Islam with the dynamics of the global financial system.
               </div>
             </div>
@@ -120,10 +120,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
 
       {/* 2. HISTORY AND LEGACY */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-surface-lightGreen/50 rounded-3xl p-8 sm:p-12 border border-forest/10 space-y-8">
+        <div className="bg-surface-lightGreen/50 rounded-3xl p-8 sm:p-12 border border-forest/15 space-y-8">
           <div className="max-w-3xl space-y-2">
             <div className="inline-flex items-center space-x-2 text-xs font-bold text-gold-dark uppercase tracking-wider">
-              <History className="w-3.5 h-3.5" />
+
               <span>Origins &amp; Growth</span>
             </div>
             <h2 className="text-3xl font-editorial font-bold text-forest">
@@ -177,7 +177,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
 
           {/* Vision Card */}
           <div className="bg-white rounded-2xl p-8 border border-forest/10 shadow-soft space-y-4">
-            <div className="w-12 h-12 rounded-xl bg-forest/10 text-forest flex items-center justify-center">
+            <div className="w-12 h-12 rounded-xl bg-forest/5 text-forest flex items-center justify-center">
               <Eye className="w-6 h-6 text-forest" />
             </div>
             <span className="text-[11px] font-bold text-gold-dark uppercase tracking-wider block">
@@ -196,7 +196,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
 
           {/* Mission Card */}
           <div className="bg-white rounded-2xl p-8 border border-forest/10 shadow-soft space-y-4">
-            <div className="w-12 h-12 rounded-xl bg-forest/10 text-forest flex items-center justify-center">
+            <div className="w-12 h-12 rounded-xl bg-forest/5 text-forest flex items-center justify-center">
               <Target className="w-6 h-6 text-forest" />
             </div>
             <span className="text-[11px] font-bold text-gold-dark uppercase tracking-wider block">
@@ -232,59 +232,59 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
 
       {/* 4. PHILOSOPHY OF THE DEPARTMENT */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-forest rounded-3xl p-8 sm:p-12 text-white border-2 border-gold/40 shadow-elevated space-y-6">
+        <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
           <div className="max-w-3xl space-y-2">
             <div className="inline-flex items-center space-x-2 text-xs font-bold text-gold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5" />
+
               <span>Epistemic Foundation</span>
             </div>
             <h2 className="text-3xl font-editorial font-bold text-white">
               Philosophy of the Department
             </h2>
-            <p className="text-xs sm:text-sm text-sage-subtle leading-relaxed">
+            <p className="text-xs sm:text-sm text-sage-light leading-relaxed">
               Our educational philosophy is rooted in the Islamic worldview, characterized by the unity and hierarchy of knowledge, and guided by the following foundational beliefs:
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
-            <div className="bg-forest-dark/80 rounded-2xl p-6 border border-gold/30 space-y-2">
+            <div className="bg-forest-dark/90 rounded-2xl p-6 border border-gold/30 space-y-2">
               <span className="font-mono text-gold text-xs font-bold">01</span>
               <h4 className="font-editorial text-base font-bold text-white">Ultimate Source</h4>
-              <p className="text-xs text-sage-subtle leading-relaxed">
+              <p className="text-xs text-sage-light leading-relaxed">
                 Allah (Al-‘Allām) is the ultimate source of all knowledge, and the end goal of every scholarly pursuit.
               </p>
             </div>
 
-            <div className="bg-forest-dark/80 rounded-2xl p-6 border border-gold/30 space-y-2">
+            <div className="bg-forest-dark/90 rounded-2xl p-6 border border-gold/30 space-y-2">
               <span className="font-mono text-gold text-xs font-bold">02</span>
               <h4 className="font-editorial text-base font-bold text-white">Revelation &amp; Prophetic Guidance</h4>
-              <p className="text-xs text-sage-subtle leading-relaxed">
+              <p className="text-xs text-sage-light leading-relaxed">
                 Revelation and Prophetic knowledge are trustworthy sources of guidance, enriched by classical interpretations of authentic Muslim scholars.
               </p>
             </div>
 
-            <div className="bg-forest-dark/80 rounded-2xl p-6 border border-gold/30 space-y-2">
+            <div className="bg-forest-dark/90 rounded-2xl p-6 border border-gold/30 space-y-2">
               <span className="font-mono text-gold text-xs font-bold">03</span>
               <h4 className="font-editorial text-base font-bold text-white">Three Interrelated Goals</h4>
-              <div className="text-xs text-sage-subtle space-y-1">
+              <div className="text-xs text-sage-light space-y-1">
                 <div>• <strong>Ta’leem</strong> (Instruction)</div>
                 <div>• <strong>Tarbiyah</strong> (Moral and intellectual nurturing)</div>
                 <div>• <strong>Da’wah</strong> (Propagation of Islamic values)</div>
               </div>
             </div>
 
-            <div className="bg-forest-dark/80 rounded-2xl p-6 border border-gold/30 space-y-2">
+            <div className="bg-forest-dark/90 rounded-2xl p-6 border border-gold/30 space-y-2">
               <span className="font-mono text-gold text-xs font-bold">04</span>
               <h4 className="font-editorial text-base font-bold text-white">Progress of the Ummah</h4>
-              <p className="text-xs text-sage-subtle leading-relaxed">
+              <p className="text-xs text-sage-light leading-relaxed">
                 Knowledge is to be internalized and disseminated for the benefit of humanity and the progress of the Ummah.
               </p>
             </div>
 
-            <div className="bg-forest-dark/80 rounded-2xl p-6 border border-gold/30 space-y-2 sm:col-span-2">
+            <div className="bg-forest-dark/90 rounded-2xl p-6 border border-gold/30 space-y-2 sm:col-span-2">
               <span className="font-mono text-gold text-xs font-bold">05</span>
               <h4 className="font-editorial text-base font-bold text-white">Integration with Modern Expertise</h4>
-              <p className="text-xs text-sage-subtle leading-relaxed">
+              <p className="text-xs text-sage-light leading-relaxed">
                 The curriculum is committed to blending traditional Islamic sciences with modern economic expertise, allowing students to engage critically with contemporary global challenges.
               </p>
             </div>
@@ -309,7 +309,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
           {/* B.A. Program */}
-          <div className="bg-white rounded-2xl border border-forest/10 p-7 shadow-soft space-y-4 flex flex-col justify-between">
+          <div className="bg-white rounded-2xl border border-forest/15 p-7 shadow-soft space-y-4 flex flex-col justify-between">
             <div className="space-y-3">
               <div className="inline-flex items-center space-x-2 text-[10px] font-bold text-gold-dark uppercase tracking-wider bg-gold/15 px-2.5 py-1 rounded">
                 Undergraduate
@@ -365,7 +365,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
           </div>
 
           {/* Diploma & Certificate */}
-          <div className="bg-white rounded-2xl border border-forest/10 p-7 shadow-soft space-y-4 flex flex-col justify-between">
+          <div className="bg-white rounded-2xl border border-forest/15 p-7 shadow-soft space-y-4 flex flex-col justify-between">
             <div className="space-y-3">
               <div className="inline-flex items-center space-x-2 text-[10px] font-bold text-gold-dark uppercase tracking-wider bg-gold/15 px-2.5 py-1 rounded">
                 Executive &amp; Public
@@ -396,7 +396,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
 
       {/* 6. RESEARCH & PUBLICATIONS & ONGOING PROJECTS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="bg-surface-lightGreen/60 rounded-3xl p-8 sm:p-12 border border-forest/10 space-y-6">
+        <div className="bg-surface-lightGreen/50 rounded-3xl p-8 sm:p-12 border border-forest/15 space-y-6">
           <div className="max-w-3xl space-y-2">
             <span className="text-xs font-bold text-gold-dark uppercase tracking-wider">
               Intellectual Output
@@ -411,7 +411,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-soft space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-forest/10 text-forest flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-forest/5 text-forest flex items-center justify-center">
                 <Building2 className="w-5 h-5 text-forest" />
               </div>
               <span className="text-[10px] font-bold text-gold-dark uppercase tracking-wider">Flagship Initiative</span>
@@ -422,7 +422,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
             </div>
 
             <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-soft space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-forest/10 text-forest flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-forest/5 text-forest flex items-center justify-center">
                 <BookOpen className="w-5 h-5 text-forest" />
               </div>
               <span className="text-[10px] font-bold text-gold-dark uppercase tracking-wider">Academic Periodical</span>
@@ -440,7 +440,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
             </div>
 
             <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-soft space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-forest/10 text-forest flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-forest/5 text-forest flex items-center justify-center">
                 <Calendar className="w-5 h-5 text-forest" />
               </div>
               <span className="text-[10px] font-bold text-gold-dark uppercase tracking-wider">Dialogue &amp; Awareness</span>
@@ -465,7 +465,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-forest/10 pb-4">
           <div>
             <div className="inline-flex items-center space-x-1.5 text-xs font-bold text-gold-dark uppercase tracking-wider">
-              <Globe2 className="w-3.5 h-3.5" />
+
               <span>International Network</span>
             </div>
             <h2 className="text-3xl font-editorial font-bold text-forest mt-1">
@@ -508,7 +508,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
       <section id="faculty-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="border-b border-forest/10 pb-4">
           <div className="inline-flex items-center space-x-1.5 text-xs font-bold text-gold-dark uppercase tracking-wider">
-            <GraduationCap className="w-3.5 h-3.5" />
+
             <span>Academic Leadership</span>
           </div>
           <h2 className="text-3xl font-editorial font-bold text-forest mt-1">
@@ -536,7 +536,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
                 className="bg-white rounded-2xl border border-forest/10 p-6 shadow-soft hover:shadow-elevated transition-all flex flex-col justify-between space-y-4"
               >
                 <div className="space-y-4">
-                  <div className="w-16 h-16 rounded-xl overflow-hidden bg-forest/10 shrink-0 border border-gold/40 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-xl overflow-hidden bg-forest/5 shrink-0 border border-gold/40 flex items-center justify-center">
                     {f.photo_url ? (
                       <img src={f.photo_url} alt={f.full_name} className="w-full h-full object-cover" />
                     ) : (
@@ -581,7 +581,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
                   </div>
                 </div>
 
-                <div className="pt-2 text-[11px] text-charcoal-muted bg-surface-lightGreen/40 p-2.5 rounded-lg border border-forest/5 flex items-center justify-between">
+                <div className="pt-2 text-[11px] text-charcoal-muted bg-forest/5 p-2.5 rounded-lg border border-forest/10 flex items-center justify-between">
                   <span className="font-medium text-forest">{f.category_name || 'Faculty Member'}</span>
                   <IslamicStarIcon size={12} className="text-gold" />
                 </div>
@@ -593,7 +593,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
 
       {/* 9. JOIN US CALLOUT & CONTACT BLOCK */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-forest rounded-3xl p-8 sm:p-12 text-white border-2 border-gold/40 shadow-elevated flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden shadow-2xl border-2 border-gold/40">
           <div className="space-y-3 max-w-2xl">
             <span className="text-xs font-bold text-gold uppercase tracking-wider">
               Join Our Academic Community
@@ -601,7 +601,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
             <h3 className="font-editorial text-2xl sm:text-3xl font-bold text-white leading-tight">
               Join Us in Advancing Ethical Finance
             </h3>
-            <p className="text-xs sm:text-sm text-sage-subtle leading-relaxed">
+            <p className="text-xs sm:text-sm text-sage-light leading-relaxed">
               "We welcome passionate students, researchers, and public learners interested in becoming part of a transformative movement in Islamic economics and finance. Whether your aim is academic scholarship or ethical financial practice, our programs are designed to equip you for both this world and the Hereafter."
             </p>
             <div className="text-xs text-gold-light pt-2 flex flex-wrap gap-4">
@@ -611,12 +611,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
             </div>
           </div>
 
-          <div className="shrink-0 flex flex-col sm:flex-row gap-3">
+          <div className="pt-4 flex flex-wrap items-center gap-4">
             <button
               onClick={() => onNavigate('contact')}
-              className="px-6 py-3.5 bg-gold hover:bg-gold-light text-forest font-bold text-xs rounded-xl shadow transition"
+              className="px-6 py-3.5 bg-gold hover:bg-gold-light text-forest font-bold text-xs sm:text-sm rounded-xl shadow-lg transition"
             >
-              Contact Department Secretariat
+              Contact Department
             </button>
           </div>
         </div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { PageId } from '../types';
-import { CrestLogo, IslamicStarIcon } from './IslamicPattern';
 import {
   Building2,
   Briefcase,
@@ -8,7 +7,6 @@ import {
   Mail,
   Phone,
   MapPin,
-  ExternalLink,
   ShieldAlert,
   ArrowRight
 } from 'lucide-react';
@@ -30,7 +28,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
       <div className="h-1.5 w-full bg-gradient-to-r from-forest-dark via-gold to-forest-dark"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-forest-light/60">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-forest-light/40">
 
           {/* Col 1 & 2: Department Branding & Identity */}
           <div className="lg:col-span-2 space-y-4">
@@ -39,7 +37,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
               <div className="relative shrink-0 group">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white border-2 border-gold/60 shadow-elevated p-2 flex items-center justify-center relative overflow-hidden">
                   {/* Subtle decorative Islamic pattern overlay */}
-                  <div className="absolute inset-0 pattern-light opacity-40 pointer-events-none"></div>
+                  <div className="absolute inset-0 pattern-islamic-subtle opacity-40 pointer-events-none"></div>
                   {/* Fine gold corner geometric accents */}
                   <div className="absolute top-1 left-1 w-2 h-2 border-t-2 border-l-2 border-gold/70"></div>
                   <div className="absolute top-1 right-1 w-2 h-2 border-t-2 border-r-2 border-gold/70"></div>
@@ -66,33 +64,22 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
               </div>
             </div>
 
-            <p className="text-xs text-sage-subtle leading-relaxed pr-4">
+            <p className="text-xs text-sage-light leading-relaxed pr-4">
               Dedicated to pioneering ethical, Shariah grounded economic thought and contemporary financial jurisprudence. We integrate classical epistemological rigor with modern analytical methodologies to cultivate transformative research and institutional leadership.
             </p>
 
-            {/* Arabic inscription banner */}
-            <div className="bg-forest-dark/80 border border-gold/30 rounded-xl p-3 flex items-center justify-between">
-              <div>
-                <div className="font-arabic text-gold text-sm tracking-wide" dir="rtl">
-                  قسم الاقتصاد والتمويل الإسلامي
-                </div>
-                <div className="text-[10px] text-sage-light">جامعة دار الهدى الإسلامية — كيرلا، الهند</div>
-              </div>
-              <IslamicStarIcon size={24} className="text-gold/60" />
-            </div>
           </div>
 
           {/* Col 3: The Three Initiatives */}
           <div className="space-y-3">
             <h4 className="text-xs font-semibold tracking-wider text-gold uppercase font-sans flex items-center space-x-2">
-              <IslamicStarIcon size={12} className="text-gold" />
               <span>Flagship Pillars</span>
             </h4>
             <ul className="space-y-2.5 text-xs">
               <li>
                 <button
                   onClick={() => handleNav('dhib')}
-                  className="group text-left text-sage-subtle hover:text-white transition flex items-center space-x-2"
+                  className="group text-left text-sage-light hover:text-white transition flex items-center space-x-2"
                 >
                   <Building2 className="w-3.5 h-3.5 text-gold group-hover:translate-x-0.5 transition-transform" />
                   <div>
@@ -104,7 +91,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
               <li>
                 <button
                   onClick={() => handleNav('sbc')}
-                  className="group text-left text-sage-subtle hover:text-white transition flex items-center space-x-2"
+                  className="group text-left text-sage-light hover:text-white transition flex items-center space-x-2"
                 >
                   <Briefcase className="w-3.5 h-3.5 text-gold group-hover:translate-x-0.5 transition-transform" />
                   <div>
@@ -116,7 +103,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
               <li>
                 <button
                   onClick={() => handleNav('tamweel')}
-                  className="group text-left text-sage-subtle hover:text-white transition flex items-center space-x-2"
+                  className="group text-left text-sage-light hover:text-white transition flex items-center space-x-2"
                 >
                   <BookOpen className="w-3.5 h-3.5 text-gold group-hover:translate-x-0.5 transition-transform" />
                   <div>
@@ -131,10 +118,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
           {/* Col 4: Academic Navigation */}
           <div className="space-y-3">
             <h4 className="text-xs font-semibold tracking-wider text-gold uppercase font-sans flex items-center space-x-2">
-              <IslamicStarIcon size={12} className="text-gold" />
               <span>Academic Platform</span>
             </h4>
-            <ul className="space-y-2 text-xs text-sage-subtle">
+            <ul className="space-y-2 text-xs text-sage-light">
               <li>
                 <button onClick={() => handleNav('about')} className="hover:text-white transition flex items-center space-x-1.5">
                   <ArrowRight className="w-3 h-3 text-gold/70" />
@@ -170,10 +156,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
           {/* Col 5: Contact Placeholders */}
           <div className="space-y-3">
             <h4 className="text-xs font-semibold tracking-wider text-gold uppercase font-sans flex items-center space-x-2">
-              <IslamicStarIcon size={12} className="text-gold" />
               <span>Contact Directory</span>
             </h4>
-            <div className="space-y-2.5 text-xs text-sage-subtle">
+            <div className="space-y-2.5 text-xs text-sage-light">
               <div className="flex items-start space-x-2">
                 <MapPin className="w-3.5 h-3.5 text-gold shrink-0 mt-0.5" />
                 <span className="leading-snug">
@@ -198,7 +183,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
               <div className="pt-2">
                 <button
                   onClick={() => handleNav('contact')}
-                  className="w-full text-center px-3 py-2 bg-gold/15 hover:bg-gold text-gold hover:text-forest border border-gold/40 rounded-lg text-xs font-semibold transition"
+                  className="w-full text-center px-4 py-2.5 bg-gold hover:bg-gold-light text-forest font-bold border border-gold rounded-xl text-xs transition duration-200 shadow-soft"
                 >
                   Send Department Enquiry
                 </button>
@@ -209,20 +194,20 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
         </div>
 
         {/* Institutional & Legal Scope Disclaimers */}
-        <div className="mt-8 pt-6 border-t border-forest-light/40 bg-forest-dark/40 rounded-xl p-4 text-[11px] text-sage-light space-y-2">
+        <div className="mt-8 bg-forest-dark/70 border border-forest-light/30 rounded-2xl p-5 text-[11px] text-sage-light space-y-3 shadow-soft">
           <div className="flex items-center space-x-2 text-gold font-semibold uppercase tracking-wider text-[10px]">
-            <ShieldAlert className="w-3.5 h-3.5" />
-            <span>Academic & Institutional Declarations</span>
+
+            <span>Academic &amp; Institutional Declarations</span>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 leading-relaxed">
             <div>
-              <strong className="text-white">Independent Digital Platform:</strong> This website represents the Department of Islamic Economics and Finance. Darul Huda Islamic University serves strictly as the institutional parent university.
+              <strong className="text-white font-medium">Independent Digital Platform:</strong> This website represents the Department of Islamic Economics and Finance. Darul Huda Islamic University serves strictly as the institutional parent university.
             </div>
             <div>
-              <strong className="text-white">DHIB Operational Status:</strong> Darul Huda Islamic Bank operates strictly as an academic, educational sandbox and financial literacy platform, not a licensed commercial deposit-taking institution.
+              <strong className="text-white font-medium">DHIB Operational Status:</strong> Darul Huda Islamic Bank operates strictly as an academic, educational sandbox and financial literacy platform, not a licensed commercial deposit-taking institution.
             </div>
             <div>
-              <strong className="text-white">SBC Advisory Scope:</strong> Shariah Business Consultancy provides academic and commercial ethical advisory services; it does not issue state statutory audits or formal state legal decrees.
+              <strong className="text-white font-medium">SBC Advisory Scope:</strong> Shariah Business Consultancy provides academic and commercial ethical advisory services; it does not issue state statutory audits or formal state legal decrees.
             </div>
           </div>
         </div>

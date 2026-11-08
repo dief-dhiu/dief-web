@@ -220,7 +220,7 @@ export const JournalIssuesView: React.FC<JournalIssuesViewProps> = ({
     <div className="space-y-6">
       
       {/* Top Header & Search Controls */}
-      <div className="bg-white rounded-3xl border border-forest/10 p-6 shadow-soft space-y-4">
+      <div className="bg-white rounded-3xl border border-forest/15 p-6 shadow-soft space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <div className="text-[10px] font-bold text-gold-dark uppercase tracking-wider">
@@ -233,7 +233,7 @@ export const JournalIssuesView: React.FC<JournalIssuesViewProps> = ({
 
           <button
             onClick={handleOpenCreateModal}
-            className="px-4 py-2.5 bg-forest hover:bg-emerald-deep text-white text-xs font-bold rounded-xl shadow transition flex items-center space-x-1.5 self-start sm:self-center"
+            className="px-4 py-2.5 bg-forest hover:bg-emerald-deep text-white text-xs font-bold rounded-xl shadow-soft transition flex items-center space-x-1.5 self-start sm:self-center"
           >
             <Plus className="w-4 h-4 text-gold" />
             <span>Create New Issue</span>
@@ -249,7 +249,7 @@ export const JournalIssuesView: React.FC<JournalIssuesViewProps> = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by title, volume, year..."
-              className="w-full pl-10 pr-4 py-2 bg-ivory/60 border border-gray-200 rounded-xl text-xs focus:border-forest focus:outline-none"
+              className="w-full pl-10 pr-4 py-2 bg-forest/5 border border-forest/15 rounded-xl text-xs text-forest focus:border-forest focus:outline-none"
             />
           </div>
 
@@ -260,8 +260,8 @@ export const JournalIssuesView: React.FC<JournalIssuesViewProps> = ({
                 onClick={() => setFilterStatus(st)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
                   filterStatus === st
-                    ? 'bg-forest text-gold shadow-sm'
-                    : 'bg-surface-lightGreen/50 text-charcoal hover:bg-white'
+                    ? 'bg-forest text-gold shadow-sm font-bold'
+                    : 'bg-forest/5 text-charcoal hover:bg-forest/10'
                 }`}
               >
                 {st}
@@ -272,7 +272,7 @@ export const JournalIssuesView: React.FC<JournalIssuesViewProps> = ({
       </div>
 
       {/* Issues Table */}
-      <div className="bg-white rounded-3xl border border-forest/10 shadow-soft overflow-hidden">
+      <div className="bg-white rounded-3xl border border-forest/15 shadow-soft overflow-hidden">
         {loading ? (
           <div className="p-12 text-center text-xs text-charcoal-muted flex flex-col items-center justify-center space-y-2">
             <Loader2 className="w-6 h-6 animate-spin text-forest" />
@@ -287,7 +287,7 @@ export const JournalIssuesView: React.FC<JournalIssuesViewProps> = ({
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="border-b border-gray-200 text-charcoal-muted uppercase text-[10px] tracking-wider bg-ivory/40">
+                <tr className="border-b border-gray-200 text-charcoal-muted uppercase text-[10px] tracking-wider bg-forest/5">
                   <th className="py-3 px-4">Volume &amp; Issue</th>
                   <th className="py-3 px-4">Title &amp; Theme</th>
                   <th className="py-3 px-4">Status</th>
@@ -298,7 +298,7 @@ export const JournalIssuesView: React.FC<JournalIssuesViewProps> = ({
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {filteredIssues.map((iss) => (
-                  <tr key={iss.id} className="hover:bg-surface-lightGreen/20 transition-colors">
+                  <tr key={iss.id} className="hover:bg-forest/5 transition-colors">
                     <td className="py-3.5 px-4 font-mono">
                       <div className="font-bold text-forest text-sm">
                         Vol. {iss.volume_number}, Issue {iss.issue_number}
@@ -322,7 +322,7 @@ export const JournalIssuesView: React.FC<JournalIssuesViewProps> = ({
                     </td>
 
                     <td className="py-3.5 px-4">
-                      <span className="font-bold text-forest bg-forest/5 px-2 py-0.5 rounded border border-forest/10">
+                      <span className="font-bold text-forest bg-forest/5 px-2 py-0.5 rounded border border-forest/15">
                         {iss.articles_count || 0} papers
                       </span>
                     </td>
@@ -389,7 +389,7 @@ export const JournalIssuesView: React.FC<JournalIssuesViewProps> = ({
                     min="1"
                     value={volumeNumber}
                     onChange={(e) => setVolumeNumber(parseInt(e.target.value, 10))}
-                    className="w-full px-3 py-2 bg-ivory/60 border border-gray-200 rounded-xl focus:border-forest focus:outline-none"
+                    className="w-full px-3 py-2 bg-forest/5 border border-forest/15 rounded-xl text-forest focus:border-forest focus:outline-none"
                     required
                   />
                   {formErrors.volume && <p className="text-red-500 text-[10px]">{formErrors.volume}</p>}
@@ -402,7 +402,7 @@ export const JournalIssuesView: React.FC<JournalIssuesViewProps> = ({
                     min="1"
                     value={issueNumber}
                     onChange={(e) => setIssueNumber(parseInt(e.target.value, 10))}
-                    className="w-full px-3 py-2 bg-ivory/60 border border-gray-200 rounded-xl focus:border-forest focus:outline-none"
+                    className="w-full px-3 py-2 bg-forest/5 border border-forest/15 rounded-xl text-forest focus:border-forest focus:outline-none"
                     required
                   />
                   {formErrors.issue && <p className="text-red-500 text-[10px]">{formErrors.issue}</p>}
@@ -416,7 +416,7 @@ export const JournalIssuesView: React.FC<JournalIssuesViewProps> = ({
                     max="2099"
                     value={year}
                     onChange={(e) => setYear(parseInt(e.target.value, 10))}
-                    className="w-full px-3 py-2 bg-ivory/60 border border-gray-200 rounded-xl focus:border-forest focus:outline-none"
+                    className="w-full px-3 py-2 bg-forest/5 border border-forest/15 rounded-xl text-forest focus:border-forest focus:outline-none"
                     required
                   />
                   {formErrors.year && <p className="text-red-500 text-[10px]">{formErrors.year}</p>}
@@ -427,7 +427,7 @@ export const JournalIssuesView: React.FC<JournalIssuesViewProps> = ({
                   <select
                     value={status}
                     onChange={(e) => setStatus(e.target.value as IssuePublicationStatus)}
-                    className="w-full px-3 py-2 bg-ivory/60 border border-gray-200 rounded-xl focus:border-forest focus:outline-none"
+                    className="w-full px-3 py-2 bg-forest/5 border border-forest/15 rounded-xl text-forest focus:border-forest focus:outline-none"
                   >
                     <option value="Draft">Draft</option>
                     <option value="Published">Published</option>
@@ -444,7 +444,7 @@ export const JournalIssuesView: React.FC<JournalIssuesViewProps> = ({
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="e.g. Special Issue: Theoretical Jurisprudence & Sukuk Structuring"
-                  className="w-full px-3 py-2 bg-ivory/60 border border-gray-200 rounded-xl focus:border-forest focus:outline-none"
+                  className="w-full px-3 py-2 bg-forest/5 border border-forest/15 rounded-xl text-forest focus:border-forest focus:outline-none"
                   required
                 />
                 {formErrors.title && <p className="text-red-500 text-[10px]">{formErrors.title}</p>}
@@ -459,7 +459,7 @@ export const JournalIssuesView: React.FC<JournalIssuesViewProps> = ({
                     value={theme}
                     onChange={(e) => setTheme(e.target.value)}
                     placeholder="e.g. Islamic Capital Markets & Social Finance"
-                    className="w-full px-3 py-2 bg-ivory/60 border border-gray-200 rounded-xl focus:border-forest focus:outline-none"
+                    className="w-full px-3 py-2 bg-forest/5 border border-forest/15 rounded-xl text-forest focus:border-forest focus:outline-none"
                   />
                 </div>
 
@@ -469,7 +469,7 @@ export const JournalIssuesView: React.FC<JournalIssuesViewProps> = ({
                     type="date"
                     value={publicationDate}
                     onChange={(e) => setPublicationDate(e.target.value)}
-                    className="w-full px-3 py-2 bg-ivory/60 border border-gray-200 rounded-xl focus:border-forest focus:outline-none"
+                    className="w-full px-3 py-2 bg-forest/5 border border-forest/15 rounded-xl text-forest focus:border-forest focus:outline-none"
                   />
                 </div>
               </div>
@@ -482,12 +482,12 @@ export const JournalIssuesView: React.FC<JournalIssuesViewProps> = ({
                   value={editorialIntroduction}
                   onChange={(e) => setEditorialIntroduction(e.target.value)}
                   placeholder="Provide the opening editorial commentary highlighting key contributions in this issue..."
-                  className="w-full px-3 py-2 bg-ivory/60 border border-gray-200 rounded-xl focus:border-forest focus:outline-none"
+                  className="w-full px-3 py-2 bg-forest/5 border border-forest/15 rounded-xl text-forest focus:border-forest focus:outline-none"
                 />
               </div>
 
               {/* Cover Image Upload */}
-              <div className="space-y-1.5 p-3 rounded-xl bg-ivory/80 border border-gray-200">
+              <div className="space-y-1.5 p-3 rounded-xl bg-forest/5 border border-forest/15">
                 <label className="font-bold text-forest uppercase tracking-wider block">Cover Image Upload (Optional)</label>
                 <input
                   type="file"
@@ -516,7 +516,7 @@ export const JournalIssuesView: React.FC<JournalIssuesViewProps> = ({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-5 py-2 bg-forest hover:bg-emerald-deep text-white font-bold rounded-xl shadow transition flex items-center space-x-1.5"
+                  className="px-5 py-2 bg-forest hover:bg-emerald-deep text-white font-bold rounded-xl shadow-soft transition flex items-center space-x-1.5"
                 >
                   {isSubmitting ? (
                     <>

@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase, getSupabaseConfigStatus } from '../../lib/supabase';
-import { 
-  ShieldCheck, 
-  Database, 
-  Lock, 
-  BookOpen, 
-  Calendar, 
-  Users, 
-  Mail, 
-  Settings, 
-  ArrowRight, 
-  CheckCircle2, 
+import {
+  ShieldCheck,
+  Database,
+  Lock,
+  BookOpen,
+  Calendar,
+  Users,
+  Mail,
+  Settings,
+  ArrowRight,
+  CheckCircle2,
   Activity,
   Clock,
   KeyRound,
@@ -120,7 +120,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
 
   return (
     <div className="space-y-6">
-      
+
       {/* Welcome Banner */}
       <div className="bg-forest rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
         <div className="absolute inset-0 pattern-dark-islamic opacity-20 pointer-events-none"></div>
@@ -143,7 +143,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
             <span>Institution: <strong>Under Kulliyya of Sharia, DHIU</strong></span>
           </div>
 
-          <p className="text-xs text-sage-subtle max-w-2xl leading-relaxed pt-1">
+          <p className="text-xs text-sage-light max-w-2xl leading-relaxed pt-1">
             This administrative back-office is connected to Supabase with PostgreSQL Row Level Security (RLS) and server-verified role-based access control.
           </p>
         </div>
@@ -151,7 +151,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
 
       {/* Backend & Security Status Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        
+
         {/* Backend Connection */}
         <div className="bg-white p-5 rounded-2xl border border-forest/10 shadow-soft space-y-2">
           <div className="flex items-center justify-between">
@@ -162,13 +162,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
           </div>
 
           <div className="flex items-center space-x-2">
-            <div className={`w-2.5 h-2.5 rounded-full ${
-              dbStatus === 'connected' ? 'bg-emerald-500 animate-pulse' :
-              dbStatus === 'checking' ? 'bg-amber-500' : 'bg-red-500'
-            }`} />
+            <div className={`w-2.5 h-2.5 rounded-full ${dbStatus === 'connected' ? 'bg-emerald-500 animate-pulse' :
+                dbStatus === 'checking' ? 'bg-amber-500' : 'bg-red-500'
+              }`} />
             <div className="text-sm font-bold text-forest">
               {dbStatus === 'connected' ? 'Connected (Supabase)' :
-               dbStatus === 'checking' ? 'Verifying Connection...' : 'Connection Error'}
+                dbStatus === 'checking' ? 'Verifying Connection...' : 'Connection Error'}
             </div>
           </div>
 
@@ -187,7 +186,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
           </div>
 
           <div className="text-sm font-bold text-forest flex items-center space-x-1.5">
-            <span className="font-mono bg-forest/10 text-forest px-2 py-0.5 rounded text-xs">{role}</span>
+            <span className="font-mono bg-forest/5 text-forest px-2 py-0.5 rounded text-xs">{role}</span>
             <span className="text-xs text-emerald-700 font-semibold">• Active</span>
           </div>
 
@@ -237,17 +236,15 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
               <div
                 key={m.id}
                 onClick={() => isAllowed && onNavigate(m.path)}
-                className={`bg-white rounded-2xl p-5 border transition-all flex flex-col justify-between space-y-4 ${
-                  isAllowed 
-                    ? 'border-forest/10 hover:border-gold shadow-soft hover:shadow-elevated cursor-pointer group' 
+                className={`bg-white rounded-2xl p-5 border transition-all flex flex-col justify-between space-y-4 ${isAllowed
+                    ? 'border-forest/10 hover:border-gold shadow-soft hover:shadow-elevated cursor-pointer group'
                     : 'border-gray-200 bg-gray-50/70 opacity-60 cursor-not-allowed'
-                }`}
+                  }`}
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                      isAllowed ? 'bg-forest/10 text-forest group-hover:bg-forest group-hover:text-gold transition-colors' : 'bg-gray-200 text-gray-400'
-                    }`}>
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${isAllowed ? 'bg-forest/5 text-forest group-hover:bg-forest group-hover:text-gold transition-colors' : 'bg-gray-200 text-gray-400'
+                      }`}>
                       <Icon className="w-5 h-5" />
                     </div>
 
@@ -290,18 +287,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
         </div>
       </div>
 
-      {/* Phase 1 Integration Confirmation Notice */}
-      <div className="p-5 rounded-2xl bg-surface-lightGreen/60 border border-forest/15 space-y-2">
-        <div className="flex items-center space-x-2">
-          <IslamicStarIcon size={16} className="text-gold" />
-          <h4 className="font-editorial text-sm font-bold text-forest">
-            Phase 1 Integration Checkpoint
-          </h4>
-        </div>
-        <p className="text-xs text-charcoal-light leading-relaxed">
-          The Supabase connection, schema foundation (<code className="font-mono bg-white px-1 py-0.2 rounded text-forest">admin_roles</code> and <code className="font-mono bg-white px-1 py-0.2 rounded text-forest">audit_logs</code>), authentication lifecycle, and role-based route guards are operational. Individual module CMS workflows will be populated in <strong>Phase 2</strong>.
-        </p>
-      </div>
+
 
     </div>
   );

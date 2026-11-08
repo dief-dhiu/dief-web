@@ -170,9 +170,9 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
           <div className="absolute top-0 right-0 w-96 h-96 bg-surface-lightGreen/50 rounded-bl-full pointer-events-none -z-0"></div>
 
           <div className="relative z-10 max-w-4xl space-y-4">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-forest text-gold text-xs font-semibold">
-              <BookOpen className="w-3.5 h-3.5" />
-              <span>Flagship Journal Platform</span>
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-forest text-white border border-gold/40 text-xs font-semibold tracking-wide shadow-sm">
+              <BookOpen className="w-3.5 h-3.5 text-gold shrink-0" />
+              <span className="text-white font-medium">Journal Platform</span>
             </div>
 
             <div className="space-y-1">
@@ -185,7 +185,6 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
               <h2 className="text-xl sm:text-2xl font-editorial text-charcoal font-semibold">
                 Journal of Islamic Economics and Finance
               </h2>
-
             </div>
 
             <p className="text-sm sm:text-base text-charcoal-light leading-relaxed max-w-3xl">
@@ -193,33 +192,43 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
             </p>
 
             {/* Publication & Indexing Notice */}
-            <div className="p-4 rounded-xl bg-ivory border border-forest/15 text-xs text-charcoal-muted flex items-start space-x-3">
-              <Info className="w-4 h-4 text-gold-dark shrink-0 mt-0.5" />
-              <div>
-                <strong className="text-forest">Publication &amp; Indexing Notice:</strong>
-                Tamweel adheres to international Committee on Publication Ethics (COPE) principles.
-                <span className="ml-1 text-gold-dark font-medium">[ISSN: Pending official assignment | Open Access Diamond Model].</span>
+            <div className="p-4 rounded-xl bg-forest/5 border border-forest/20 text-xs text-charcoal flex items-start space-x-3 shadow-xs">
+
+              <div className="leading-relaxed">
+                <strong className="text-forest font-bold">Publication &amp; Indexing Notice:</strong>{' '}
+                <span className="text-charcoal">Tamweel adheres to international Committee on Publication Ethics (COPE) principles.</span>
+                <span className="ml-1 text-gold-dark font-semibold">[ISSN: Pending official assignment | Open Access Diamond Model].</span>
               </div>
             </div>
 
             {/* Main Tab Controls */}
-            <div className="pt-4 flex flex-wrap gap-3 border-t border-gray-100">
+            <div className="pt-4 flex flex-wrap gap-3 border-t border-forest/10">
               <button
+                type="button"
                 onClick={() => setActiveTab('articles')}
-                className={`px-5 py-2.5 rounded-xl text-xs font-bold transition flex items-center space-x-2 ${activeTab === 'articles' ? 'bg-forest text-white shadow' : 'bg-surface-lightGreen text-charcoal hover:bg-white'
+                className={`px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-2 shadow-sm ${activeTab === 'articles'
+                    ? 'bg-forest text-white ring-2 ring-gold/50 shadow-md'
+                    : 'bg-white text-forest hover:bg-forest/5 border border-forest/20'
                   }`}
               >
-                <BookOpen className="w-3.5 h-3.5 text-gold" />
-                <span>Browse Research Articles ({displayArticles.length})</span>
+                <BookOpen className={`w-3.5 h-3.5 shrink-0 ${activeTab === 'articles' ? 'text-gold' : 'text-forest'}`} />
+                <span className={activeTab === 'articles' ? 'text-white' : 'text-forest'}>
+                  Browse Research Articles{displayArticles.length > 0 ? ` (${displayArticles.length})` : ''}
+                </span>
               </button>
 
               <button
+                type="button"
                 onClick={() => setActiveTab('info')}
-                className={`px-5 py-2.5 rounded-xl text-xs font-bold transition flex items-center space-x-2 ${activeTab === 'info' ? 'bg-forest text-white shadow' : 'bg-surface-lightGreen text-charcoal hover:bg-white'
+                className={`px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-2 shadow-sm ${activeTab === 'info'
+                    ? 'bg-forest text-white ring-2 ring-gold/50 shadow-md'
+                    : 'bg-white text-forest hover:bg-forest/5 border border-forest/20'
                   }`}
               >
-                <Info className="w-3.5 h-3.5 text-gold" />
-                <span>Journal Information &amp; Policies</span>
+                <Info className={`w-3.5 h-3.5 shrink-0 ${activeTab === 'info' ? 'text-gold' : 'text-forest'}`} />
+                <span className={activeTab === 'info' ? 'text-white' : 'text-forest'}>
+                  Journal Information &amp; Policies
+                </span>
               </button>
             </div>
 
@@ -230,7 +239,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
       {/* 2. LATEST PUBLISHED ISSUE DISPLAY - Strictly from Supabase. Only render if a published issue exists */}
       {activeTab === 'articles' && !loadingLive && !loadError && latestIssue && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-forest rounded-3xl p-8 sm:p-10 text-white border-2 border-gold/40 shadow-elevated">
+          <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden shadow-2xl border-2 border-gold/40">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
 
               {/* Cover preview */}
@@ -254,7 +263,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
 
                       <div className="relative z-10 text-center py-4 border-y border-gold/30">
                         <IslamicStarIcon size={32} className="mx-auto text-gold mb-1" />
-                        <span className="text-[10px] text-sage-subtle block">
+                        <span className="text-[10px] text-sage-light block">
                           Volume {latestIssue.volume_number} • Issue {latestIssue.issue_number}
                         </span>
                         <span className="text-[10px] text-gold font-bold">
@@ -291,7 +300,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
                 )}
 
                 {latestIssue.editorial_introduction && (
-                  <p className="text-xs sm:text-sm text-sage-subtle leading-relaxed">
+                  <p className="text-xs sm:text-sm text-sage-light leading-relaxed">
                     {latestIssue.editorial_introduction}
                   </p>
                 )}
@@ -335,7 +344,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
               <p className="text-xs text-red-700 max-w-md mx-auto">{loadError}</p>
               <button
                 onClick={loadLiveData}
-                className="px-5 py-2.5 bg-forest text-gold text-xs font-bold rounded-xl hover:bg-emerald-deep transition shadow"
+                className="px-5 py-2.5 bg-forest text-gold text-xs font-bold rounded-xl hover:bg-emerald-deep transition shadow-soft"
               >
                 Retry Database Request
               </button>
@@ -367,7 +376,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search articles by title, author, keyword..."
-                    className="w-full pl-9 pr-4 py-2 text-xs bg-ivory/50 border border-gray-200 rounded-xl focus:border-forest focus:outline-none"
+                    className="w-full pl-9 pr-4 py-2 text-xs bg-forest/5 border border-forest/15 rounded-xl focus:border-forest focus:outline-none"
                   />
                 </div>
 
@@ -377,7 +386,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
                     <select
                       value={selectedIssueFilter}
                       onChange={(e) => setSelectedIssueFilter(e.target.value)}
-                      className="w-full px-3 py-2 text-xs bg-ivory/50 border border-gray-200 rounded-xl focus:border-forest focus:outline-none"
+                      className="w-full px-3 py-2 text-xs bg-forest/5 border border-forest/15 rounded-xl focus:border-forest focus:outline-none text-forest"
                     >
                       <option value="All">All Journal Issues</option>
                       {publishedIssues.map(iss => (
@@ -397,8 +406,8 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
                         key={cat}
                         onClick={() => setSelectedCategory(cat)}
                         className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition ${selectedCategory === cat
-                            ? 'bg-forest text-white'
-                            : 'bg-surface-lightGreen text-charcoal hover:bg-white'
+                          ? 'bg-forest text-white shadow-soft'
+                          : 'bg-forest/5 text-forest hover:bg-forest/10 border border-forest/15'
                           }`}
                       >
                         {cat}
@@ -420,7 +429,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
                   filteredArticles.map((art) => (
                     <div
                       key={art.id}
-                      className="bg-white rounded-2xl border border-forest/10 hover:border-gold/60 p-6 sm:p-7 shadow-soft transition-all space-y-4"
+                      className="bg-white rounded-2xl border border-forest/15 hover:border-gold/60 p-6 sm:p-7 shadow-soft transition-all space-y-4"
                     >
                       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gray-100 pb-3">
                         <div className="flex items-center space-x-2">
@@ -468,7 +477,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
                           <div className="flex flex-wrap items-center gap-1.5 pt-1">
                             <span className="text-[11px] text-charcoal-muted font-bold mr-1">Keywords:</span>
                             {art.keywords.map((kw, i) => (
-                              <span key={i} className="text-[10px] bg-surface-lightGreen text-forest px-2 py-0.5 rounded font-medium">
+                              <span key={i} className="text-[10px] bg-forest/5 text-forest border border-forest/10 px-2 py-0.5 rounded font-medium">
                                 #{kw}
                               </span>
                             ))}
@@ -481,7 +490,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
                         <div className="flex items-center space-x-2">
                           <button
                             onClick={() => handleDownloadPdf(art)}
-                            className="px-4 py-2 bg-forest hover:bg-emerald-deep text-white text-xs font-bold rounded-xl transition flex items-center space-x-1.5"
+                            className="px-4 py-2 bg-forest hover:bg-emerald-deep text-white text-xs font-bold rounded-xl transition flex items-center space-x-1.5 shadow-soft"
                           >
                             <Download className="w-3.5 h-3.5 text-gold" />
                             <span>Download Full PDF</span>
@@ -489,7 +498,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
 
                           <button
                             onClick={() => handleCopyCitation(art)}
-                            className="px-3.5 py-2 bg-ivory hover:bg-gray-100 text-charcoal border border-gray-200 text-xs font-semibold rounded-xl transition flex items-center space-x-1.5"
+                            className="px-3.5 py-2 bg-forest/5 hover:bg-forest/10 text-forest border border-forest/15 text-xs font-semibold rounded-xl transition flex items-center space-x-1.5"
                           >
                             <Copy className="w-3.5 h-3.5 text-gold-dark" />
                             <span>Cite Article</span>
@@ -521,37 +530,37 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
             <div className="p-6 bg-forest text-white flex flex-wrap gap-2 border-b border-gold/30">
               <button
                 onClick={() => setInfoSubTab('aims')}
-                className={`px-3 py-2 rounded-lg transition ${infoSubTab === 'aims' ? 'bg-gold text-forest font-bold' : 'text-sage-light hover:text-white'}`}
+                className={`px-3 py-2 rounded-lg transition text-xs font-semibold ${infoSubTab === 'aims' ? 'bg-gold text-forest font-bold shadow-sm' : 'text-sage-light hover:text-white hover:bg-forest-light/60'}`}
               >
                 Aims &amp; Scope
               </button>
               <button
                 onClick={() => setInfoSubTab('board')}
-                className={`px-3 py-2 rounded-lg transition ${infoSubTab === 'board' ? 'bg-gold text-forest font-bold' : 'text-sage-light hover:text-white'}`}
+                className={`px-3 py-2 rounded-lg transition text-xs font-semibold ${infoSubTab === 'board' ? 'bg-gold text-forest font-bold shadow-sm' : 'text-sage-light hover:text-white hover:bg-forest-light/60'}`}
               >
                 Editorial Leadership
               </button>
               <button
                 onClick={() => setInfoSubTab('policy')}
-                className={`px-3 py-2 rounded-lg transition ${infoSubTab === 'policy' ? 'bg-gold text-forest font-bold' : 'text-sage-light hover:text-white'}`}
+                className={`px-3 py-2 rounded-lg transition text-xs font-semibold ${infoSubTab === 'policy' ? 'bg-gold text-forest font-bold shadow-sm' : 'text-sage-light hover:text-white hover:bg-forest-light/60'}`}
               >
                 Editorial Policy
               </button>
               <button
                 onClick={() => setInfoSubTab('review')}
-                className={`px-3 py-2 rounded-lg transition ${infoSubTab === 'review' ? 'bg-gold text-forest font-bold' : 'text-sage-light hover:text-white'}`}
+                className={`px-3 py-2 rounded-lg transition text-xs font-semibold ${infoSubTab === 'review' ? 'bg-gold text-forest font-bold shadow-sm' : 'text-sage-light hover:text-white hover:bg-forest-light/60'}`}
               >
                 Peer Review Process
               </button>
               <button
                 onClick={() => setInfoSubTab('ethics')}
-                className={`px-3 py-2 rounded-lg transition ${infoSubTab === 'ethics' ? 'bg-gold text-forest font-bold' : 'text-sage-light hover:text-white'}`}
+                className={`px-3 py-2 rounded-lg transition text-xs font-semibold ${infoSubTab === 'ethics' ? 'bg-gold text-forest font-bold shadow-sm' : 'text-sage-light hover:text-white hover:bg-forest-light/60'}`}
               >
                 Publication Ethics (COPE)
               </button>
               <button
                 onClick={() => setInfoSubTab('guidelines')}
-                className={`px-3 py-2 rounded-lg transition ${infoSubTab === 'guidelines' ? 'bg-gold text-forest font-bold' : 'text-sage-light hover:text-white'}`}
+                className={`px-3 py-2 rounded-lg transition text-xs font-semibold ${infoSubTab === 'guidelines' ? 'bg-gold text-forest font-bold shadow-sm' : 'text-sage-light hover:text-white hover:bg-forest-light/60'}`}
               >
                 Author Guidelines
               </button>
@@ -573,7 +582,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
                     <li><strong>Economic justice through Islamic social finance</strong> (Waqf, Zakat, and Sadaqah)</li>
                     <li><strong>Comparative policy analysis</strong> between conventional and Islamic finance</li>
                   </ul>
-                  <div className="p-4 bg-surface-lightGreen/50 rounded-xl border border-forest/10 text-xs">
+                  <div className="p-4 bg-forest/5 rounded-xl border border-forest/15 text-xs">
                     <strong className="text-forest">Frequency:</strong> Bi-annual (May and October Issues) • Open Access Model (No author APC fees).
                   </div>
                 </div>
@@ -583,22 +592,22 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
                 <div className="space-y-4">
                   <h3 className="font-editorial text-2xl font-bold text-forest">Editorial Leadership</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                    <div className="p-4 bg-ivory rounded-xl border border-gray-200">
+                    <div className="p-4 bg-forest/5 rounded-xl border border-forest/15">
                       <div className="font-bold text-forest">Editor-in-Chief</div>
                       <div className="text-xs text-charcoal-light">Anas Hudawi Nellikkuth (Head of Department)</div>
                       <div className="text-[11px] text-gold-dark mt-1">P.G. in Economics, Calicut University • DHIU</div>
                     </div>
-                    <div className="p-4 bg-ivory rounded-xl border border-gray-200">
+                    <div className="p-4 bg-forest/5 rounded-xl border border-forest/15">
                       <div className="font-bold text-forest">Academic Advisor &amp; Dean</div>
                       <div className="text-xs text-charcoal-light">Dr. K.P. Jafar Hudawi Kolathur (Dean, Kulliyya of Sharia)</div>
                       <div className="text-[11px] text-gold-dark mt-1">Ph.D. in Arabic • DHIU</div>
                     </div>
-                    <div className="p-4 bg-ivory rounded-xl border border-gray-200">
+                    <div className="p-4 bg-forest/5 rounded-xl border border-forest/15">
                       <div className="font-bold text-forest">Senior Academic Faculty Member</div>
                       <div className="text-xs text-charcoal-light">Dr. Rasheed</div>
                       <div className="text-[11px] text-gold-dark mt-1">Ph.D. in Economics, Calicut University</div>
                     </div>
-                    <div className="p-4 bg-ivory rounded-xl border border-gray-200">
+                    <div className="p-4 bg-forest/5 rounded-xl border border-forest/15">
                       <div className="font-bold text-forest">Managing Editor &amp; Secretariat</div>
                       <div className="text-xs text-charcoal-light">Department Research Working Group</div>
                       <div className="text-[11px] text-gold-dark mt-1">
@@ -654,7 +663,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
                     <li>• <strong>Citation Style:</strong> Chicago Manual of Style (17th Edition, Author-Date).</li>
                     <li>• <strong>Format:</strong> Complete manuscript in PDF document format.</li>
                   </ul>
-                  <div className="pt-2 p-4 bg-ivory rounded-xl border border-forest/10 text-xs text-charcoal-light">
+                  <div className="pt-2 p-4 bg-forest/5 rounded-xl border border-forest/15 text-xs text-charcoal-light">
                     <p>
                       Manuscript submissions and editorial inquiries should be directed to the editorial office at{' '}
                       <a href="mailto:dief@dhiu.in" className="text-forest font-bold hover:underline">
@@ -672,7 +681,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
       {/* ARTICLE DETAILS MODAL */}
       {activeArticleModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-forest-dark/80 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-white rounded-3xl border border-forest/20 shadow-2xl p-6 sm:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto space-y-5 text-xs">
+          <div className="bg-white rounded-3xl border border-forest/15 shadow-2xl p-6 sm:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto space-y-5 text-xs">
             <div className="flex items-start justify-between border-b border-gray-100 pb-3">
               <div>
                 <span className="text-[10px] font-bold text-gold-dark uppercase tracking-wider">
@@ -713,14 +722,14 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
               )}
             </div>
 
-            <div className="p-4 bg-ivory rounded-xl border border-gray-200 space-y-1.5">
+            <div className="p-4 bg-forest/5 rounded-xl border border-forest/15 space-y-1.5">
               <div className="font-bold text-forest">Abstract</div>
               <p className="leading-relaxed text-charcoal-light">{activeArticleModal.abstract}</p>
             </div>
 
             <div className="flex flex-wrap gap-1.5 pt-1">
               {activeArticleModal.keywords.map((k: string) => (
-                <span key={k} className="px-2 py-0.5 rounded bg-surface-lightGreen text-forest text-[11px] font-medium">
+                <span key={k} className="px-2 py-0.5 rounded bg-forest/5 text-forest border border-forest/15 text-[11px] font-medium">
                   #{k}
                 </span>
               ))}
@@ -729,14 +738,14 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
             <div className="pt-2 flex flex-wrap gap-2">
               <button
                 onClick={() => handleDownloadPdf(activeArticleModal)}
-                className="px-4 py-2 bg-forest text-gold text-xs font-bold rounded-xl shadow hover:bg-emerald-deep transition flex items-center space-x-1.5"
+                className="px-4 py-2 bg-forest text-gold text-xs font-bold rounded-xl shadow-soft hover:bg-emerald-deep transition flex items-center space-x-1.5"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Download Published PDF</span>
               </button>
               <button
                 onClick={() => handleCopyCitation(activeArticleModal)}
-                className="px-3.5 py-2 bg-gray-100 hover:bg-gray-200 text-charcoal font-semibold rounded-xl text-xs transition flex items-center space-x-1.5"
+                className="px-3.5 py-2 bg-forest/5 hover:bg-forest/10 text-forest border border-forest/15 font-semibold rounded-xl text-xs transition flex items-center space-x-1.5"
               >
                 <Copy className="w-3.5 h-3.5 text-gold-dark" />
                 <span>Copy Citation</span>
@@ -749,7 +758,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
       {/* ISSUE DETAILS MODAL */}
       {activeIssueModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-forest-dark/80 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-white rounded-3xl border border-forest/20 shadow-2xl p-6 sm:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto space-y-4 text-xs">
+          <div className="bg-white rounded-3xl border border-forest/15 shadow-2xl p-6 sm:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto space-y-4 text-xs">
             <div className="flex items-start justify-between border-b border-gray-100 pb-3">
               <div>
                 <span className="text-[10px] font-bold text-gold-dark uppercase tracking-wider">
@@ -770,7 +779,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
             </div>
 
             {activeIssueModal.editorial_introduction && (
-              <div className="p-4 bg-surface-lightGreen/50 rounded-xl border border-forest/10 space-y-1">
+              <div className="p-4 bg-forest/5 rounded-xl border border-forest/15 space-y-1">
                 <div className="font-bold text-forest">Editorial Introduction</div>
                 <p className="text-charcoal-light leading-relaxed">{activeIssueModal.editorial_introduction}</p>
               </div>
@@ -783,10 +792,11 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
                   setActiveIssueModal(null);
                   setActiveTab('articles');
                 }}
-                className="px-4 py-2 bg-forest text-gold text-xs font-bold rounded-xl"
+                className="px-4 py-2 bg-forest text-gold text-xs font-bold rounded-xl shadow-soft hover:bg-emerald-deep transition"
               >
                 Filter Articles for this Issue →
               </button>
+
             </div>
           </div>
         </div>

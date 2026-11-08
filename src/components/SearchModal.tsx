@@ -68,13 +68,13 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   const hasResults = pagesIndex.length > 0 || filteredEvents.length > 0 || filteredArticles.length > 0;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-forest-dark/70 backdrop-blur-sm flex items-start justify-center pt-16 sm:pt-24 px-4 pb-6 animate-fadeIn">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-forest-dark/80 backdrop-blur-sm flex items-start justify-center pt-16 sm:pt-24 px-4 pb-6 animate-fadeIn">
       <div 
         className="relative bg-white w-full max-w-2xl rounded-2xl shadow-2xl border border-gold/40 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Input Bar */}
-        <div className="p-4 border-b border-gray-100 flex items-center space-x-3 bg-ivory/60">
+        <div className="p-4 border-b border-gray-100 flex items-center space-x-3 bg-forest/5">
           <Search className="w-5 h-5 text-forest shrink-0" />
           <input
             ref={inputRef}
@@ -117,7 +117,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                 <div>
                   <div className="text-[11px] font-bold text-forest uppercase tracking-wider mb-2 flex items-center space-x-1.5">
                     <IslamicStarIcon size={12} className="text-gold" />
-                    <span>Department & Initiatives</span>
+                    <span>Department &amp; Initiatives</span>
                   </div>
                   <div className="space-y-1.5">
                     {pagesIndex.map(item => (
@@ -127,7 +127,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                           onNavigate(item.page);
                           onClose();
                         }}
-                        className="w-full text-left p-2.5 rounded-xl hover:bg-surface-lightGreen/70 transition flex items-center justify-between group"
+                        className="w-full text-left p-2.5 rounded-xl hover:bg-forest/5 transition flex items-center justify-between group"
                       >
                         <div>
                           <div className="text-xs font-bold text-forest group-hover:text-emerald-deep flex items-center space-x-1.5">
@@ -157,7 +157,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                           onNavigate('tamweel', art.id);
                           onClose();
                         }}
-                        className="w-full text-left p-2.5 rounded-xl hover:bg-surface-lightGreen/70 transition border border-gray-100 flex items-start justify-between group"
+                        className="w-full text-left p-2.5 rounded-xl hover:bg-forest/5 transition border border-gray-100 flex items-start justify-between group"
                       >
                         <div className="pr-2">
                           <span className="text-[10px] font-semibold text-gold-dark uppercase tracking-wider bg-gold/10 px-1.5 py-0.5 rounded">
@@ -182,7 +182,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                 <div>
                   <div className="text-[11px] font-bold text-forest uppercase tracking-wider mb-2 flex items-center space-x-1.5">
                     <Calendar className="w-3.5 h-3.5 text-gold" />
-                    <span>Department Activities & Events ({filteredEvents.length})</span>
+                    <span>Department Activities &amp; Events ({filteredEvents.length})</span>
                   </div>
                   <div className="space-y-2">
                     {filteredEvents.map(ev => (
@@ -192,7 +192,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                           onNavigate('activities', ev.id);
                           onClose();
                         }}
-                        className="w-full text-left p-2.5 rounded-xl hover:bg-surface-lightGreen/70 transition border border-gray-100 flex items-start justify-between group"
+                        className="w-full text-left p-2.5 rounded-xl hover:bg-forest/5 transition border border-gray-100 flex items-start justify-between group"
                       >
                         <div className="pr-2">
                           <div className="text-[10px] text-gold-dark font-semibold">

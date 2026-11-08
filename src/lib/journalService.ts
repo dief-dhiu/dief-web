@@ -1,4 +1,5 @@
 import { supabase } from './supabase';
+import { deleteStorageFiles } from './storageCleanupService';
 import { 
   JournalIssue, 
   JournalArticleRecord, 
@@ -291,11 +292,28 @@ export async function updateJournalIssue(
   issueUpdates: Partial<JournalIssue>,
   coverFile?: File
 ): Promise<JournalIssue> {
-  let coverUrl = issueUpdates.cover_image_url;
-  if (coverFile) {
-    coverUrl = await uploadIssueCover(coverFile);
+  // 1. Fetch current issue to inspect old cover URL
+  const { data: current, error: fetchErr } = await supabase
+    .from('journal_issues')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (fetchErr || !current) {
+    throw new Error(`Issue not found: ${fetchErr?.message || id}`);
   }
 
+  const oldCoverUrl = current.cover_image_url;
+  let coverUrl = issueUpdates.cover_image_url !== undefined ? issueUpdates.cover_image_url : oldCoverUrl;
+  let hasNewCoverUploaded = false;
+
+  // 2. Upload new cover if provided
+  if (coverFile) {
+    coverUrl = await uploadIssueCover(coverFile);
+    hasNewCoverUploaded = true;
+  }
+
+  // 3. Update database record
   const { data, error } = await supabase
     .from('journal_issues')
     .update({
@@ -310,6 +328,16 @@ export async function updateJournalIssue(
     throw new Error(`Failed to update issue: ${error.message}`);
   }
 
+  // 4. NOW that the database update succeeded, delete the replaced old cover from Storage
+  if (hasNewCoverUploaded && oldCoverUrl && oldCoverUrl !== coverUrl) {
+    await deleteStorageFiles([oldCoverUrl], {
+      excludeRecordId: id,
+      excludeTable: 'journal_issues',
+      fallbackBucket: 'journal-covers',
+      actionDescription: `Replace cover for issue "${current.title}"`
+    });
+  }
+
   await logJournalAudit('ISSUE_UPDATED', 'journal_issues', id, {
     title: data.title,
     status: data.status
@@ -319,16 +347,47 @@ export async function updateJournalIssue(
 }
 
 export async function deleteJournalIssue(id: string): Promise<void> {
+  // 1. Fetch current issue to retrieve associated cover image
+  const { data: current, error: fetchErr } = await supabase
+    .from('journal_issues')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (fetchErr || !current) {
+    throw new Error(`Issue record not found or already deleted: ${fetchErr?.message || id}`);
+  }
+
+  // 2. Delete Storage cover file FIRST
+  if (current.cover_image_url) {
+    const storageResult = await deleteStorageFiles([current.cover_image_url], {
+      excludeRecordId: id,
+      excludeTable: 'journal_issues',
+      fallbackBucket: 'journal-covers',
+      actionDescription: `Delete issue "${current.title}"`
+    });
+
+    // If Storage deletion fails, PRESERVE database record and throw meaningful error
+    if (!storageResult.success && storageResult.errors.length > 0) {
+      const errMsg = storageResult.errors.map(e => `${e.path}: ${e.error}`).join('; ');
+      throw new Error(`Storage file deletion failed. Journal issue record preserved. Error: ${errMsg}`);
+    }
+  }
+
+  // 3. Once storage deletion succeeds, delete database record
   const { error } = await supabase
     .from('journal_issues')
     .delete()
     .eq('id', id);
 
   if (error) {
-    throw new Error(`Failed to delete issue: ${error.message}`);
+    throw new Error(`Failed to delete issue from database: ${error.message}`);
   }
 
-  await logJournalAudit('ISSUE_DELETED', 'journal_issues', id);
+  await logJournalAudit('ISSUE_DELETED', 'journal_issues', id, {
+    title: current.title,
+    had_cover: Boolean(current.cover_image_url)
+  });
 }
 
 // ==============================================================================
@@ -449,11 +508,28 @@ export async function updateJournalArticle(
   updates: Partial<JournalArticleRecord>,
   pdfFile?: File
 ): Promise<JournalArticleRecord> {
-  let pdfUrl = updates.pdf_url;
-  if (pdfFile) {
-    pdfUrl = await uploadPublishedArticlePdf(pdfFile);
+  // 1. Fetch current article to inspect existing PDF
+  const { data: current, error: fetchErr } = await supabase
+    .from('journal_articles')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (fetchErr || !current) {
+    throw new Error(`Article not found: ${fetchErr?.message || id}`);
   }
 
+  const oldPdfUrl = current.pdf_url;
+  let pdfUrl = updates.pdf_url !== undefined ? updates.pdf_url : oldPdfUrl;
+  let hasNewPdfUploaded = false;
+
+  // 2. Upload new PDF if provided
+  if (pdfFile) {
+    pdfUrl = await uploadPublishedArticlePdf(pdfFile);
+    hasNewPdfUploaded = true;
+  }
+
+  // 3. Update database record
   const { data, error } = await supabase
     .from('journal_articles')
     .update({
@@ -468,6 +544,16 @@ export async function updateJournalArticle(
     throw new Error(`Failed to update article: ${error.message}`);
   }
 
+  // 4. NOW that the database update succeeded, safely delete replaced old PDF from Storage
+  if (hasNewPdfUploaded && oldPdfUrl && oldPdfUrl !== pdfUrl) {
+    await deleteStorageFiles([oldPdfUrl], {
+      excludeRecordId: id,
+      excludeTable: 'journal_articles',
+      fallbackBucket: 'journal-published',
+      actionDescription: `Replace PDF for article "${current.title}"`
+    });
+  }
+
   await logJournalAudit('ARTICLE_UPDATED', 'journal_articles', id, {
     title: data.title,
     status: data.status
@@ -477,16 +563,90 @@ export async function updateJournalArticle(
 }
 
 export async function deleteJournalArticle(id: string): Promise<void> {
+  // 1. Fetch current article to retrieve associated PDF file
+  const { data: current, error: fetchErr } = await supabase
+    .from('journal_articles')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (fetchErr || !current) {
+    throw new Error(`Article record not found or already deleted: ${fetchErr?.message || id}`);
+  }
+
+  // 2. Delete Storage PDF file FIRST
+  if (current.pdf_url) {
+    const storageResult = await deleteStorageFiles([current.pdf_url], {
+      excludeRecordId: id,
+      excludeTable: 'journal_articles',
+      fallbackBucket: 'journal-published',
+      actionDescription: `Delete article "${current.title}"`
+    });
+
+    // If Storage deletion fails, PRESERVE database record and throw meaningful error
+    if (!storageResult.success && storageResult.errors.length > 0) {
+      const errMsg = storageResult.errors.map(e => `${e.path}: ${e.error}`).join('; ');
+      throw new Error(`Storage file deletion failed. Journal article record preserved. Error: ${errMsg}`);
+    }
+  }
+
+  // 3. Once storage deletion succeeds, delete database record
   const { error } = await supabase
     .from('journal_articles')
     .delete()
     .eq('id', id);
 
   if (error) {
-    throw new Error(`Failed to delete article: ${error.message}`);
+    throw new Error(`Failed to delete article from database: ${error.message}`);
   }
 
-  await logJournalAudit('ARTICLE_DELETED', 'journal_articles', id);
+  await logJournalAudit('ARTICLE_DELETED', 'journal_articles', id, {
+    title: current.title,
+    had_pdf: Boolean(current.pdf_url)
+  });
+}
+
+export async function deleteJournalSubmission(id: string): Promise<void> {
+  // 1. Fetch current submission to retrieve associated manuscript file
+  const { data: current, error: fetchErr } = await supabase
+    .from('journal_submissions')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (fetchErr || !current) {
+    throw new Error(`Manuscript submission record not found: ${fetchErr?.message || id}`);
+  }
+
+  // 2. Delete Storage manuscript file FIRST
+  if (current.file_url) {
+    const storageResult = await deleteStorageFiles([current.file_url], {
+      excludeRecordId: id,
+      excludeTable: 'journal_submissions',
+      fallbackBucket: 'journal-submissions',
+      actionDescription: `Delete manuscript submission "${current.title}"`
+    });
+
+    if (!storageResult.success && storageResult.errors.length > 0) {
+      const errMsg = storageResult.errors.map(e => `${e.path}: ${e.error}`).join('; ');
+      throw new Error(`Storage file deletion failed. Manuscript record preserved. Error: ${errMsg}`);
+    }
+  }
+
+  // 3. Once storage deletion succeeds, delete database record
+  const { error } = await supabase
+    .from('journal_submissions')
+    .delete()
+    .eq('id', id);
+
+  if (error) {
+    throw new Error(`Failed to delete submission from database: ${error.message}`);
+  }
+
+  await logJournalAudit('SUBMISSION_DELETED', 'journal_submissions', id, {
+    title: current.title,
+    author: current.author_name
+  });
 }
 
 // ==============================================================================

@@ -22,7 +22,7 @@ const StatCard: React.FC<{
   onClick: () => void;
 }> = ({ label, value, sub, icon, accent = 'text-forest', onClick }) => (
   <div onClick={onClick}
-    className="bg-white p-5 rounded-2xl border border-forest/10 shadow-sm hover:shadow-md hover:border-gold/50 transition-all cursor-pointer group">
+    className="bg-white p-5 rounded-2xl border border-forest/15 shadow-sm hover:shadow-md hover:border-gold/50 transition-all cursor-pointer group">
     <div className="flex items-center justify-between mb-2">
       <span className="text-xs font-semibold uppercase tracking-wider text-muted">{label}</span>
       <div className={`p-2 rounded-xl bg-forest/5 group-hover:bg-gold/20 transition-colors ${accent}`}>{icon}</div>
@@ -37,7 +37,7 @@ export const FacultyDashboardView: React.FC<FacultyDashboardViewProps> = ({
 }) => {
   const getStatusBadge = (status: string) => {
     if (status === 'Published') return 'bg-emerald-50 text-emerald-700 border-emerald-200';
-    if (status === 'Draft')     return 'bg-amber-50 text-amber-700 border-amber-200';
+    if (status === 'Draft') return 'bg-amber-50 text-amber-700 border-amber-200';
     return 'bg-gray-100 text-gray-600 border-gray-200';
   };
 
@@ -45,7 +45,7 @@ export const FacultyDashboardView: React.FC<FacultyDashboardViewProps> = ({
     <div className="space-y-6">
 
       {/* Header Banner */}
-      <div className="bg-forest rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
+      <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
         <div className="absolute inset-0 pattern-dark-islamic opacity-25 pointer-events-none" />
 
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -94,8 +94,8 @@ export const FacultyDashboardView: React.FC<FacultyDashboardViewProps> = ({
       </div>
 
       {/* Recent profiles */}
-      <div className="bg-white rounded-3xl border border-forest/10 p-6 shadow-sm space-y-4">
-        <div className="flex items-center justify-between border-b border-sand pb-4">
+      <div className="bg-white rounded-3xl border border-forest/15 p-6 shadow-sm space-y-4">
+        <div className="flex items-center justify-between border-b border-forest/15 pb-4">
           <div className="flex items-center space-x-2">
             <IslamicStarIcon className="w-4 h-4 text-gold" />
             <h2 className="text-base font-editorial font-bold text-forest">Recently Updated Profiles</h2>
@@ -107,24 +107,24 @@ export const FacultyDashboardView: React.FC<FacultyDashboardViewProps> = ({
         </div>
 
         {stats.recent.length === 0 ? (
-          <div className="text-center py-12 border-2 border-dashed border-sand rounded-2xl space-y-3">
-            <Users className="w-10 h-10 text-sand-dark mx-auto" />
+          <div className="text-center py-12 border-2 border-dashed border-forest/20 rounded-2xl space-y-3">
+            <Users className="w-10 h-10 text-muted mx-auto" />
             <p className="font-semibold text-forest text-sm">No faculty profiles yet</p>
             <p className="text-xs text-muted max-w-xs mx-auto">
               Add the first faculty member to populate the department directory.
             </p>
             <button onClick={onOpenNewModal}
-              className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-forest text-white text-xs font-semibold hover:bg-forest-light transition-all">
+              className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-forest text-white text-xs font-semibold hover:bg-emerald-deep transition-all shadow-soft">
               <PlusCircle className="w-4 h-4 text-gold" /><span>Add First Member</span>
             </button>
           </div>
         ) : (
-          <div className="divide-y divide-sand">
+          <div className="divide-y divide-forest/10">
             {stats.recent.map(profile => (
               <div key={profile.id}
                 onClick={() => onViewProfile(profile)}
-                className="py-4 flex items-center space-x-4 hover:bg-sand/20 px-3 rounded-xl transition-colors cursor-pointer group">
-                <div className="w-14 h-14 rounded-xl overflow-hidden border border-sand-dark flex-shrink-0 bg-sand">
+                className="py-4 flex items-center space-x-4 hover:bg-forest/5 px-3 rounded-xl transition-colors cursor-pointer group">
+                <div className="w-14 h-14 rounded-xl overflow-hidden border border-forest/15 flex-shrink-0 bg-forest/5">
                   {profile.photo_url
                     ? <img src={profile.photo_url} alt={profile.full_name} className="w-full h-full object-cover" />
                     : <div className="w-full h-full flex items-center justify-center"><Users className="w-5 h-5 text-forest/40" /></div>}

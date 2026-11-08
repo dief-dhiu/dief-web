@@ -13,9 +13,13 @@ import {
   AlertCircle,
   KeyRound,
   Lock,
-  ArrowLeft
+  ArrowLeft,
+  HardDrive,
+  ShieldAlert,
+  Loader2
 } from 'lucide-react';
 import { IslamicStarIcon } from '../../components/IslamicPattern';
+import { generateOrphanedFilesReport, OrphanedFilesReport, DIEF_BUCKETS } from '../../lib/storageCleanupService';
 
 interface AdminSettingsProps {
   onNavigate: (path: string) => void;
@@ -27,6 +31,24 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onNavigate }) => {
   const [auditLogs, setAuditLogs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  // Supabase Storage Cleanup & Audit State
+  const [storageReport, setStorageReport] = useState<OrphanedFilesReport | null>(null);
+  const [scanningStorage, setScanningStorage] = useState(false);
+  const [scanStorageError, setScanStorageError] = useState<string | null>(null);
+
+  const handleScanStorage = async () => {
+    setScanningStorage(true);
+    setScanStorageError(null);
+    try {
+      const rep = await generateOrphanedFilesReport();
+      setStorageReport(rep);
+    } catch (err: any) {
+      setScanStorageError(err?.message || 'Failed to scan storage buckets.');
+    } finally {
+      setScanningStorage(false);
+    }
+  };
 
   const loadSettingsData = async () => {
     setLoading(true);
@@ -136,13 +158,13 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onNavigate }) => {
             </h2>
           </div>
 
-          <span className="text-[10px] text-charcoal-muted font-mono bg-ivory px-2 py-1 rounded border border-gray-200">
+          <span className="text-[10px] text-charcoal-muted font-mono bg-forest/5 px-2 py-1 rounded border border-gray-200">
             Source: public.admin_roles
           </span>
         </div>
 
         {adminRoles.length === 0 && !loading ? (
-          <div className="p-8 text-center bg-ivory/50 rounded-2xl border border-dashed border-gray-200 text-xs text-charcoal-muted">
+          <div className="p-8 text-center bg-forest/5 rounded-2xl border border-dashed border-gray-200 text-xs text-charcoal-muted">
             No role records returned from the database yet. Run the initial provisioning script in Supabase SQL Editor.
           </div>
         ) : (
@@ -158,7 +180,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onNavigate }) => {
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {adminRoles.map((r) => (
-                  <tr key={r.id} className="hover:bg-surface-lightGreen/20">
+                  <tr key={r.id} className="hover:bg-forest/5">
                     <td className="py-3 px-3">
                       <div className="font-bold text-forest">{r.full_name || 'Department Staff'}</div>
                       <div className="font-mono text-[10px] text-charcoal-muted truncate max-w-[200px]">
@@ -197,19 +219,19 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onNavigate }) => {
               Security Audit Trail (Latest Events)
             </h2>
           </div>
-          <span className="text-[10px] text-charcoal-muted font-mono bg-ivory px-2 py-1 rounded border border-gray-200">
+          <span className="text-[10px] text-charcoal-muted font-mono bg-forest/5 px-2 py-1 rounded border border-gray-200">
             Source: public.audit_logs
           </span>
         </div>
 
         {auditLogs.length === 0 ? (
-          <div className="p-6 text-center bg-ivory/50 rounded-2xl border border-dashed border-gray-200 text-xs text-charcoal-muted">
+          <div className="p-6 text-center bg-forest/5 rounded-2xl border border-dashed border-gray-200 text-xs text-charcoal-muted">
             No audit events recorded yet. Authentication activities and administrative actions will appear here automatically.
           </div>
         ) : (
           <div className="space-y-2">
             {auditLogs.map((log) => (
-              <div key={log.id} className="p-3 rounded-xl bg-ivory/60 border border-gray-100 flex items-center justify-between text-xs">
+              <div key={log.id} className="p-3 rounded-xl bg-forest/5 border border-gray-100 flex items-center justify-between text-xs">
                 <div>
                   <div className="font-bold text-forest flex items-center space-x-2">
                     <span className="font-mono text-[11px] bg-forest text-gold px-1.5 py-0.2 rounded">
@@ -230,8 +252,118 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onNavigate }) => {
         )}
       </div>
 
+      {/* Supabase Storage Automatic Cleanup & Quota Monitor */}
+      <div className="bg-white rounded-3xl border border-forest/10 p-6 sm:p-8 shadow-soft space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="flex items-center space-x-2.5">
+            <HardDrive className="w-5 h-5 text-forest" />
+            <div>
+              <h2 className="font-editorial text-lg font-bold text-forest">
+                Supabase Storage Assets &amp; Automatic Cleanup
+              </h2>
+              <p className="text-xs text-charcoal-muted mt-0.5">
+                Active automatic file cleanup across all 5 CMS storage buckets.
+              </p>
+            </div>
+          </div>
+
+          <button
+            onClick={handleScanStorage}
+            disabled={scanningStorage}
+            className="self-start sm:self-center px-3.5 py-2 bg-forest hover:bg-emerald-deep text-white text-xs font-bold rounded-xl transition flex items-center space-x-2 shadow-soft disabled:opacity-60"
+          >
+            {scanningStorage ? (
+              <>
+                <Loader2 className="w-3.5 h-3.5 animate-spin text-gold" />
+                <span>Auditing Storage Buckets...</span>
+              </>
+            ) : (
+              <>
+                <RefreshCw className="w-3.5 h-3.5 text-gold" />
+                <span>Scan for Orphaned Files</span>
+              </>
+            )}
+          </button>
+        </div>
+
+        {/* 5 Buckets Covered Cards */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 pt-1">
+          {DIEF_BUCKETS.map(b => (
+            <div key={b} className="p-3 rounded-xl bg-forest/5 border border-forest/10 space-y-1">
+              <div className="text-[10px] font-bold text-gold-dark uppercase tracking-wider truncate">
+                {b}
+              </div>
+              <div className="text-xs font-bold text-forest flex items-center space-x-1">
+                <CheckCircle2 className="w-3 h-3 text-emerald-600 shrink-0" />
+                <span>Protected</span>
+              </div>
+              <div className="text-[10px] text-charcoal-muted">
+                Auto-cleanup on delete
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {scanStorageError && (
+          <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center space-x-2">
+            <AlertCircle className="w-4 h-4 shrink-0" />
+            <span>Storage scan notice: {scanStorageError}</span>
+          </div>
+        )}
+
+        {/* Audit Results when scanned */}
+        {storageReport && (
+          <div className="space-y-3 pt-2 border-t border-gray-100 animate-fadeIn">
+            <div className="flex flex-wrap items-center justify-between text-xs gap-2">
+              <div className="flex items-center space-x-4">
+                <span>Total Files: <strong className="text-forest">{storageReport.totalStorageFiles}</strong></span>
+                <span>•</span>
+                <span>Active References: <strong className="text-emerald-700">{storageReport.totalActiveReferencedFiles}</strong></span>
+                <span>•</span>
+                <span>Potentially Orphaned: <strong className={storageReport.totalOrphanedFiles > 0 ? 'text-amber-600' : 'text-emerald-700'}>{storageReport.totalOrphanedFiles}</strong></span>
+              </div>
+              <span className="text-[10px] text-charcoal-muted font-mono">
+                Scanned: {new Date(storageReport.scannedAt).toLocaleTimeString()}
+              </span>
+            </div>
+
+            {storageReport.orphanedFiles.length > 0 ? (
+              <div className="p-4 rounded-2xl bg-amber-50/70 border border-amber-200/80 space-y-3">
+                <div className="flex items-center space-x-2 text-amber-900 font-bold text-xs">
+                  <ShieldAlert className="w-4 h-4 text-amber-700" />
+                  <span>Potentially Orphaned Storage Objects Detected ({storageReport.orphanedFiles.length})</span>
+                </div>
+                <p className="text-[11px] text-amber-800 leading-relaxed">
+                  These files exist in Supabase Storage buckets but are no longer referenced by active CMS records in the database. Per institutional policy, existing files are preserved until an administrator explicitly reviews and approves removal.
+                </p>
+                <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
+                  {storageReport.orphanedFiles.map((orphan, idx) => (
+                    <div key={idx} className="p-2.5 rounded-lg bg-white border border-amber-200 text-xs flex items-center justify-between">
+                      <div className="truncate mr-2">
+                        <span className="font-mono text-[10px] bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded mr-1.5">
+                          {orphan.bucket}
+                        </span>
+                        <span className="font-mono text-charcoal text-[11px]">{orphan.path}</span>
+                      </div>
+                      <span className="text-[10px] text-charcoal-muted shrink-0">
+                        {orphan.sizeBytes ? `${Math.round(orphan.sizeBytes / 1024)} KB` : 'Unknown size'}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center space-x-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>All storage objects are properly referenced. Zero orphaned files detected across all scanned buckets.</span>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
       {/* Super Admin Provisioning Information Reference */}
-      <div className="bg-surface-lightGreen/50 rounded-3xl border border-forest/10 p-6 sm:p-8 shadow-soft space-y-3">
+      <div className="bg-forest/5 rounded-3xl border border-forest/15 p-6 sm:p-8 shadow-soft space-y-3">
         <div className="flex items-center space-x-2">
           <KeyRound className="w-4 h-4 text-gold-dark" />
           <h3 className="font-editorial text-base font-bold text-forest">

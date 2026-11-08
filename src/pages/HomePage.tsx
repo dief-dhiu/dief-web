@@ -84,7 +84,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
               {/* Institutional Affiliation Badge */}
               <div className="pt-1">
                 <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-forest/5 border border-forest/15 text-forest text-xs font-semibold tracking-wide">
-                  <IslamicStarIcon size={12} className="text-gold-dark" />
+
                   <span>Kulliyya of Sharia • Darul Huda Islamic University</span>
                 </div>
               </div>
@@ -93,7 +93,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
               <div className="space-y-2">
                 <h1 className="text-4xl sm:text-5xl xl:text-6xl font-editorial font-bold text-forest tracking-tight leading-[1.12]">
                   Islamic Economics <br />
-                  <span className="italic font-normal text-emerald-deep">&amp; Finance</span>
+                  <span className="text-4xl sm:text-5xl xl:text-6xl font-editorial font-bold text-forest tracking-tight leading-[1.12]">&amp; Finance</span>
                 </h1>
 
               </div>
@@ -118,7 +118,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
                   className="px-6 py-3.5 bg-white hover:bg-surface-lightGreen text-forest font-semibold text-sm rounded-xl border border-forest/20 shadow-soft hover:border-gold transition-all duration-200 flex items-center space-x-2"
                 >
                   <span>Discover Our Initiatives</span>
-                  <IslamicStarIcon size={14} className="text-gold" />
+
                 </button>
               </div>
 
@@ -157,13 +157,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/30 to-transparent"></div>
 
-                  {/* Floating Academic Badge */}
-                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md border border-gold/40 rounded-xl px-3 py-2 shadow-soft flex items-center space-x-2">
-                    <IslamicStarIcon size={16} className="text-gold" />
-                    <span className="text-[11px] font-bold text-forest uppercase tracking-wider">
-                      Academic Rigor
-                    </span>
-                  </div>
+
 
                   {/* Bottom Image Overlay Card */}
                   <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-xl p-4 border border-forest/15 shadow-elevated">
@@ -193,12 +187,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
             <div className="lg:col-span-5 space-y-4">
               <span className="text-xs font-bold tracking-widest text-gold-dark uppercase font-sans flex items-center space-x-2">
-                <IslamicStarIcon size={14} className="text-gold" />
+
                 <span>Our Foundations</span>
               </span>
               <h2 className="text-3xl sm:text-4xl font-editorial font-bold text-forest leading-tight">
                 Where Knowledge Meets <br />
-                <span className="italic text-emerald-deep">Ethical Finance</span>
+                <span className="text-emerald-deep">Ethical Finance</span>
               </h2>
 
             </div>
@@ -228,7 +222,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
       <section id="initiatives-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gold/15 border border-gold/30 text-forest text-xs font-semibold">
-            <IslamicStarIcon size={12} className="text-gold" />
+
             <span>One Department • Three Flagship Pillars</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-editorial font-bold text-forest">
@@ -250,7 +244,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
                   <Building2 className="w-6 h-6" />
                 </div>
                 <span className="text-[10px] font-bold tracking-widest text-forest uppercase bg-surface-lightGreen px-2.5 py-1 rounded-full border border-forest/10">
-                  Banking Sandbox
+                  Banking System
                 </span>
               </div>
 
@@ -705,11 +699,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
           <div className="absolute inset-0 pattern-dark-islamic opacity-40 pointer-events-none"></div>
 
           <div className="relative z-10 max-w-3xl mx-auto text-center space-y-6">
-            <IslamicStarIcon size={36} className="text-gold mx-auto" />
+
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-editorial font-bold text-white tracking-tight leading-tight">
               Building a More Ethical and <br />
-              <span className="italic text-gold">Sustainable Financial Future.</span>
+              <span className="text-gold">Sustainable Financial Future.</span>
             </h2>
 
             <p className="text-sm sm:text-base text-sage-subtle leading-relaxed font-normal">

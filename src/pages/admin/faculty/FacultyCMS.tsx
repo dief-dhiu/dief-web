@@ -155,15 +155,15 @@ export const FacultyCMS: React.FC<FacultyCMSProps> = ({ onNavigate, onShowToast 
   return (
     <div className="space-y-6">
       {/* 1. Sub-navigation Tabs */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-sand pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-forest/15 pb-4">
         {/* Tab Buttons */}
         <div className="flex items-center space-x-2">
           <button
             onClick={() => setActiveTab('overview')}
             className={`inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
               activeTab === 'overview'
-                ? 'bg-forest text-white shadow-sm'
-                : 'text-forest hover:bg-sand/60'
+                ? 'bg-forest text-white shadow-soft hover:bg-emerald-deep'
+                : 'text-forest hover:bg-forest/10'
             }`}
           >
             <LayoutDashboard className="w-4 h-4 text-gold" />
@@ -174,8 +174,8 @@ export const FacultyCMS: React.FC<FacultyCMSProps> = ({ onNavigate, onShowToast 
             onClick={() => setActiveTab('list')}
             className={`inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
               activeTab === 'list'
-                ? 'bg-forest text-white shadow-sm'
-                : 'text-forest hover:bg-sand/60'
+                ? 'bg-forest text-white shadow-soft hover:bg-emerald-deep'
+                : 'text-forest hover:bg-forest/10'
             }`}
           >
             <Users className="w-4 h-4 text-gold" />
@@ -187,7 +187,7 @@ export const FacultyCMS: React.FC<FacultyCMSProps> = ({ onNavigate, onShowToast 
         <div className="flex items-center space-x-2.5">
           <button
             onClick={() => setIsCategoriesModalOpen(true)}
-            className="inline-flex items-center space-x-1.5 px-3 py-2 text-xs font-semibold text-charcoal bg-white border border-sand hover:bg-sand/50 rounded-xl transition-colors shadow-soft"
+            className="inline-flex items-center space-x-1.5 px-3 py-2 text-xs font-semibold text-charcoal bg-white border border-forest/20 hover:bg-forest/5 rounded-xl transition-colors shadow-soft"
             title="Manage Faculty Categories"
           >
             <Tag className="w-3.5 h-3.5 text-gold-dark" />
@@ -197,7 +197,7 @@ export const FacultyCMS: React.FC<FacultyCMSProps> = ({ onNavigate, onShowToast 
           <button
             onClick={loadAllData}
             disabled={loading}
-            className="inline-flex items-center space-x-1.5 px-3 py-2 text-xs font-semibold text-charcoal bg-white border border-sand hover:bg-sand/50 rounded-xl transition-colors shadow-soft disabled:opacity-50"
+            className="inline-flex items-center space-x-1.5 px-3 py-2 text-xs font-semibold text-charcoal bg-white border border-forest/20 hover:bg-forest/5 rounded-xl transition-colors shadow-soft disabled:opacity-50"
             title="Refresh Faculty Data"
           >
             <RefreshCw className={`w-3.5 h-3.5 text-forest ${loading ? 'animate-spin' : ''}`} />
@@ -206,7 +206,7 @@ export const FacultyCMS: React.FC<FacultyCMSProps> = ({ onNavigate, onShowToast 
 
           <button
             onClick={() => onNavigate('/about')}
-            className="inline-flex items-center space-x-1.5 px-3 py-2 text-xs font-semibold text-forest bg-forest/5 hover:bg-forest/10 rounded-xl transition-colors border border-forest/10"
+            className="inline-flex items-center space-x-1.5 px-3 py-2 text-xs font-semibold text-forest bg-forest/5 hover:bg-forest/10 rounded-xl transition-colors border border-forest/15"
             title="View Public Faculty Directory"
           >
             <ExternalLink className="w-3.5 h-3.5 text-forest" />
@@ -215,7 +215,7 @@ export const FacultyCMS: React.FC<FacultyCMSProps> = ({ onNavigate, onShowToast 
 
           <button
             onClick={handleOpenNewModal}
-            className="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-bold text-white bg-forest hover:bg-forest-light rounded-xl transition-all shadow-soft"
+            className="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-bold text-white bg-forest hover:bg-emerald-deep rounded-xl transition-all shadow-soft"
           >
             <PlusCircle className="w-4 h-4 text-gold" />
             <span>New Faculty Profile</span>

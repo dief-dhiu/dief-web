@@ -1,16 +1,16 @@
 import React from 'react';
 import { ActivitiesDashboardStats, ActivityRecord } from '../../../types/activity';
-import { 
-  Calendar, 
-  Sparkles, 
-  CheckCircle2, 
-  Clock, 
-  Archive, 
-  PlusCircle, 
-  ArrowRight, 
-  MapPin, 
-  Star, 
-  Tag, 
+import {
+  Calendar,
+  Sparkles,
+  CheckCircle2,
+  Clock,
+  Archive,
+  PlusCircle,
+  ArrowRight,
+  MapPin,
+  Star,
+  Tag,
   ExternalLink,
   Layers,
   RefreshCw
@@ -45,15 +45,15 @@ export const ActivitiesDashboardView: React.FC<ActivitiesDashboardViewProps> = (
       case 'Archived':
         return 'bg-gray-100 text-gray-700 border-gray-200';
       default:
-        return 'bg-sand text-muted border-sand-dark';
+        return 'bg-forest/5 text-charcoal-muted border-forest/15';
     }
   };
 
   return (
     <div className="space-y-6">
-      
+
       {/* 1. Header Banner */}
-      <div className="bg-forest rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
+      <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
         <div className="absolute inset-0 pattern-dark-islamic opacity-25 pointer-events-none"></div>
 
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -102,13 +102,13 @@ export const ActivitiesDashboardView: React.FC<ActivitiesDashboardViewProps> = (
 
       {/* 2. Key Metrics Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
-        
+
         {/* Total Activities */}
-        <div 
+        <div
           onClick={() => onSelectTab('list')}
-          className="bg-white p-5 rounded-2xl border border-forest/10 shadow-sm hover:shadow-md hover:border-gold/50 transition-all cursor-pointer group"
+          className="bg-white p-5 rounded-2xl border border-forest/15 shadow-sm hover:shadow-md hover:border-gold/50 transition-all cursor-pointer group"
         >
-          <div className="flex items-center justify-between text-muted mb-2">
+          <div className="flex items-center justify-between text-charcoal-muted mb-2">
             <span className="text-xs font-semibold uppercase tracking-wider">Total</span>
             <div className="p-2 rounded-xl bg-forest/5 text-forest group-hover:bg-gold/20 group-hover:text-gold transition-colors">
               <Layers className="w-4 h-4" />
@@ -117,16 +117,16 @@ export const ActivitiesDashboardView: React.FC<ActivitiesDashboardViewProps> = (
           <div className="text-2xl sm:text-3xl font-editorial font-bold text-forest">
             {stats.total}
           </div>
-          <p className="text-[11px] text-muted mt-1">Recorded activities</p>
+          <p className="text-[11px] text-charcoal-muted mt-1">Recorded activities</p>
         </div>
 
         {/* Published */}
-        <div 
+        <div
           onClick={() => onSelectTab('list')}
-          className="bg-white p-5 rounded-2xl border border-forest/10 shadow-sm hover:shadow-md hover:border-gold/50 transition-all cursor-pointer group"
+          className="bg-white p-5 rounded-2xl border border-forest/15 shadow-sm hover:shadow-md hover:border-gold/50 transition-all cursor-pointer group"
         >
           <div className="flex items-center justify-between text-emerald-600 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted">Published</span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted">Published</span>
             <div className="p-2 rounded-xl bg-emerald-50 text-emerald-600">
               <CheckCircle2 className="w-4 h-4" />
             </div>
@@ -138,12 +138,12 @@ export const ActivitiesDashboardView: React.FC<ActivitiesDashboardViewProps> = (
         </div>
 
         {/* Upcoming */}
-        <div 
+        <div
           onClick={() => onSelectTab('list')}
-          className="bg-white p-5 rounded-2xl border border-forest/10 shadow-sm hover:shadow-md hover:border-gold/50 transition-all cursor-pointer group"
+          className="bg-white p-5 rounded-2xl border border-forest/15 shadow-sm hover:shadow-md hover:border-gold/50 transition-all cursor-pointer group"
         >
           <div className="flex items-center justify-between text-blue-600 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted">Upcoming</span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted">Upcoming</span>
             <div className="p-2 rounded-xl bg-blue-50 text-blue-600">
               <Clock className="w-4 h-4" />
             </div>
@@ -155,29 +155,29 @@ export const ActivitiesDashboardView: React.FC<ActivitiesDashboardViewProps> = (
         </div>
 
         {/* Past */}
-        <div 
+        <div
           onClick={() => onSelectTab('list')}
-          className="bg-white p-5 rounded-2xl border border-forest/10 shadow-sm hover:shadow-md hover:border-gold/50 transition-all cursor-pointer group"
+          className="bg-white p-5 rounded-2xl border border-forest/15 shadow-sm hover:shadow-md hover:border-gold/50 transition-all cursor-pointer group"
         >
-          <div className="flex items-center justify-between text-muted mb-2">
+          <div className="flex items-center justify-between text-charcoal-muted mb-2">
             <span className="text-xs font-semibold uppercase tracking-wider">Past</span>
-            <div className="p-2 rounded-xl bg-sand text-forest">
+            <div className="p-2 rounded-xl bg-forest/5 text-forest">
               <Calendar className="w-4 h-4" />
             </div>
           </div>
           <div className="text-2xl sm:text-3xl font-editorial font-bold text-forest">
             {stats.past}
           </div>
-          <p className="text-[11px] text-muted mt-1">Completed events</p>
+          <p className="text-[11px] text-charcoal-muted mt-1">Completed events</p>
         </div>
 
         {/* Drafts */}
-        <div 
+        <div
           onClick={() => onSelectTab('list')}
-          className="bg-white p-5 rounded-2xl border border-forest/10 shadow-sm hover:shadow-md hover:border-gold/50 transition-all cursor-pointer group col-span-2 lg:col-span-1"
+          className="bg-white p-5 rounded-2xl border border-forest/15 shadow-sm hover:shadow-md hover:border-gold/50 transition-all cursor-pointer group col-span-2 lg:col-span-1"
         >
           <div className="flex items-center justify-between text-amber-600 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted">Drafts</span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted">Drafts</span>
             <div className="p-2 rounded-xl bg-amber-50 text-amber-600">
               <Archive className="w-4 h-4" />
             </div>
@@ -191,15 +191,15 @@ export const ActivitiesDashboardView: React.FC<ActivitiesDashboardViewProps> = (
       </div>
 
       {/* 3. Recently Added Activities Section */}
-      <div className="bg-white rounded-3xl border border-forest/10 p-6 shadow-sm space-y-4">
-        <div className="flex items-center justify-between border-b border-sand pb-4">
+      <div className="bg-white rounded-3xl border border-forest/15 p-6 shadow-sm space-y-4">
+        <div className="flex items-center justify-between border-b border-forest/10 pb-4">
           <div className="flex items-center space-x-2">
             <IslamicStarIcon className="w-4 h-4 text-gold" />
             <h2 className="text-base font-editorial font-bold text-forest">Recently Added Activities</h2>
           </div>
           <button
             onClick={() => onSelectTab('list')}
-            className="text-xs font-semibold text-gold hover:text-gold-dark inline-flex items-center space-x-1"
+            className="text-xs font-semibold text-gold-dark hover:text-forest inline-flex items-center space-x-1"
           >
             <span>View All Activities</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -207,39 +207,39 @@ export const ActivitiesDashboardView: React.FC<ActivitiesDashboardViewProps> = (
         </div>
 
         {stats.recent.length === 0 ? (
-          <div className="text-center py-12 text-muted text-sm border-2 border-dashed border-sand rounded-2xl">
-            <Calendar className="w-10 h-10 mx-auto text-sand-dark mb-2" />
+          <div className="text-center py-12 text-charcoal-muted text-sm border-2 border-dashed border-forest/15 rounded-2xl">
+            <Calendar className="w-10 h-10 mx-auto text-forest/30 mb-2" />
             <p className="font-semibold text-forest">No activities added yet</p>
-            <p className="text-xs text-muted max-w-sm mx-auto mt-1">
+            <p className="text-xs text-charcoal-muted max-w-sm mx-auto mt-1">
               Create your first academic event, national conference, or guest lecture to populate the department portal.
             </p>
             <button
               onClick={onOpenNewActivityModal}
-              className="mt-4 inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-forest text-white text-xs font-semibold hover:bg-forest-light transition-all"
+              className="mt-4 inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-forest text-white text-xs font-semibold hover:bg-emerald-deep transition-all shadow-soft"
             >
               <PlusCircle className="w-4 h-4 text-gold" />
               <span>Create First Activity</span>
             </button>
           </div>
         ) : (
-          <div className="divide-y divide-sand">
+          <div className="divide-y divide-forest/10">
             {stats.recent.map((activity) => {
               const isUpcoming = new Date(activity.start_date) >= new Date(new Date().toISOString().split('T')[0]);
               return (
                 <div
                   key={activity.id}
                   onClick={() => onViewActivity(activity)}
-                  className="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-sand/20 px-3 rounded-xl transition-colors cursor-pointer group"
+                  className="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-forest/5 px-3 rounded-xl transition-colors cursor-pointer group"
                 >
                   <div className="flex items-start space-x-4">
                     {activity.featured_image_url ? (
-                      <img 
-                        src={activity.featured_image_url} 
+                      <img
+                        src={activity.featured_image_url}
                         alt={activity.title}
-                        className="w-16 h-16 rounded-xl object-cover border border-sand-dark flex-shrink-0"
+                        className="w-16 h-16 rounded-xl object-cover border border-forest/15 flex-shrink-0"
                       />
                     ) : (
-                      <div className="w-16 h-16 rounded-xl bg-sand flex items-center justify-center text-forest/40 flex-shrink-0">
+                      <div className="w-16 h-16 rounded-xl bg-forest/5 flex items-center justify-center text-forest/40 flex-shrink-0">
                         <Calendar className="w-6 h-6" />
                       </div>
                     )}
@@ -249,7 +249,7 @@ export const ActivitiesDashboardView: React.FC<ActivitiesDashboardViewProps> = (
                         <span className={`px-2 py-0.5 rounded text-[10px] font-semibold border ${getStatusBadge(activity.status)}`}>
                           {activity.status}
                         </span>
-                        <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-gold/15 text-gold border border-gold/30">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-gold/15 text-gold-dark border border-gold/30">
                           {activity.category_name}
                         </span>
                         {activity.is_featured && (
@@ -261,15 +261,15 @@ export const ActivitiesDashboardView: React.FC<ActivitiesDashboardViewProps> = (
                         {isUpcoming ? (
                           <span className="text-[10px] text-blue-600 font-medium">Upcoming</span>
                         ) : (
-                          <span className="text-[10px] text-muted font-medium">Past</span>
+                          <span className="text-[10px] text-charcoal-muted font-medium">Past</span>
                         )}
                       </div>
 
-                      <h3 className="text-sm font-semibold text-forest group-hover:text-gold transition-colors leading-snug line-clamp-1">
+                      <h3 className="text-sm font-semibold text-forest group-hover:text-gold-dark transition-colors leading-snug line-clamp-1">
                         {activity.title}
                       </h3>
 
-                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted">
+                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-charcoal-muted">
                         <span className="flex items-center space-x-1">
                           <Calendar className="w-3 h-3 text-gold" />
                           <span>{new Date(activity.start_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
@@ -283,7 +283,7 @@ export const ActivitiesDashboardView: React.FC<ActivitiesDashboardViewProps> = (
                   </div>
 
                   <div className="flex items-center space-x-2 self-end sm:self-center">
-                    <span className="text-xs text-muted group-hover:text-forest font-semibold transition-colors flex items-center space-x-1">
+                    <span className="text-xs text-charcoal-muted group-hover:text-forest font-semibold transition-colors flex items-center space-x-1">
                       <span>Details</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </span>

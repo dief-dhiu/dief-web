@@ -76,7 +76,7 @@ export const ActivityCategoriesModal: React.FC<ActivityCategoriesModalProps> = (
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-forest-dark/80 backdrop-blur-sm animate-fade-in">
       <div className="bg-white rounded-3xl max-w-xl w-full border border-forest/15 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
         
         {/* Header */}
@@ -92,7 +92,7 @@ export const ActivityCategoriesModal: React.FC<ActivityCategoriesModalProps> = (
           </div>
           <button 
             onClick={onClose}
-            className="p-2 rounded-full hover:bg-white/10 text-ivory/80 hover:text-white transition-colors"
+            className="p-2 rounded-full hover:bg-white/10 text-white/80 hover:text-white transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -109,7 +109,7 @@ export const ActivityCategoriesModal: React.FC<ActivityCategoriesModalProps> = (
 
           {/* Add Category Form (if allowed) */}
           {canManage && (
-            <form onSubmit={handleAddCategory} className="bg-sand/30 p-5 rounded-2xl border border-sand-dark/30 space-y-4">
+            <form onSubmit={handleAddCategory} className="bg-forest/5 p-5 rounded-2xl border border-forest/15 space-y-4">
               <div className="flex items-center space-x-2 text-forest font-semibold text-sm">
                 <FolderPlus className="w-4 h-4 text-gold" />
                 <span>Add New Category</span>
@@ -120,7 +120,7 @@ export const ActivityCategoriesModal: React.FC<ActivityCategoriesModalProps> = (
                   placeholder="Category Name (e.g., Symposiums, Webinars)"
                   value={newCatName}
                   onChange={(e) => setNewCatName(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30"
                   required
                 />
                 <input
@@ -128,13 +128,13 @@ export const ActivityCategoriesModal: React.FC<ActivityCategoriesModalProps> = (
                   placeholder="Optional brief description"
                   value={newCatDesc}
                   onChange={(e) => setNewCatDesc(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-sand-dark bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold/50"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-forest/15 bg-white text-sm text-forest placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-forest/30"
                 />
               </div>
               <button
                 type="submit"
                 disabled={submitting || !newCatName.trim()}
-                className="w-full inline-flex items-center justify-center space-x-2 px-4 py-2.5 bg-forest hover:bg-forest-light text-white rounded-xl text-sm font-semibold shadow-sm transition-all disabled:opacity-50"
+                className="w-full inline-flex items-center justify-center space-x-2 px-4 py-2.5 bg-forest hover:bg-emerald-deep text-white rounded-xl text-sm font-semibold shadow-soft transition-all disabled:opacity-50"
               >
                 {submitting ? (
                   <>
@@ -156,16 +156,16 @@ export const ActivityCategoriesModal: React.FC<ActivityCategoriesModalProps> = (
             <h3 className="text-xs font-semibold uppercase tracking-wider text-muted mb-3">
               Configured Categories ({categories.length})
             </h3>
-            <div className="divide-y divide-sand border border-sand-dark/30 rounded-2xl overflow-hidden bg-white">
+            <div className="divide-y divide-forest/10 border border-forest/15 rounded-2xl overflow-hidden bg-white">
               {categories.length === 0 ? (
                 <div className="p-8 text-center text-muted text-sm">No categories configured.</div>
               ) : (
                 categories.map((cat, idx) => (
-                  <div key={cat.id || idx} className="p-4 flex items-center justify-between hover:bg-sand/10 transition-colors">
+                  <div key={cat.id || idx} className="p-4 flex items-center justify-between hover:bg-forest/5 transition-colors">
                     <div className="space-y-0.5">
                       <div className="flex items-center space-x-2">
                         <span className="font-semibold text-forest text-sm">{cat.name}</span>
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-sand text-muted">
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-forest/10 text-forest">
                           {cat.slug}
                         </span>
                       </div>
@@ -195,10 +195,10 @@ export const ActivityCategoriesModal: React.FC<ActivityCategoriesModalProps> = (
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-4 bg-sand/30 border-t border-sand flex justify-end">
+        <div className="px-6 py-4 bg-forest/5 border-t border-forest/15 flex justify-end">
           <button
             onClick={onClose}
-            className="px-5 py-2.5 rounded-xl border border-sand-dark text-forest font-semibold text-sm hover:bg-sand transition-colors"
+            className="px-5 py-2.5 rounded-xl border border-forest/15 text-forest font-semibold text-sm hover:bg-forest/10 transition-colors"
           >
             Close
           </button>

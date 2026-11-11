@@ -107,12 +107,11 @@ export const OpeningAnimation: React.FC<OpeningAnimationProps> = ({ onComplete }
     <aside
       aria-label="Department of Islamic Economics and Finance Institutional Introduction"
       role="region"
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#F7F6F0] select-none transition-opacity duration-600 ease-out ${
-        !bgReady ? 'opacity-0' : isFadingOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
-      }`}
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#F7F6F0] select-none transition-opacity duration-600 ease-out ${!bgReady ? 'opacity-0' : isFadingOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
+        }`}
     >
       {/* Subtle ambient Islamic geometric lattice background */}
-      <div 
+      <div
         className="absolute inset-0 pattern-islamic-subtle opacity-35 pointer-events-none transition-opacity duration-1000"
         style={{ opacity: bgReady ? 0.35 : 0 }}
       ></div>
@@ -121,7 +120,7 @@ export const OpeningAnimation: React.FC<OpeningAnimationProps> = ({ onComplete }
       <div className="absolute top-5 right-5 sm:top-8 sm:right-8 z-30">
         <button
           onClick={handleSkip}
-          className="px-4 py-1.5 rounded-full bg-forest/5 hover:bg-forest/10 border border-forest/15 text-forest/70 hover:text-forest text-xs font-semibold tracking-wide transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-gold/50"
+          className="px-4 py-1.5 rounded-full bg-forest/5 hover:bg-forest/10 border border-forest/15 text-charcoal/70 hover:text-charcoal text-xs font-semibold tracking-wide transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-gold/50"
           title="Skip Introduction (or press Esc)"
         >
           Skip Intro
@@ -130,9 +129,9 @@ export const OpeningAnimation: React.FC<OpeningAnimationProps> = ({ onComplete }
 
       {/* Main Centered Institutional Identity Container */}
       <div className="relative z-10 flex flex-col items-center justify-center px-4 max-w-xl text-center space-y-6">
-        
+
         {/* 1. Official Approved DIEF Logo Asset */}
-        <div 
+        <div
           className="relative transition-all duration-1000"
           style={{
             opacity: isLogoVisible ? 1 : 0,
@@ -141,14 +140,14 @@ export const OpeningAnimation: React.FC<OpeningAnimationProps> = ({ onComplete }
           }}
         >
           <img
-            src="/dief-logo.png"
+            src="/dief-logo-blue.png"
             alt="Department of Islamic Economics and Finance Official Logo"
             className="h-20 sm:h-24 md:h-28 w-auto object-contain mx-auto drop-shadow-sm"
           />
         </div>
 
         {/* 2. Department Name Reveal (2–3 seconds) */}
-        <div 
+        <div
           className="space-y-2 transition-all duration-1000"
           style={{
             opacity: isTitleVisible ? 1 : 0,
@@ -163,13 +162,13 @@ export const OpeningAnimation: React.FC<OpeningAnimationProps> = ({ onComplete }
             <span className="w-10 sm:w-14 h-px bg-gold/50"></span>
           </div>
 
-          <h1 className="font-editorial text-xl sm:text-2xl md:text-3xl font-bold text-forest tracking-tight leading-snug">
+          <h1 className="font-editorial text-xl sm:text-2xl md:text-3xl font-bold text-charcoal tracking-tight leading-snug">
             Department of Islamic Economics and Finance
           </h1>
         </div>
 
         {/* 3. Institutional Subtitle Reveal (3–4 seconds) */}
-        <div 
+        <div
           className="space-y-1 transition-all duration-1000"
           style={{
             opacity: isSubtitleVisible ? 1 : 0,

@@ -72,9 +72,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
 
       {/* 1. HERO & INTRODUCTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
-          <div className="absolute inset-0 pattern-dark-islamic opacity-30 pointer-events-none"></div>
-
+        <div className="bg-[#1D4ED8] rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-4">
 
@@ -85,7 +83,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-editorial font-bold text-white tracking-tight">
                 SBC <br />
-                <span className="text-gold">Shariah Business Consultancy</span>
+                <span className="text-xl sm:text-2xl font-editorial text-white font-semibold">Shariah Business Consultancy</span>
               </h1>
 
 
@@ -94,19 +92,10 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
                 Providing Shariah-oriented business guidance, contract evaluation, and practical ethical solutions for contemporary enterprises striving for commercial excellence under authentic Islamic principles.
               </p>
 
-              {/* MANDATORY LEGAL & AUDIT STATUS DECLARATION */}
-              <div className="mt-4 p-4 rounded-xl bg-forest-dark/90 border border-gold/40 text-xs text-sage-light flex items-start space-x-3">
-
-                <div>
-                  <strong className="text-white block mb-0.5">Advisory Scope Declaration:</strong>
-                  SBC provides academic and commercial ethical guidance rooted in Fiqh al-Mu’amalat. It does <em>not</em> function as a statutory state-licensing fatwa council, nor does it conduct formal regulatory external audits unless explicitly contracted under accredited supervisory terms.
-                </div>
-              </div>
-
               <div className="pt-2 flex flex-wrap gap-4">
                 <a
                   href="#consultation-form"
-                  className="px-6 py-3.5 bg-gold hover:bg-gold-light text-forest font-bold text-xs sm:text-sm rounded-xl shadow transition"
+                  className="px-6 py-3.5 bg-gold hover:bg-gold-light text-charcoal font-bold text-xs sm:text-sm rounded-xl shadow transition"
                 >
                   Request a Consultation
                 </a>
@@ -131,7 +120,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
 
           <div className="bg-white p-8 rounded-2xl border border-forest/10 shadow-soft space-y-3">
             <span className="text-xs font-bold text-gold-dark uppercase tracking-wider">SBC Vision</span>
-            <h3 className="text-2xl font-editorial font-bold text-forest">Cultivating Ethical Commerce</h3>
+            <h3 className="text-2xl font-editorial font-bold text-charcoal">Cultivating Ethical Commerce</h3>
             <p className="text-xs sm:text-sm text-charcoal-light leading-relaxed">
               To be the most respected academic-backed advisory center in the region, empowering contemporary businesses to thrive commercially while adhering uncompromisingly to the ethical spirit and legal jurisprudence of Islam.
             </p>
@@ -139,7 +128,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
 
           <div className="bg-white p-8 rounded-2xl border border-forest/10 shadow-soft space-y-3">
             <span className="text-xs font-bold text-gold-dark uppercase tracking-wider">SBC Mission</span>
-            <h3 className="text-2xl font-editorial font-bold text-forest">Practical Contractual Clarity</h3>
+            <h3 className="text-2xl font-editorial font-bold text-charcoal">Practical Contractual Clarity</h3>
             <p className="text-xs sm:text-sm text-charcoal-light leading-relaxed">
               Deliver actionable, rigorous guidance for commercial contracts, review revenue-share mechanisms, organize corporate Shariah training workshops, and assist entrepreneurs in structuring halal business operations.
             </p>
@@ -154,7 +143,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
           <span className="text-xs font-bold tracking-widest text-gold-dark uppercase font-sans">
             Guiding Values
           </span>
-          <h2 className="text-3xl font-editorial font-bold text-forest">
+          <h2 className="text-3xl font-editorial font-bold text-charcoal">
             Islamic Commercial Foundations
           </h2>
           <p className="text-xs sm:text-sm text-charcoal-muted">
@@ -166,7 +155,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
 
           <div className="bg-white p-6 rounded-2xl border border-forest/10 shadow-soft space-y-3">
             <div className="font-arabic text-xl text-gold-dark font-bold">الأمانة</div>
-            <h4 className="font-editorial text-lg font-bold text-forest">Amanah (Fiduciary Trust)</h4>
+            <h4 className="font-editorial text-lg font-bold text-charcoal">Amanah (Fiduciary Trust)</h4>
             <p className="text-xs text-charcoal-muted leading-relaxed">
               Upholding uncompromised honesty and safeguarding shareholder, customer, and employee entrustments without deceit or hidden terms.
             </p>
@@ -174,7 +163,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
 
           <div className="bg-white p-6 rounded-2xl border border-forest/10 shadow-soft space-y-3">
             <div className="font-arabic text-xl text-gold-dark font-bold">العدل</div>
-            <h4 className="font-editorial text-lg font-bold text-forest">Adl (Equitable Justice)</h4>
+            <h4 className="font-editorial text-lg font-bold text-charcoal">Adl (Equitable Justice)</h4>
             <p className="text-xs text-charcoal-muted leading-relaxed">
               Ensuring symmetrical contractual balance where neither party is unfairly burdened with unilateral risks or predatory forfeiture clauses.
             </p>
@@ -182,7 +171,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
 
           <div className="bg-white p-6 rounded-2xl border border-forest/10 shadow-soft space-y-3">
             <div className="font-arabic text-xl text-gold-dark font-bold">الصدق</div>
-            <h4 className="font-editorial text-lg font-bold text-forest">Sidq (Truthfulness)</h4>
+            <h4 className="font-editorial text-lg font-bold text-charcoal">Sidq (Truthfulness)</h4>
             <p className="text-xs text-charcoal-muted leading-relaxed">
               Transparent disclosure of product defects, pricing origins, margins, and warranties, strictly eschewing misrepresentation.
             </p>
@@ -190,7 +179,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
 
           <div className="bg-white p-6 rounded-2xl border border-forest/10 shadow-soft space-y-3">
             <div className="font-arabic text-xl text-gold-dark font-bold">التراضي</div>
-            <h4 className="font-editorial text-lg font-bold text-forest">Mutual Consent (Taradi)</h4>
+            <h4 className="font-editorial text-lg font-bold text-charcoal">Mutual Consent (Taradi)</h4>
             <p className="text-xs text-charcoal-muted leading-relaxed">
               Agreements must stem from genuine, uncoerced mutual agreement, fully understanding all reciprocal obligations and considerations.
             </p>
@@ -206,13 +195,13 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
             <span className="text-xs font-bold text-gold-dark uppercase tracking-wider">
               Service Catalogue
             </span>
-            <h3 className="text-3xl font-editorial font-bold text-forest mt-1">
+            <h3 className="text-3xl font-editorial font-bold text-charcoal mt-1">
               Business Guidance &amp; Consultancy Services
             </h3>
           </div>
           <a
             href="#consultation-form"
-            className="text-xs font-bold text-forest hover:text-emerald-deep flex items-center space-x-1.5"
+            className="text-xs font-bold text-[#1D4ED8] hover:text-[#2563EA] flex items-center space-x-1.5"
           >
             <span>Request Service Proposal</span>
             <ArrowRight className="w-3.5 h-3.5 text-gold" />
@@ -223,10 +212,10 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
 
           <div className="bg-white p-6 rounded-2xl border border-forest/10 shadow-soft space-y-3 flex flex-col justify-between">
             <div className="space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-forest/10 text-forest flex items-center justify-center">
-                <FileText className="w-5 h-5 text-forest" />
+              <div className="w-10 h-10 rounded-xl bg-charcoal/10 text-[#1D4ED8] flex items-center justify-center">
+                <FileText className="w-5 h-5 text-[#1D4ED8]" />
               </div>
-              <h4 className="font-editorial text-lg font-bold text-forest">Commercial Contract Structuring</h4>
+              <h4 className="font-editorial text-lg font-bold text-charcoal">Commercial Contract Structuring</h4>
               <p className="text-xs text-charcoal-muted leading-relaxed">
                 Review and drafting of sales, leasing, agency (Wakalah), partnership (Musharakah/Mudarabah), and deferred payment procurement agreements to ensure absence of Riba and Gharar.
               </p>
@@ -238,10 +227,10 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
 
           <div className="bg-white p-6 rounded-2xl border border-forest/10 shadow-soft space-y-3 flex flex-col justify-between">
             <div className="space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-forest/10 text-forest flex items-center justify-center">
-                <Scale className="w-5 h-5 text-forest" />
+              <div className="w-10 h-10 rounded-xl bg-charcoal/10 text-[#1D4ED8] flex items-center justify-center">
+                <Scale className="w-5 h-5 text-[#1D4ED8]" />
               </div>
-              <h4 className="font-editorial text-lg font-bold text-forest">Enterprise &amp; Equity Shariah Screening</h4>
+              <h4 className="font-editorial text-lg font-bold text-charcoal">Enterprise &amp; Equity Shariah Screening</h4>
               <p className="text-xs text-charcoal-muted leading-relaxed">
                 Quantitative ratio screening of company balance sheets, interest-bearing debt ceilings, cash equivalents, and revenue purification protocols compliant with AAOIFI standards.
               </p>
@@ -253,10 +242,10 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
 
           <div className="bg-white p-6 rounded-2xl border border-forest/10 shadow-soft space-y-3 flex flex-col justify-between">
             <div className="space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-forest/10 text-forest flex items-center justify-center">
-                <Users className="w-5 h-5 text-forest" />
+              <div className="w-10 h-10 rounded-xl bg-charcoal/10 text-[#1D4ED8] flex items-center justify-center">
+                <Users className="w-5 h-5 text-[#1D4ED8]" />
               </div>
-              <h4 className="font-editorial text-lg font-bold text-forest">Corporate Workshops &amp; Training</h4>
+              <h4 className="font-editorial text-lg font-bold text-charcoal">Corporate Workshops &amp; Training</h4>
               <p className="text-xs text-charcoal-muted leading-relaxed">
                 Bespoke on-campus or virtual executive education programs for accounting departments, sales teams, and directors on practical application of Islamic financial jurisprudence.
               </p>
@@ -280,7 +269,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
 
                 <span>Confidential Advisory Desk</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-editorial font-bold text-forest leading-tight">
+              <h2 className="text-3xl sm:text-4xl font-editorial font-bold text-charcoal leading-tight">
                 "Let's Build Your Business on Ethical Foundations."
               </h2>
               <p className="text-sm text-charcoal-light leading-relaxed">
@@ -289,27 +278,27 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
 
               <div className="pt-4 space-y-3 text-xs text-charcoal-light">
                 <div className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-deep" />
+                  <CheckCircle2 className="w-4 h-4 text-charcoal" />
                   <span>Preliminary intake review within 3 business days</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-deep" />
+                  <CheckCircle2 className="w-4 h-4 text-charcoal" />
                   <span>Scholarly assessment grounded in AAOIFI standards</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-deep" />
+                  <CheckCircle2 className="w-4 h-4 text-charcoal" />
                   <span>Customized consultation roadmap and documentation</span>
                 </div>
               </div>
 
               <div className="p-4 rounded-xl bg-ivory border border-forest/10 text-xs text-charcoal-muted">
-                <strong className="text-forest block mb-1">Direct Coordination Desk:</strong>
-                Email: <a href="mailto:dief@dhiu.in" className="hover:underline text-forest font-semibold">dief@dhiu.in</a><br />
+                <strong className="text-charcoal block mb-1">Direct Coordination Desk:</strong>
+                Email: <a href="mailto:dief@dhiu.in" className="hover:underline text-charcoal font-semibold">dief@dhiu.in</a><br />
               </div>
             </div>
 
             {/* Right Form */}
-            <div className="lg:col-span-7 bg-surface-lightGreen/30 p-8 rounded-2xl border border-forest/10">
+            <div className="lg:col-span-7 bg-charcoal/5 p-8 rounded-2xl border border-charcoal/10">
               {submitted ? (
                 <div className="py-12 text-center space-y-4 animate-fadeIn">
                   <div className="w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto">
@@ -338,7 +327,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <h3 className="font-editorial text-xl font-bold text-forest mb-2">
+                  <h3 className="font-editorial text-xl font-bold text-charcoal mb-2">
                     Request a Consultation Form
                   </h3>
 
@@ -450,7 +439,7 @@ export const SbcPage: React.FC<SbcPageProps> = ({ onNavigate, onSubmitConsultati
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 bg-forest hover:bg-emerald-deep text-white font-semibold text-xs sm:text-sm rounded-xl shadow transition flex items-center justify-center space-x-2"
+                    className="w-full py-3.5 bg-[#1D4ED8] hover:bg-#2563EA text-white font-semibold text-xs sm:text-sm rounded-xl shadow transition flex items-center justify-center space-x-2"
                   >
                     <Send className="w-4 h-4 text-gold" />
                     <span>Submit Consultation Request to SBC</span>

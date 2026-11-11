@@ -23,9 +23,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
   };
 
   return (
-    <footer className="bg-forest text-white border-t-2 border-gold/40 relative overflow-hidden">
+    <footer className="bg-[#1D4ED8] text-white border-t-2 border-gold/40 relative overflow-hidden">
       {/* Decorative top pattern bar */}
-      <div className="h-1.5 w-full bg-gradient-to-r from-forest-dark via-gold to-forest-dark"></div>
+      <div className="h-1.5 w-full bg-gradient-to-r from-[#1D4ED8] via-gold to-[#1D4ED8]"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-forest-light/40">
@@ -45,7 +45,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
                   <div className="absolute bottom-1 right-1 w-2 h-2 border-b-2 border-r-2 border-gold/70"></div>
 
                   <img
-                    src="/dief-logo.png"
+                    src="/dief-logo-blue.png"
                     alt="Department of Islamic Economics and Finance Official Logo"
                     className="w-full h-full object-contain relative z-10 transition-transform duration-300 group-hover:scale-105"
                   />
@@ -183,7 +183,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
               <div className="pt-2">
                 <button
                   onClick={() => handleNav('contact')}
-                  className="w-full text-center px-4 py-2.5 bg-gold hover:bg-gold-light text-forest font-bold border border-gold rounded-xl text-xs transition duration-200 shadow-soft"
+                  className="w-full text-center px-4 py-2.5 bg-gold hover:bg-gold-light text-charcoal font-bold border border-gold rounded-xl text-xs transition duration-200 shadow-soft"
                 >
                   Send Department Enquiry
                 </button>
@@ -193,24 +193,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAdmin }) => {
 
         </div>
 
-        {/* Institutional & Legal Scope Disclaimers */}
-        <div className="mt-8 bg-forest-dark/70 border border-forest-light/30 rounded-2xl p-5 text-[11px] text-sage-light space-y-3 shadow-soft">
-          <div className="flex items-center space-x-2 text-gold font-semibold uppercase tracking-wider text-[10px]">
-
-            <span>Academic &amp; Institutional Declarations</span>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 leading-relaxed">
-            <div>
-              <strong className="text-white font-medium">Independent Digital Platform:</strong> This website represents the Department of Islamic Economics and Finance. Darul Huda Islamic University serves strictly as the institutional parent university.
-            </div>
-            <div>
-              <strong className="text-white font-medium">DHIB Operational Status:</strong> Darul Huda Islamic Bank operates strictly as an academic, educational sandbox and financial literacy platform, not a licensed commercial deposit-taking institution.
-            </div>
-            <div>
-              <strong className="text-white font-medium">SBC Advisory Scope:</strong> Shariah Business Consultancy provides academic and commercial ethical advisory services; it does not issue state statutory audits or formal state legal decrees.
-            </div>
-          </div>
-        </div>
 
         {/* Bottom copyright row */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-sage-light gap-4">

@@ -83,7 +83,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
 
               {/* Institutional Affiliation Badge */}
               <div className="pt-1">
-                <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-forest/5 border border-forest/15 text-forest text-xs font-semibold tracking-wide">
+                <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#252B27]/5 border border-[#252B27]/15 text-gold text-xs font-semibold tracking-wide">
 
                   <span>Kulliyya of Sharia • Darul Huda Islamic University</span>
                 </div>
@@ -91,9 +91,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
 
               {/* Main Headline */}
               <div className="space-y-2">
-                <h1 className="text-4xl sm:text-5xl xl:text-6xl font-editorial font-bold text-forest tracking-tight leading-[1.12]">
+                <h1 className="text-4xl sm:text-5xl xl:text-6xl font-editorial font-bold text-[#252B27] tracking-tight leading-[1.12]">
                   Islamic Economics <br />
-                  <span className="text-4xl sm:text-5xl xl:text-6xl font-editorial font-bold text-forest tracking-tight leading-[1.12]">&amp; Finance</span>
+                  <span className="text-4xl sm:text-5xl xl:text-6xl font-editorial font-bold text-[#252B27] tracking-tight leading-[1.12]">&amp; Finance</span>
                 </h1>
 
               </div>
@@ -107,7 +107,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
               <div className="pt-2 flex flex-wrap items-center gap-4">
                 <button
                   onClick={() => onNavigate('about')}
-                  className="px-6 py-3.5 bg-forest hover:bg-emerald-deep text-white font-semibold text-sm rounded-xl shadow-elevated hover:shadow-lg transition-all duration-200 flex items-center space-x-2.5 group"
+                  className="px-6 py-3.5 bg-[#1D4ED8] hover:bg-[#2563EA] text-white font-semibold text-sm rounded-xl shadow-elevated hover:shadow-lg transition-all duration-200 flex items-center space-x-2.5 group"
                 >
                   <span>Explore Our Department</span>
                   <ArrowRight className="w-4 h-4 text-gold group-hover:translate-x-1 transition-transform" />
@@ -115,7 +115,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
 
                 <button
                   onClick={scrollToInitiatives}
-                  className="px-6 py-3.5 bg-white hover:bg-surface-lightGreen text-forest font-semibold text-sm rounded-xl border border-forest/20 shadow-soft hover:border-gold transition-all duration-200 flex items-center space-x-2"
+                  className="px-6 py-3.5 bg-white hover:bg-[#EFF6FF] text-[#252B27] font-semibold text-sm rounded-xl border border-forest/20 shadow-soft hover:border-gold transition-all duration-200 flex items-center space-x-2"
                 >
                   <span>Discover Our Initiatives</span>
 
@@ -125,15 +125,15 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
               {/* Micro Department Indicators */}
               <div className="pt-6 border-t border-forest/10 grid grid-cols-3 gap-4">
                 <div>
-                  <div className="font-editorial text-xl sm:text-2xl font-bold text-forest">03</div>
+                  <div className="font-editorial text-xl sm:text-2xl font-bold text-[#252B27]">03</div>
                   <div className="text-[11px] text-charcoal-muted uppercase tracking-wider font-semibold">Flagship Initiatives</div>
                 </div>
                 <div>
-                  <div className="font-editorial text-xl sm:text-2xl font-bold text-forest">Fiqh &amp; Finance</div>
+                  <div className="font-editorial text-xl sm:text-2xl font-bold text-[#252B27]">Fiqh &amp; Finance</div>
                   <div className="text-[11px] text-charcoal-muted uppercase tracking-wider font-semibold">Integrated Dual Rigor</div>
                 </div>
                 <div>
-                  <div className="font-editorial text-xl sm:text-2xl font-bold text-forest">Open Access</div>
+                  <div className="font-editorial text-xl sm:text-2xl font-bold text-[#252B27]">Open Access</div>
                   <div className="text-[11px] text-charcoal-muted uppercase tracking-wider font-semibold">Tamweel Journal</div>
                 </div>
               </div>
@@ -149,13 +149,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
                 <div className="absolute -inset-1 rounded-2xl border border-forest/20 -rotate-1 pointer-events-none"></div>
 
                 {/* Main Featured Visual */}
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-forest aspect-[4/5] group">
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-[#2563EA] aspect-[4/5] group">
                   <img
                     src="/dhiu-campus.jpg"
                     alt="Darul Huda Islamic University campus building"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/30 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/30 to-transparent"></div>
 
 
 
@@ -166,7 +166,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
                       <span>•</span>
                       <span>Kerala, India</span>
                     </div>
-                    <div className="text-xs font-bold text-forest mt-0.5 font-editorial">
+                    <div className="text-xs font-bold text-charcoal mt-0.5 font-editorial">
                       "Bridging classical Islamic commercial jurisprudence with modern financial analytical tools."
                     </div>
                   </div>
@@ -190,9 +190,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
 
                 <span>Our Foundations</span>
               </span>
-              <h2 className="text-3xl sm:text-4xl font-editorial font-bold text-forest leading-tight">
+              <h2 className="text-3xl sm:text-4xl font-editorial font-bold text-charcoal leading-tight">
                 Where Knowledge Meets <br />
-                <span className="text-emerald-deep">Ethical Finance</span>
+                <span className="text-charcoal">Ethical Finance</span>
               </h2>
 
             </div>
@@ -207,7 +207,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
               <div className="pt-2">
                 <button
                   onClick={() => onNavigate('about')}
-                  className="inline-flex items-center space-x-2 text-forest font-bold text-sm hover:text-emerald-deep transition border-b-2 border-gold pb-0.5 group"
+                  className="inline-flex items-center space-x-2 text-[#1D4ED8] font-bold text-sm hover:text-[#2563EA] transition border-b-2 border-gold pb-0.5 group"
                 >
                   <span>Read Full About the Department</span>
                   <ArrowRight className="w-4 h-4 text-gold group-hover:translate-x-1 transition-transform" />
@@ -221,11 +221,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
       {/* SECTION C: OUR INITIATIVES (THE THREE FLAGSHIP CARDS) */}
       <section id="initiatives-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gold/15 border border-gold/30 text-forest text-xs font-semibold">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gold/15 border border-gold/30 text-charcoal text-xs font-semibold">
 
             <span>One Department • Three Flagship Pillars</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-editorial font-bold text-forest">
+          <h2 className="text-3xl sm:text-4xl font-editorial font-bold text-charcoal">
             Our Central Initiatives
           </h2>
           <p className="text-sm sm:text-base text-charcoal-muted leading-relaxed">
@@ -240,10 +240,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
             <div className="p-7 space-y-4">
               {/* Header with Icon and Flagship Tag */}
               <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-xl bg-forest text-gold flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-[#1D4ED8] text-white flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
                   <Building2 className="w-6 h-6" />
                 </div>
-                <span className="text-[10px] font-bold tracking-widest text-forest uppercase bg-surface-lightGreen px-2.5 py-1 rounded-full border border-forest/10">
+                <span className="text-[10px] font-bold tracking-widest text-charcoal uppercase bg-surface-lightGreen px-2.5 py-1 rounded-full border border-forest/10">
                   Banking System
                 </span>
               </div>
@@ -253,7 +253,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
                 <span className="text-xs font-semibold text-gold-dark uppercase tracking-wider block">
                   Pillar 01
                 </span>
-                <h3 className="text-2xl font-editorial font-bold text-forest mt-0.5 group-hover:text-emerald-deep transition-colors">
+                <h3 className="text-2xl font-editorial font-bold text-charcoal mt-0.5 group-hover:text-[#2563EA] transition-colors">
                   DHIB
                 </h3>
                 <h4 className="text-xs font-bold text-charcoal mt-0.5">
@@ -287,7 +287,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
             <div className="p-7 pt-0">
               <button
                 onClick={() => onNavigate('dhib')}
-                className="w-full py-3 px-4 bg-forest hover:bg-emerald-deep text-white text-xs font-bold rounded-xl transition flex items-center justify-center space-x-2 group/btn"
+                className="w-full py-3 px-4 bg-[#1D4ED8] hover:bg-[#2563EA] text-white text-xs font-bold rounded-xl transition flex items-center justify-center space-x-2 group/btn"
               >
                 <span>Explore DHIB</span>
                 <ArrowRight className="w-3.5 h-3.5 text-gold group-hover/btn:translate-x-1 transition-transform" />
@@ -300,10 +300,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
             <div className="p-7 space-y-4">
               {/* Header with Icon and Flagship Tag */}
               <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-xl bg-forest text-gold flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-[#1D4ED8] text-white flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
                   <Briefcase className="w-6 h-6" />
                 </div>
-                <span className="text-[10px] font-bold tracking-widest text-forest uppercase bg-surface-lightGreen px-2.5 py-1 rounded-full border border-forest/10">
+                <span className="text-[10px] font-bold tracking-widest text-charcoal uppercase bg-surface-lightGreen px-2.5 py-1 rounded-full border border-forest/10">
                   Business Advisory
                 </span>
               </div>
@@ -313,7 +313,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
                 <span className="text-xs font-semibold text-gold-dark uppercase tracking-wider block">
                   Pillar 02
                 </span>
-                <h3 className="text-2xl font-editorial font-bold text-forest mt-0.5 group-hover:text-emerald-deep transition-colors">
+                <h3 className="text-2xl font-editorial font-bold text-charcoal mt-0.5 group-hover:text-[#2563EA] transition-colors">
                   SBC
                 </h3>
                 <h4 className="text-xs font-bold text-charcoal mt-0.5">
@@ -347,7 +347,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
             <div className="p-7 pt-0">
               <button
                 onClick={() => onNavigate('sbc')}
-                className="w-full py-3 px-4 bg-forest hover:bg-emerald-deep text-white text-xs font-bold rounded-xl transition flex items-center justify-center space-x-2 group/btn"
+                className="w-full py-3 px-4 bg-[#1D4ED8] hover:bg-[#2563EA] text-white text-xs font-bold rounded-xl transition flex items-center justify-center space-x-2 group/btn"
               >
                 <span>Explore SBC</span>
                 <ArrowRight className="w-3.5 h-3.5 text-gold group-hover/btn:translate-x-1 transition-transform" />
@@ -360,10 +360,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
             <div className="p-7 space-y-4">
               {/* Header with Icon and Flagship Tag */}
               <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-xl bg-forest text-gold flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-[#1D4ED8] text-white flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
                   <BookOpen className="w-6 h-6" />
                 </div>
-                <span className="text-[10px] font-bold tracking-widest text-forest uppercase bg-surface-lightGreen px-2.5 py-1 rounded-full border border-forest/10">
+                <span className="text-[10px] font-bold tracking-widest text-charcoal uppercase bg-surface-lightGreen px-2.5 py-1 rounded-full border border-forest/10">
                   Academic Journal
                 </span>
               </div>
@@ -373,7 +373,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
                 <span className="text-xs font-semibold text-gold-dark uppercase tracking-wider block">
                   Pillar 03
                 </span>
-                <h3 className="text-2xl font-editorial font-bold text-forest mt-0.5 group-hover:text-emerald-deep transition-colors">
+                <h3 className="text-2xl font-editorial font-bold text-charcoal mt-0.5 group-hover:text-[#2563EA] transition-colors">
                   Tamweel
                 </h3>
                 <h4 className="text-xs font-bold text-charcoal mt-0.5">
@@ -407,7 +407,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
             <div className="p-7 pt-0">
               <button
                 onClick={() => onNavigate('tamweel')}
-                className="w-full py-3 px-4 bg-forest hover:bg-emerald-deep text-white text-xs font-bold rounded-xl transition flex items-center justify-center space-x-2 group/btn"
+                className="w-full py-3 px-4 bg-[#1D4ED8] hover:bg-[#2563EA] text-white text-xs font-bold rounded-xl transition flex items-center justify-center space-x-2 group/btn"
               >
                 <span>Explore Tamweel</span>
                 <ArrowRight className="w-3.5 h-3.5 text-gold group-hover/btn:translate-x-1 transition-transform" />
@@ -426,7 +426,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
               <span className="text-xs font-bold tracking-widest text-gold-dark uppercase font-sans">
                 Academic Ecosystem
               </span>
-              <h2 className="text-3xl sm:text-4xl font-editorial font-bold text-forest mt-1">
+              <h2 className="text-3xl sm:text-4xl font-editorial font-bold text-charcoal mt-1">
                 Academic &amp; Research Focus
               </h2>
             </div>
@@ -442,16 +442,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
               onClick={() => onNavigate('about')}
               className="bg-white rounded-2xl p-6 border border-forest/10 hover:border-gold/50 shadow-soft hover:shadow-elevated transition-all cursor-pointer group"
             >
-              <div className="w-10 h-10 rounded-xl bg-forest/10 text-forest flex items-center justify-center mb-4 group-hover:bg-forest group-hover:text-gold transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-charcoal/10 text-[#1D4ED8] flex items-center justify-center mb-4 group-hover:bg-[#1D4ED8] group-hover:text-white transition-colors">
                 <GraduationCap className="w-5 h-5" />
               </div>
-              <h3 className="font-editorial text-lg font-bold text-forest group-hover:text-emerald-deep">
+              <h3 className="font-editorial text-lg font-bold text-charcoal group-hover:text-[#2563EA]">
                 Academic Programmes
               </h3>
               <p className="text-xs text-charcoal-muted mt-2 leading-relaxed">
                 Foundational and advanced degree modules integrating Islamic commercial jurisprudence with modern economic sciences.
               </p>
-              <div className="mt-4 flex items-center space-x-1.5 text-xs font-bold text-forest group-hover:text-gold-dark">
+              <div className="mt-4 flex items-center space-x-1.5 text-xs font-bold text-charcoal group-hover:text-gold-dark">
                 <span>View Programmes</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </div>
@@ -462,16 +462,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
               onClick={() => onNavigate('tamweel')}
               className="bg-white rounded-2xl p-6 border border-forest/10 hover:border-gold/50 shadow-soft hover:shadow-elevated transition-all cursor-pointer group"
             >
-              <div className="w-10 h-10 rounded-xl bg-forest/10 text-forest flex items-center justify-center mb-4 group-hover:bg-forest group-hover:text-gold transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-charcoal/10 text-[#1D4ED8] flex items-center justify-center mb-4 group-hover:bg-[#1D4ED8] group-hover:text-white transition-colors">
                 <BookOpen className="w-5 h-5" />
               </div>
-              <h3 className="font-editorial text-lg font-bold text-forest group-hover:text-emerald-deep">
+              <h3 className="font-editorial text-lg font-bold text-charcoal group-hover:text-[#2563EA]">
                 Research and Publications
               </h3>
               <p className="text-xs text-charcoal-muted mt-2 leading-relaxed">
-                Departmental working papers, Tamweel scholarly issues, and ongoing studies on Sukuk, Waqf, and Islamic Fintech.
+                Departmental working papers, Tamweel scholarly issues, and ongoing studies on Sukuk, Waqf, Islamic banking, and Islamic Fintech.
               </p>
-              <div className="mt-4 flex items-center space-x-1.5 text-xs font-bold text-forest group-hover:text-gold-dark">
+              <div className="mt-4 flex items-center space-x-1.5 text-xs font-bold text-charcoaal group-hover:text-gold-dark">
                 <span>Read Publications</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </div>
@@ -482,16 +482,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
               onClick={() => onNavigate('activities')}
               className="bg-white rounded-2xl p-6 border border-forest/10 hover:border-gold/50 shadow-soft hover:shadow-elevated transition-all cursor-pointer group"
             >
-              <div className="w-10 h-10 rounded-xl bg-forest/10 text-forest flex items-center justify-center mb-4 group-hover:bg-forest group-hover:text-gold transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-charcoal/10 text-[#1D4ED8] flex items-center justify-center mb-4 group-hover:bg-[#1D4ED8] group-hover:text-white transition-colors">
                 <Calendar className="w-5 h-5" />
               </div>
-              <h3 className="font-editorial text-lg font-bold text-forest group-hover:text-emerald-deep">
+              <h3 className="font-editorial text-lg font-bold text-charcoal group-hover:text-[#2563EA]">
                 Seminars and Conferences
               </h3>
               <p className="text-xs text-charcoal-muted mt-2 leading-relaxed">
                 National and regional academic conferences discussing contemporary Fiqh questions, digital assets, and ethical finance.
               </p>
-              <div className="mt-4 flex items-center space-x-1.5 text-xs font-bold text-forest group-hover:text-gold-dark">
+              <div className="mt-4 flex items-center space-x-1.5 text-xs font-bold text-charcoal group-hover:text-gold-dark">
                 <span>View Event Calendar</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </div>
@@ -509,13 +509,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
               <Calendar className="w-3.5 h-3.5" />
               <span>Department Bulletin</span>
             </div>
-            <h2 className="text-3xl font-editorial font-bold text-forest mt-1">
+            <h2 className="text-3xl font-editorial font-bold text-charcoal mt-1">
               Latest Updates &amp; Events
             </h2>
           </div>
           <button
             onClick={() => onNavigate('activities')}
-            className="inline-flex items-center space-x-2 text-forest hover:text-emerald-deep font-semibold text-xs border border-forest/20 hover:border-forest px-4 py-2 rounded-xl transition"
+            className="inline-flex items-center space-x-2 text-[#1D4ED8] hover:text-[#2563EA] font-semibold text-xs px-4 py-2 rounded-xl transition"
           >
             <span>View All Activities</span>
             <ArrowRight className="w-3.5 h-3.5 text-gold" />
@@ -523,14 +523,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
         </div>
 
         {loadingLive ? (
-          <div className="p-12 text-center bg-white rounded-2xl border border-forest/10 flex items-center justify-center space-x-2 text-forest text-xs font-medium">
+          <div className="p-12 text-center bg-white rounded-2xl border border-charcoal/10 flex items-center justify-center space-x-2 text-forest text-xs font-medium">
             <Loader2 className="w-5 h-5 animate-spin text-gold" />
             <span>Loading departmental updates...</span>
           </div>
         ) : displayActivities.length === 0 ? (
           <div className="p-12 text-center bg-white rounded-2xl border border-forest/10 space-y-2">
-            <Calendar className="w-8 h-8 text-forest/40 mx-auto" />
-            <h3 className="font-editorial text-lg font-bold text-forest">No Current Public Bulletin Events</h3>
+            <Calendar className="w-8 h-8 text-charcoal/40 mx-auto" />
+            <h3 className="font-editorial text-lg font-bold text-charcoal">No Current Public Bulletin Events</h3>
             <p className="text-xs text-charcoal-muted max-w-md mx-auto">
               Upcoming departmental conferences, symposiums, and lectures will be announced here once published.
             </p>
@@ -549,20 +549,20 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
                 <div
                   key={act.id}
                   onClick={() => onNavigate('activities', act.id)}
-                  className="bg-white rounded-2xl border border-forest/10 hover:border-gold/60 shadow-soft hover:shadow-elevated transition-all overflow-hidden flex flex-col justify-between cursor-pointer group"
+                  className="bg-white rounded-2xl border border-charcoal/10 hover:border-gold/60 shadow-soft hover:shadow-elevated transition-all overflow-hidden flex flex-col justify-between cursor-pointer group"
                 >
                   <div>
-                    <div className="relative aspect-[16/9] overflow-hidden bg-forest/5">
+                    <div className="relative aspect-[16/9] overflow-hidden bg-charcoal/5">
                       <img
                         src={displayImage}
                         alt={act.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute top-3 left-3 bg-forest text-gold text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shadow">
+                      <div className="absolute top-3 left-3 bg-[#1D4ED8] text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shadow">
                         {act.category_name || 'Department Event'}
                       </div>
                       {isUpcoming && (
-                        <div className="absolute top-3 right-3 bg-white/95 text-forest text-[10px] font-bold px-2 py-0.5 rounded shadow">
+                        <div className="absolute top-3 right-3 bg-white/95 text-[#1D4ED8] text-[10px] font-bold px-2 py-0.5 rounded shadow">
                           Upcoming
                         </div>
                       )}
@@ -574,7 +574,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
                         <span>{formattedDate}{act.start_time ? ` • ${act.start_time}` : ''}</span>
                       </div>
 
-                      <h3 className="font-editorial text-base font-bold text-forest group-hover:text-emerald-deep leading-snug line-clamp-2">
+                      <h3 className="font-editorial text-base font-bold text-charcoal group-hover:text-[#2563EA] leading-snug line-clamp-2">
                         {act.title}
                       </h3>
 
@@ -589,7 +589,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
                       <MapPin className="w-3 h-3 text-gold shrink-0" />
                       <span>{act.venue || 'Darul Huda Islamic University'}</span>
                     </span>
-                    <span className="font-bold text-forest group-hover:text-gold-dark flex items-center space-x-1">
+                    <span className="font-bold text-charcoal group-hover:text-gold-dark flex items-center space-x-1">
                       <span>Details</span>
                       <ArrowRight className="w-3 h-3" />
                     </span>
@@ -609,14 +609,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
               <BookOpen className="w-3.5 h-3.5" />
               <span>Scholarly Output</span>
             </div>
-            <h2 className="text-3xl font-editorial font-bold text-forest mt-1">
+            <h2 className="text-3xl font-editorial font-bold text-charcoal mt-1">
               Latest Publications &amp; Papers
             </h2>
           </div>
           <div className="flex items-center space-x-3">
             <button
               onClick={() => onNavigate('tamweel')}
-              className="inline-flex items-center space-x-2 text-forest hover:text-emerald-deep font-semibold text-xs border border-forest/20 hover:border-forest px-4 py-2 rounded-xl transition"
+              className="inline-flex items-center space-x-2 text-[#1D4ED8] hover:text-[#2563EA] font-semibold text-xs px-4 py-2 rounded-xl transition"
             >
               <span>Explore Tamweel Journal</span>
               <ArrowRight className="w-3.5 h-3.5 text-gold" />
@@ -625,14 +625,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
         </div>
 
         {loadingLive ? (
-          <div className="p-12 text-center bg-white rounded-2xl border border-forest/10 flex items-center justify-center space-x-2 text-forest text-xs font-medium">
+          <div className="p-12 text-center bg-white rounded-2xl border border-charcoal/10 flex items-center justify-center space-x-2 text-charcoal text-xs font-medium">
             <Loader2 className="w-5 h-5 animate-spin text-gold" />
             <span>Loading publications...</span>
           </div>
         ) : displayArticles.length === 0 ? (
-          <div className="p-12 text-center bg-white rounded-2xl border border-forest/10 space-y-2">
-            <BookOpen className="w-8 h-8 text-forest/40 mx-auto" />
-            <h3 className="font-editorial text-lg font-bold text-forest">No Published Journal Papers Available</h3>
+          <div className="p-12 text-center bg-white rounded-2xl border border-charcoal/10 space-y-2">
+            <BookOpen className="w-8 h-8 text-charcoal/40 mx-auto" />
+            <h3 className="font-editorial text-lg font-bold text-charcoal">No Published Journal Papers Available</h3>
             <p className="text-xs text-charcoal-muted max-w-md mx-auto">
               Scholarly articles published in Tamweel: Journal of Islamic Economics and Finance will be indexed here once released.
             </p>
@@ -643,7 +643,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
               <div
                 key={art.id}
                 onClick={() => onNavigate('tamweel', art.id)}
-                className="bg-white rounded-2xl border border-forest/10 hover:border-gold/60 p-6 shadow-soft hover:shadow-elevated transition-all cursor-pointer group flex flex-col md:flex-row md:items-center justify-between gap-6"
+                className="bg-white rounded-2xl border border-charcoal/10 hover:border-gold/60 p-6 shadow-soft hover:shadow-elevated transition-all cursor-pointer group flex flex-col md:flex-row md:items-center justify-between gap-6"
               >
                 <div className="space-y-2 max-w-3xl">
                   <div className="flex flex-wrap items-center gap-2">
@@ -655,7 +655,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
                     </span>
                   </div>
 
-                  <h3 className="font-editorial text-lg sm:text-xl font-bold text-forest group-hover:text-emerald-deep leading-snug">
+                  <h3 className="font-editorial text-lg sm:text-xl font-bold text-charcoal group-hover:text-[#2563EA] leading-snug">
                     {art.title}
                   </h3>
 
@@ -666,7 +666,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
                   {art.keywords && art.keywords.length > 0 && (
                     <div className="flex flex-wrap items-center gap-2 pt-1">
                       {art.keywords.map((kw, i) => (
-                        <span key={i} className="text-[10px] text-forest bg-surface-lightGreen px-2 py-0.5 rounded font-medium">
+                        <span key={i} className="text-[10px] text-charcoal bg-[#EFF6FF] px-2 py-0.5 rounded font-medium">
                           #{kw}
                         </span>
                       ))}
@@ -675,7 +675,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
                 </div>
 
                 <div className="shrink-0 flex items-center md:flex-col justify-end space-y-2">
-                  <span className="inline-flex items-center space-x-1.5 text-xs font-bold text-forest group-hover:text-gold-dark transition">
+                  <span className="inline-flex items-center space-x-1.5 text-xs font-bold text-charcoal group-hover:text-gold-dark transition">
                     <span>View Article</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
@@ -693,10 +693,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
 
       {/* SECTION G: CALL TO ACTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-        <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden shadow-2xl border-2 border-gold/40">
-
-          {/* Subtle background geometric star lattice */}
-          <div className="absolute inset-0 pattern-dark-islamic opacity-40 pointer-events-none"></div>
+        <div className="bg-[#1D4ED8] rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden shadow-2xl border-2 border-gold/40">
 
           <div className="relative z-10 max-w-3xl mx-auto text-center space-y-6">
 
@@ -707,13 +704,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, events = [], art
             </h2>
 
             <p className="text-sm sm:text-base text-sage-subtle leading-relaxed font-normal">
-              Whether you are an aspiring scholar of Islamic economics, an academic researcher aiming to publish in Tamweel, a financial professional exploring DHIB, or a commercial enterprise seeking SBC advisory guidance—we invite you to partner with us.
+              Whether you are an aspiring scholar of Islamic economics, an academic researcher aiming to publish in Tamweel, a financial professional exploring DHIB, or a commercial enterprise seeking SBC advisory guidance, we invite you to partner with us.
             </p>
 
             <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
               <button
                 onClick={() => onNavigate('about')}
-                className="px-6 py-3.5 bg-gold hover:bg-gold-light text-forest font-bold text-xs sm:text-sm rounded-xl shadow-lg transition"
+                className="px-6 py-3.5 bg-gold hover:bg-gold-light text-charcoal font-bold text-xs sm:text-sm rounded-xl shadow-lg transition"
               >
                 Explore Our Academic Work
               </button>

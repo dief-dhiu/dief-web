@@ -166,11 +166,11 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
 
       {/* 1. JOURNAL HEADER & INTRODUCTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-3xl border border-forest/15 p-8 sm:p-12 shadow-soft relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-surface-lightGreen/50 rounded-bl-full pointer-events-none -z-0"></div>
+        <div className="bg-white rounded-3xl border border-charcoal/15 p-8 sm:p-12 shadow-soft relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-charcoal/5 rounded-bl-full pointer-events-none -z-0"></div>
 
           <div className="relative z-10 max-w-4xl space-y-4">
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-forest text-white border border-gold/40 text-xs font-semibold tracking-wide shadow-sm">
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#1D4ED8] text-white border border-gold/40 text-xs font-semibold tracking-wide shadow-sm">
               <BookOpen className="w-3.5 h-3.5 text-gold shrink-0" />
               <span className="text-white font-medium">Journal Platform</span>
             </div>
@@ -179,7 +179,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
               <span className="text-xs font-bold text-gold-dark uppercase tracking-widest block font-sans">
                 Scholarly Academic Periodical
               </span>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-editorial font-bold text-forest tracking-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-editorial font-bold text-charcoal tracking-tight">
                 Tamweel
               </h1>
               <h2 className="text-xl sm:text-2xl font-editorial text-charcoal font-semibold">
@@ -191,28 +191,18 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
               An open-access, peer-reviewed publication produced by the Department of Islamic Economics and Finance under the Kulliyya of Sharia, Darul Huda Islamic University. Tamweel promotes rigorous theoretical and empirical contributions exploring the interface of classical Shariah jurisprudence and modern financial systems.
             </p>
 
-            {/* Publication & Indexing Notice */}
-            <div className="p-4 rounded-xl bg-forest/5 border border-forest/20 text-xs text-charcoal flex items-start space-x-3 shadow-xs">
-
-              <div className="leading-relaxed">
-                <strong className="text-forest font-bold">Publication &amp; Indexing Notice:</strong>{' '}
-                <span className="text-charcoal">Tamweel adheres to international Committee on Publication Ethics (COPE) principles.</span>
-                <span className="ml-1 text-gold-dark font-semibold">[ISSN: Pending official assignment | Open Access Diamond Model].</span>
-              </div>
-            </div>
-
             {/* Main Tab Controls */}
             <div className="pt-4 flex flex-wrap gap-3 border-t border-forest/10">
               <button
                 type="button"
                 onClick={() => setActiveTab('articles')}
                 className={`px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-2 shadow-sm ${activeTab === 'articles'
-                    ? 'bg-forest text-white ring-2 ring-gold/50 shadow-md'
-                    : 'bg-white text-forest hover:bg-forest/5 border border-forest/20'
+                  ? 'bg-[#1D4ED8] text-white ring-2 ring-gold/50 shadow-md'
+                  : 'bg-[white] text-charcoal hover:bg-charcoal/5 border border-charcoal/20'
                   }`}
               >
-                <BookOpen className={`w-3.5 h-3.5 shrink-0 ${activeTab === 'articles' ? 'text-gold' : 'text-forest'}`} />
-                <span className={activeTab === 'articles' ? 'text-white' : 'text-forest'}>
+                <BookOpen className={`w-3.5 h-3.5 shrink-0 ${activeTab === 'articles' ? 'text-gold' : 'text-charcoal'}`} />
+                <span className={activeTab === 'articles' ? 'text-white' : 'text-charcoal'}>
                   Browse Research Articles{displayArticles.length > 0 ? ` (${displayArticles.length})` : ''}
                 </span>
               </button>
@@ -221,12 +211,12 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
                 type="button"
                 onClick={() => setActiveTab('info')}
                 className={`px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-2 shadow-sm ${activeTab === 'info'
-                    ? 'bg-forest text-white ring-2 ring-gold/50 shadow-md'
-                    : 'bg-white text-forest hover:bg-forest/5 border border-forest/20'
+                  ? 'bg-[#1D4ED8] text-white ring-2 ring-gold/50 shadow-md'
+                  : 'bg-white text-charcoal hover:bg-charcoal/5 border border-charcoal/20'
                   }`}
               >
-                <Info className={`w-3.5 h-3.5 shrink-0 ${activeTab === 'info' ? 'text-gold' : 'text-forest'}`} />
-                <span className={activeTab === 'info' ? 'text-white' : 'text-forest'}>
+                <Info className={`w-3.5 h-3.5 shrink-0 ${activeTab === 'info' ? 'text-gold' : 'text-charcoal'}`} />
+                <span className={activeTab === 'info' ? 'text-white' : 'text-charcoal'}>
                   Journal Information &amp; Policies
                 </span>
               </button>
@@ -239,12 +229,12 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
       {/* 2. LATEST PUBLISHED ISSUE DISPLAY - Strictly from Supabase. Only render if a published issue exists */}
       {activeTab === 'articles' && !loadingLive && !loadError && latestIssue && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden shadow-2xl border-2 border-gold/40">
+          <div className="bg-[#1D4ED8] rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden shadow-2xl border-2 border-gold/40">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
 
               {/* Cover preview */}
               <div className="lg:col-span-3 flex justify-center">
-                <div className="w-48 sm:w-56 bg-forest-dark border-2 border-gold/50 rounded-2xl shadow-2xl relative aspect-[3/4] flex flex-col justify-between group overflow-hidden">
+                <div className="w-48 sm:w-56 bg-[#1D4ED8] border-2 border-gold/50 rounded-2xl shadow-2xl relative aspect-[3/4] flex flex-col justify-between group overflow-hidden">
                   {latestIssue.cover_image_url ? (
                     <img
                       src={latestIssue.cover_image_url}
@@ -308,7 +298,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
                 <div className="pt-2 flex flex-wrap items-center gap-3">
                   <button
                     onClick={() => setActiveIssueModal(latestIssue)}
-                    className="px-5 py-2.5 bg-gold hover:bg-gold-light text-forest text-xs font-bold rounded-xl shadow transition flex items-center space-x-2"
+                    className="px-5 py-2.5 bg-gold hover:bg-gold-light text-charcoal text-xs font-bold rounded-xl shadow transition flex items-center space-x-2"
                   >
                     <BookOpen className="w-3.5 h-3.5" />
                     <span>View Issue Overview</span>
@@ -344,7 +334,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
               <p className="text-xs text-red-700 max-w-md mx-auto">{loadError}</p>
               <button
                 onClick={loadLiveData}
-                className="px-5 py-2.5 bg-forest text-gold text-xs font-bold rounded-xl hover:bg-emerald-deep transition shadow-soft"
+                className="px-5 py-2.5 bg-[#1D4ED8] text-white text-xs font-bold rounded-xl hover:bg-[#2563EA] transition shadow-soft"
               >
                 Retry Database Request
               </button>
@@ -354,8 +344,8 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
           {/* Empty State: Zero Published Articles in Supabase */}
           {!loadingLive && !loadError && displayArticles.length === 0 && (
             <div className="bg-white rounded-2xl p-12 text-center text-xs text-charcoal-muted border border-forest/10 space-y-3 shadow-soft">
-              <BookOpen className="w-10 h-10 text-forest/30 mx-auto" />
-              <h3 className="font-editorial text-xl font-bold text-forest">No Journal Issues Published Yet</h3>
+              <BookOpen className="w-10 h-10 text-charcoal/30 mx-auto" />
+              <h3 className="font-editorial text-xl font-bold text-charcoal">No Journal Issues Published Yet</h3>
               <p className="max-w-md mx-auto text-charcoal-light leading-relaxed">
                 The Department of Islamic Economics and Finance has not published any journal issues or research articles yet. Peer-reviewed papers will appear here once released by the editorial board.
               </p>
@@ -366,7 +356,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
           {!loadingLive && !loadError && displayArticles.length > 0 && (
             <>
               {/* Filter and Search Bar */}
-              <div className="bg-white p-4 rounded-2xl border border-forest/10 shadow-soft flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="bg-white p-4 rounded-2xl border border-charcoal/10 shadow-soft flex flex-col md:flex-row items-center justify-between gap-4">
 
                 {/* Search Input */}
                 <div className="relative w-full md:w-80">
@@ -386,7 +376,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
                     <select
                       value={selectedIssueFilter}
                       onChange={(e) => setSelectedIssueFilter(e.target.value)}
-                      className="w-full px-3 py-2 text-xs bg-forest/5 border border-forest/15 rounded-xl focus:border-forest focus:outline-none text-forest"
+                      className="w-full px-3 py-2 text-xs bg-forest/5 border border-forest/15 rounded-xl focus:border-forest focus:outline-none text-charcoal"
                     >
                       <option value="All">All Journal Issues</option>
                       {publishedIssues.map(iss => (
@@ -406,8 +396,8 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
                         key={cat}
                         onClick={() => setSelectedCategory(cat)}
                         className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition ${selectedCategory === cat
-                          ? 'bg-forest text-white shadow-soft'
-                          : 'bg-forest/5 text-forest hover:bg-forest/10 border border-forest/15'
+                          ? 'bg-[#1D4ED8] text-white shadow-soft'
+                          : 'bg-charcoal/5 text-charcoal hover:bg-charcoal/10 border border-charcoal/15'
                           }`}
                       >
                         {cat}
@@ -455,7 +445,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
 
                       <div className="space-y-2">
                         <h3
-                          className="font-editorial text-xl font-bold text-forest leading-snug hover:text-emerald-deep transition-colors cursor-pointer"
+                          className="font-editorial text-xl font-bold text-charcoal leading-snug hover:text-[#1D4ED8] transition-colors cursor-pointer"
                           onClick={() => handleOpenArticleModal(art)}
                         >
                           {art.title}
@@ -477,7 +467,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
                           <div className="flex flex-wrap items-center gap-1.5 pt-1">
                             <span className="text-[11px] text-charcoal-muted font-bold mr-1">Keywords:</span>
                             {art.keywords.map((kw, i) => (
-                              <span key={i} className="text-[10px] bg-forest/5 text-forest border border-forest/10 px-2 py-0.5 rounded font-medium">
+                              <span key={i} className="text-[10px] bg-charcoal/5 text-charcoal border border-forest/10 px-2 py-0.5 rounded font-medium">
                                 #{kw}
                               </span>
                             ))}
@@ -490,7 +480,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
                         <div className="flex items-center space-x-2">
                           <button
                             onClick={() => handleDownloadPdf(art)}
-                            className="px-4 py-2 bg-forest hover:bg-emerald-deep text-white text-xs font-bold rounded-xl transition flex items-center space-x-1.5 shadow-soft"
+                            className="px-4 py-2 bg-[#1D4ED8] hover:bg-[#2563EA] text-white text-xs font-bold rounded-xl transition flex items-center space-x-1.5 shadow-soft"
                           >
                             <Download className="w-3.5 h-3.5 text-gold" />
                             <span>Download Full PDF</span>
@@ -498,7 +488,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
 
                           <button
                             onClick={() => handleCopyCitation(art)}
-                            className="px-3.5 py-2 bg-forest/5 hover:bg-forest/10 text-forest border border-forest/15 text-xs font-semibold rounded-xl transition flex items-center space-x-1.5"
+                            className="px-3.5 py-2 bg-charcoal/5 hover:bg-charcoal/10 text-charcoal border border-forest/15 text-xs font-semibold rounded-xl transition flex items-center space-x-1.5"
                           >
                             <Copy className="w-3.5 h-3.5 text-gold-dark" />
                             <span>Cite Article</span>
@@ -507,7 +497,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
 
                         <button
                           onClick={() => handleOpenArticleModal(art)}
-                          className="text-xs font-bold text-forest hover:text-gold-dark flex items-center space-x-1 transition"
+                          className="text-xs font-bold text-charcoal hover:text-gold-dark flex items-center space-x-1 transition"
                         >
                           <span>Read Full Details</span>
                           <ArrowRight className="w-3.5 h-3.5" />
@@ -527,40 +517,40 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
       {activeTab === 'info' && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <div className="bg-white rounded-3xl border border-forest/15 shadow-soft overflow-hidden">
-            <div className="p-6 bg-forest text-white flex flex-wrap gap-2 border-b border-gold/30">
+            <div className="p-6 bg-[#1D4ED8] text-white flex flex-wrap gap-2 border-b border-gold/30">
               <button
                 onClick={() => setInfoSubTab('aims')}
-                className={`px-3 py-2 rounded-lg transition text-xs font-semibold ${infoSubTab === 'aims' ? 'bg-gold text-forest font-bold shadow-sm' : 'text-sage-light hover:text-white hover:bg-forest-light/60'}`}
+                className={`px-3 py-2 rounded-lg transition text-xs font-semibold ${infoSubTab === 'aims' ? 'bg-white/90 text-charcoal font-bold shadow-sm' : 'text-sage-light hover:text-white hover:bg-charcoal/30'}`}
               >
                 Aims &amp; Scope
               </button>
               <button
                 onClick={() => setInfoSubTab('board')}
-                className={`px-3 py-2 rounded-lg transition text-xs font-semibold ${infoSubTab === 'board' ? 'bg-gold text-forest font-bold shadow-sm' : 'text-sage-light hover:text-white hover:bg-forest-light/60'}`}
+                className={`px-3 py-2 rounded-lg transition text-xs font-semibold ${infoSubTab === 'board' ? 'bg-white/90 text-charcoal font-bold shadow-sm' : 'text-sage-light hover:text-white hover:bg-charcoal/30'}`}
               >
                 Editorial Leadership
               </button>
               <button
                 onClick={() => setInfoSubTab('policy')}
-                className={`px-3 py-2 rounded-lg transition text-xs font-semibold ${infoSubTab === 'policy' ? 'bg-gold text-forest font-bold shadow-sm' : 'text-sage-light hover:text-white hover:bg-forest-light/60'}`}
+                className={`px-3 py-2 rounded-lg transition text-xs font-semibold ${infoSubTab === 'policy' ? 'bg-white/90 text-charcoal font-bold shadow-sm' : 'text-sage-light hover:text-white hover:bg-charcoal/30'}`}
               >
                 Editorial Policy
               </button>
               <button
                 onClick={() => setInfoSubTab('review')}
-                className={`px-3 py-2 rounded-lg transition text-xs font-semibold ${infoSubTab === 'review' ? 'bg-gold text-forest font-bold shadow-sm' : 'text-sage-light hover:text-white hover:bg-forest-light/60'}`}
+                className={`px-3 py-2 rounded-lg transition text-xs font-semibold ${infoSubTab === 'review' ? 'bg-white/90 text-charcoal font-bold shadow-sm' : 'text-sage-light hover:text-white hover:bg-charcoal/30'}`}
               >
                 Peer Review Process
               </button>
               <button
                 onClick={() => setInfoSubTab('ethics')}
-                className={`px-3 py-2 rounded-lg transition text-xs font-semibold ${infoSubTab === 'ethics' ? 'bg-gold text-forest font-bold shadow-sm' : 'text-sage-light hover:text-white hover:bg-forest-light/60'}`}
+                className={`px-3 py-2 rounded-lg transition text-xs font-semibold ${infoSubTab === 'ethics' ? 'bg-white/90 text-charcoal font-bold shadow-sm' : 'text-sage-light hover:text-white hover:bg-charcoal/30'}`}
               >
                 Publication Ethics (COPE)
               </button>
               <button
                 onClick={() => setInfoSubTab('guidelines')}
-                className={`px-3 py-2 rounded-lg transition text-xs font-semibold ${infoSubTab === 'guidelines' ? 'bg-gold text-forest font-bold shadow-sm' : 'text-sage-light hover:text-white hover:bg-forest-light/60'}`}
+                className={`px-3 py-2 rounded-lg transition text-xs font-semibold ${infoSubTab === 'guidelines' ? 'bg-white/90 text-charcoal font-bold shadow-sm' : 'text-sage-light hover:text-white hover:bg-charcoal/30'}`}
               >
                 Author Guidelines
               </button>
@@ -569,7 +559,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
             <div className="p-8 sm:p-12 space-y-6 text-sm text-charcoal-light leading-relaxed">
               {infoSubTab === 'aims' && (
                 <div className="space-y-4">
-                  <h3 className="font-editorial text-2xl font-bold text-forest">Aims &amp; Scope</h3>
+                  <h3 className="font-editorial text-2xl font-bold text-charcoal">Aims &amp; Scope</h3>
                   <p>
                     <strong>Tamweel: Journal of Islamic Economics and Finance</strong> is the official peer-reviewed research journal published by the Department of Islamic Economics and Finance under the Kulliyya of Sharia at Darul Huda Islamic University.
                   </p>
@@ -583,35 +573,35 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
                     <li><strong>Comparative policy analysis</strong> between conventional and Islamic finance</li>
                   </ul>
                   <div className="p-4 bg-forest/5 rounded-xl border border-forest/15 text-xs">
-                    <strong className="text-forest">Frequency:</strong> Bi-annual (May and October Issues) • Open Access Model (No author APC fees).
+                    <strong className="text-charcoal">Frequency:</strong> Bi-annual (May and October Issues) • Open Access Model (No author APC fees).
                   </div>
                 </div>
               )}
 
               {infoSubTab === 'board' && (
                 <div className="space-y-4">
-                  <h3 className="font-editorial text-2xl font-bold text-forest">Editorial Leadership</h3>
+                  <h3 className="font-editorial text-2xl font-bold text-charcoal">Editorial Leadership</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                     <div className="p-4 bg-forest/5 rounded-xl border border-forest/15">
-                      <div className="font-bold text-forest">Editor-in-Chief</div>
+                      <div className="font-bold text-charcoal">Editor-in-Chief</div>
                       <div className="text-xs text-charcoal-light">Anas Hudawi Nellikkuth (Head of Department)</div>
                       <div className="text-[11px] text-gold-dark mt-1">P.G. in Economics, Calicut University • DHIU</div>
                     </div>
                     <div className="p-4 bg-forest/5 rounded-xl border border-forest/15">
-                      <div className="font-bold text-forest">Academic Advisor &amp; Dean</div>
+                      <div className="font-bold text-charcoal">Academic Advisor &amp; Dean</div>
                       <div className="text-xs text-charcoal-light">Dr. K.P. Jafar Hudawi Kolathur (Dean, Kulliyya of Sharia)</div>
                       <div className="text-[11px] text-gold-dark mt-1">Ph.D. in Arabic • DHIU</div>
                     </div>
                     <div className="p-4 bg-forest/5 rounded-xl border border-forest/15">
-                      <div className="font-bold text-forest">Senior Academic Faculty Member</div>
+                      <div className="font-bold text-charcoal">Senior Academic Faculty Member</div>
                       <div className="text-xs text-charcoal-light">Dr. Rasheed</div>
                       <div className="text-[11px] text-gold-dark mt-1">Ph.D. in Economics, Calicut University</div>
                     </div>
                     <div className="p-4 bg-forest/5 rounded-xl border border-forest/15">
-                      <div className="font-bold text-forest">Managing Editor &amp; Secretariat</div>
+                      <div className="font-bold text-charcoal">Managing Editor &amp; Chairman</div>
                       <div className="text-xs text-charcoal-light">Department Research Working Group</div>
                       <div className="text-[11px] text-gold-dark mt-1">
-                        <a href="mailto:dief@dhiu.in" className="hover:underline text-forest font-semibold">dief@dhiu.in</a>
+                        <a href="mailto:dief@dhiu.in" className="hover:underline text-charcoal font-semibold">dief@dhiu.in</a>
                       </div>
                     </div>
                   </div>
@@ -620,7 +610,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
 
               {infoSubTab === 'policy' && (
                 <div className="space-y-4">
-                  <h3 className="font-editorial text-2xl font-bold text-forest">Editorial Policy</h3>
+                  <h3 className="font-editorial text-2xl font-bold text-charcoal">Editorial Policy</h3>
                   <p>
                     All submissions undergo initial editorial desk triage within 10 days to assess thematic fit, methodological rigor, and adherence to author guidelines. Articles meeting the preliminary threshold are forwarded for double-blind peer review.
                   </p>
@@ -632,7 +622,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
 
               {infoSubTab === 'review' && (
                 <div className="space-y-4">
-                  <h3 className="font-editorial text-2xl font-bold text-forest">Double-Blind Peer Review Process</h3>
+                  <h3 className="font-editorial text-2xl font-bold text-charcoal">Double-Blind Peer Review Process</h3>
                   <p>
                     To maintain strict objectivity, Tamweel implements a rigorous double-blind peer review protocol:
                   </p>
@@ -647,7 +637,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
 
               {infoSubTab === 'ethics' && (
                 <div className="space-y-4">
-                  <h3 className="font-editorial text-2xl font-bold text-forest">Publication Ethics</h3>
+                  <h3 className="font-editorial text-2xl font-bold text-charcoal">Publication Ethics</h3>
                   <p>
                     Tamweel strictly observes the ethical guidelines established by the Committee on Publication Ethics (COPE). Plagiarism, data fabrication, gift authorship, duplicate submissions, and undisclosed financial conflicts of interest result in immediate desk rejection and formal institutional notification.
                   </p>
@@ -656,7 +646,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
 
               {infoSubTab === 'guidelines' && (
                 <div className="space-y-4">
-                  <h3 className="font-editorial text-2xl font-bold text-forest">Author &amp; Submission Guidelines</h3>
+                  <h3 className="font-editorial text-2xl font-bold text-charcoal">Author &amp; Submission Guidelines</h3>
                   <ul className="space-y-2 text-xs sm:text-sm">
                     <li>• <strong>Word Count:</strong> 6,000 to 9,000 words (including abstract, references, and appendices).</li>
                     <li>• <strong>Abstract:</strong> 200–250 words summarizing research questions, methodology, and core findings.</li>
@@ -666,7 +656,7 @@ export const TamweelPage: React.FC<TamweelPageProps> = ({
                   <div className="pt-2 p-4 bg-forest/5 rounded-xl border border-forest/15 text-xs text-charcoal-light">
                     <p>
                       Manuscript submissions and editorial inquiries should be directed to the editorial office at{' '}
-                      <a href="mailto:dief@dhiu.in" className="text-forest font-bold hover:underline">
+                      <a href="mailto:dief@dhiu.in" className="text-charcoal font-bold hover:underline">
                         dief@dhiu.in
                       </a>. Please include your complete manuscript along with author affiliations and abstract.
                     </p>

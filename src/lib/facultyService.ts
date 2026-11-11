@@ -94,11 +94,11 @@ export async function fetchFacultyCategories(): Promise<FacultyCategory[]> {
 
   // Fallback matching migration seed
   return [
-    { id: 'fcat-1', name: 'Head of Department',   slug: 'head-of-department',  display_order: 1 },
-    { id: 'fcat-2', name: 'Faculty Members',       slug: 'faculty-members',     display_order: 2 },
-    { id: 'fcat-3', name: 'Visiting Faculty',      slug: 'visiting-faculty',    display_order: 3 },
-    { id: 'fcat-4', name: 'Research Associates',   slug: 'research-associates', display_order: 4 },
-    { id: 'fcat-5', name: 'Administrative Staff',  slug: 'administrative-staff',display_order: 5 }
+    { id: 'fcat-1', name: 'Head of Department', slug: 'head-of-department', display_order: 1 },
+    { id: 'fcat-2', name: 'Faculty Member', slug: 'faculty-member', display_order: 2 },
+    { id: 'fcat-3', name: 'Visiting Faculty', slug: 'visiting-faculty', display_order: 3 },
+    { id: 'fcat-4', name: 'Research Associates', slug: 'research-associates', display_order: 4 },
+    { id: 'fcat-5', name: 'Administrative Staff', slug: 'administrative-staff', display_order: 5 }
   ];
 }
 
@@ -132,10 +132,10 @@ export async function deleteFacultyCategory(id: string): Promise<void> {
 // ==============================================================================
 export async function fetchFacultyDashboardStats(): Promise<FacultyDashboardStats> {
   try {
-    const { count: total }     = await supabase.from('faculty_profiles').select('*', { count: 'exact', head: true });
+    const { count: total } = await supabase.from('faculty_profiles').select('*', { count: 'exact', head: true });
     const { count: published } = await supabase.from('faculty_profiles').select('*', { count: 'exact', head: true }).eq('status', 'Published');
-    const { count: draft }     = await supabase.from('faculty_profiles').select('*', { count: 'exact', head: true }).eq('status', 'Draft');
-    const { count: archived }  = await supabase.from('faculty_profiles').select('*', { count: 'exact', head: true }).eq('status', 'Archived');
+    const { count: draft } = await supabase.from('faculty_profiles').select('*', { count: 'exact', head: true }).eq('status', 'Draft');
+    const { count: archived } = await supabase.from('faculty_profiles').select('*', { count: 'exact', head: true }).eq('status', 'Archived');
 
     const { data: recentData } = await supabase
       .from('faculty_profiles')
@@ -144,11 +144,11 @@ export async function fetchFacultyDashboardStats(): Promise<FacultyDashboardStat
       .limit(5);
 
     return {
-      total:     total     || 0,
+      total: total || 0,
       published: published || 0,
-      draft:     draft     || 0,
-      archived:  archived  || 0,
-      recent:    (recentData as FacultyProfile[]) || []
+      draft: draft || 0,
+      archived: archived || 0,
+      recent: (recentData as FacultyProfile[]) || []
     };
   } catch (err) {
     console.warn('[FacultyService] fetchFacultyDashboardStats failed:', err);
@@ -184,7 +184,7 @@ export async function fetchAdminFacultyProfiles(
       query = query.or(`full_name.ilike.%${q}%,designation.ilike.%${q}%,specializations.ilike.%${q}%,research_interests.ilike.%${q}%`);
     }
 
-    const sortCol   = filter.sortBy    || 'display_order';
+    const sortCol = filter.sortBy || 'display_order';
     const ascending = (filter.sortOrder || 'asc') === 'asc';
     query = query.order(sortCol, { ascending });
 
@@ -241,25 +241,25 @@ export async function createFacultyProfile(
   }
 
   const payload = {
-    full_name:          input.full_name.trim(),
-    designation:        input.designation.trim(),
-    department:         input.department.trim(),
-    category_id:        input.category_id  || null,
-    category_name:      input.category_name.trim(),
-    employment_type:    input.employment_type?.trim()  || null,
-    photo_url:          photoUrl,
-    short_bio:          input.short_bio?.trim()        || null,
-    full_bio:           input.full_bio?.trim()         || null,
-    qualifications:     input.qualifications?.trim()   || null,
-    specializations:    input.specializations?.trim()  || null,
+    full_name: input.full_name.trim(),
+    designation: input.designation.trim(),
+    department: input.department.trim(),
+    category_id: input.category_id || null,
+    category_name: input.category_name.trim(),
+    employment_type: input.employment_type?.trim() || null,
+    photo_url: photoUrl,
+    short_bio: input.short_bio?.trim() || null,
+    full_bio: input.full_bio?.trim() || null,
+    qualifications: input.qualifications?.trim() || null,
+    specializations: input.specializations?.trim() || null,
     research_interests: input.research_interests?.trim() || null,
-    publications:       input.publications?.trim()     || null,
-    email:              input.email?.trim()            || null,
-    office_info:        input.office_info?.trim()      || null,
-    profile_links:      input.profile_links?.trim()    || null,
-    display_order:      input.display_order,
-    status:             input.status,
-    created_by:         user?.id || null
+    publications: input.publications?.trim() || null,
+    email: input.email?.trim() || null,
+    office_info: input.office_info?.trim() || null,
+    profile_links: input.profile_links?.trim() || null,
+    display_order: input.display_order,
+    status: input.status,
+    created_by: user?.id || null
   };
 
   const { data, error } = await supabase
@@ -298,8 +298,8 @@ export async function updateFacultyProfile(
 
   const payload: Record<string, any> = {
     ...updates,
-    photo_url:   photoUrl,
-    updated_at:  new Date().toISOString()
+    photo_url: photoUrl,
+    updated_at: new Date().toISOString()
   };
 
   // Trim text fields
@@ -449,7 +449,7 @@ function getVerifiedSeedFaculty(): FacultyProfile[] {
       full_name: 'Dr. K.P. Jafar Hudawi Kolathur',
       designation: 'Dean of Kulliyya of Sharia',
       department: 'Kulliyya of Sharia, Darul Huda Islamic University',
-      category_name: 'Faculty Members',
+      category_name: 'Faculty Member',
       employment_type: 'Full-time',
       photo_url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80',
       short_bio: 'Dean of the Kulliyya of Sharia and former Head of the Department of Islamic Economics and Finance.',
@@ -468,7 +468,7 @@ function getVerifiedSeedFaculty(): FacultyProfile[] {
       full_name: 'Dr. Rasheed',
       designation: 'Faculty Member',
       department: 'Department of Islamic Economics and Finance',
-      category_name: 'Faculty Members',
+      category_name: 'Faculty Member',
       employment_type: 'Full-time',
       photo_url: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80',
       short_bio: 'Faculty member specialising in comparative economic systems and monetary economics.',
@@ -487,7 +487,7 @@ function getVerifiedSeedFaculty(): FacultyProfile[] {
       full_name: 'K.C. Muhammed Baqawi',
       designation: 'Founding Department Leader',
       department: 'Department of Islamic Economics and Finance',
-      category_name: 'Faculty Members',
+      category_name: 'Faculty Member',
       employment_type: 'Full-time',
       photo_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
       short_bio: 'Founding leader of the department, scholar of Islamic sciences and classical jurisprudence.',

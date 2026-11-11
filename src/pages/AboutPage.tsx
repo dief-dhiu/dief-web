@@ -58,8 +58,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
 
       {/* HEADER BANNER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden shadow-2xl border-2 border-gold/40">
-          <div className="absolute inset-0 pattern-dark-islamic opacity-30 pointer-events-none"></div>
+        <div className="bg-[#1D4ED8] rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden shadow-2xl border-2 border-gold/40">
 
           <div className="relative z-10 max-w-4xl space-y-4">
             <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gold/20 text-gold text-xs font-semibold border border-gold/30">
@@ -86,7 +85,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
 
               <span>Academic Environment</span>
             </div>
-            <h2 className="text-3xl font-editorial font-bold text-forest leading-tight">
+            <h2 className="text-3xl font-editorial font-bold text-charcoal leading-tight">
               A Beacon of Educational Excellence
             </h2>
             <div className="text-sm sm:text-base text-charcoal-light space-y-4 leading-relaxed">
@@ -103,15 +102,15 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
           </div>
 
           <div className="lg:col-span-6">
-            <div className="relative rounded-2xl overflow-hidden shadow-elevated border border-forest/15 aspect-[4/3]">
+            <div className="relative rounded-2xl overflow-hidden shadow-elevated border border-charcoal/15 aspect-[4/3]">
               <img
-                src="/IF Logo Web.jpg"
+                src="/IF Logo Web (2).jpg"
                 alt="Scholars and students in academic discussion"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest/80 via-transparent to-transparent"></div>
-              <div className="absolute bottom-4 left-4 right-4 text-white text-xs p-3.5 bg-forest/90 backdrop-blur-md rounded-xl border border-gold/30">
-                <span className="font-bold text-gold">Kulliyya of Sharia Mandate:</span> Blending the classical scholarship of Islam with the dynamics of the global financial system.
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent"></div>
+              <div className="absolute bottom-4 left-4 right-4 text-white text-xs p-3.5 bg-white/90 backdrop-blur-md rounded-xl border border-gold/30">
+                <span className="font-bold text-gold">Kulliyya of Sharia Mandate:</span> <span className='text-charcoal'>Blending the classical scholarship of Islam with the dynamics of the global financial system.</span>
               </div>
             </div>
           </div>
@@ -126,7 +125,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
 
               <span>Origins &amp; Growth</span>
             </div>
-            <h2 className="text-3xl font-editorial font-bold text-forest">
+            <h2 className="text-3xl font-editorial font-bold text-charcoal">
               History and Legacy of the Department
             </h2>
             <p className="text-sm text-charcoal-light leading-relaxed">
@@ -137,33 +136,33 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white p-6 rounded-2xl border border-forest/10 shadow-soft space-y-3">
               <span className="text-xs font-bold text-gold-dark uppercase tracking-wider">Phase 01</span>
-              <h4 className="font-editorial text-lg font-bold text-forest">Origins &amp; Early Development</h4>
+              <h4 className="font-editorial text-lg font-bold text-charcoal">Origins &amp; Early Development</h4>
               <p className="text-xs text-charcoal-muted leading-relaxed">
                 Initially focused on the <em>Fiqh of Mu’amalat</em> — the jurisprudence of financial transactions in Islam — laying a solid jurisprudential foundation for students.
               </p>
-              <div className="pt-2 text-[11px] font-semibold text-forest border-t border-gray-100">
+              <div className="pt-2 text-[11px] font-semibold text-charcoal border-t border-gray-100">
                 Led by K.C. Muhammed Baqawi (Classical Fiqh-based economic insights).
               </div>
             </div>
 
             <div className="bg-white p-6 rounded-2xl border border-forest/10 shadow-soft space-y-3">
               <span className="text-xs font-bold text-gold-dark uppercase tracking-wider">Phase 02</span>
-              <h4 className="font-editorial text-lg font-bold text-forest">Systematization &amp; Curricular Expansion</h4>
+              <h4 className="font-editorial text-lg font-bold text-charcoal">Systematization &amp; Curricular Expansion</h4>
               <p className="text-xs text-charcoal-muted leading-relaxed">
                 The structure and curriculum were later systematized and expanded under the leadership of Dr. K.P. Jafar Hudawi Kolathur, who envisioned a specialized academic model for Islamic economics and finance that integrates theory with applied practices.
               </p>
-              <div className="pt-2 text-[11px] font-semibold text-forest border-t border-gray-100">
+              <div className="pt-2 text-[11px] font-semibold text-charcoal border-t border-gray-100">
                 Under Dr. K.P. Jafar Hudawi Kolathur (Dean, Kulliyya of Sharia).
               </div>
             </div>
 
             <div className="bg-white p-6 rounded-2xl border border-forest/10 shadow-soft space-y-3">
               <span className="text-xs font-bold text-gold-dark uppercase tracking-wider">Phase 03</span>
-              <h4 className="font-editorial text-lg font-bold text-forest">Expansion &amp; Specialization</h4>
+              <h4 className="font-editorial text-lg font-bold text-charcoal">Expansion &amp; Specialization</h4>
               <p className="text-xs text-charcoal-muted leading-relaxed">
                 With continuous academic refinement, the department diversified into multiple areas of Islamic finance, offering elective specialization papers and fostering interdisciplinary research.
               </p>
-              <div className="pt-2 text-[11px] font-semibold text-forest border-t border-gray-100">
+              <div className="pt-2 text-[11px] font-semibold text-charcoal border-t border-gray-100">
                 Currently headed by Anas Hudawi Nellikkuth.
               </div>
             </div>
@@ -176,14 +175,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
           {/* Vision Card */}
-          <div className="bg-white rounded-2xl p-8 border border-forest/10 shadow-soft space-y-4">
-            <div className="w-12 h-12 rounded-xl bg-forest/5 text-forest flex items-center justify-center">
-              <Eye className="w-6 h-6 text-forest" />
+          <div className="bg-white rounded-2xl p-8 border border-charcoal/10 shadow-soft space-y-4">
+            <div className="w-12 h-12 rounded-xl bg-charcoal/5 text-[#1D4ED8] flex items-center justify-center">
+              <Eye className="w-6 h-6 text-[#1D4ED8]" />
             </div>
             <span className="text-[11px] font-bold text-gold-dark uppercase tracking-wider block">
               Official Vision Statement
             </span>
-            <h3 className="text-2xl font-editorial font-bold text-forest">
+            <h3 className="text-2xl font-editorial font-bold text-charcoal">
               Vision of the Department
             </h3>
             <p className="text-xs sm:text-sm text-charcoal-light leading-relaxed">
@@ -195,19 +194,19 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
           </div>
 
           {/* Mission Card */}
-          <div className="bg-white rounded-2xl p-8 border border-forest/10 shadow-soft space-y-4">
-            <div className="w-12 h-12 rounded-xl bg-forest/5 text-forest flex items-center justify-center">
-              <Target className="w-6 h-6 text-forest" />
+          <div className="bg-white rounded-2xl p-8 border border-charcoal/10 shadow-soft space-y-4">
+            <div className="w-12 h-12 rounded-xl bg-charcoal/5 text-[#1D4ED8] flex items-center justify-center">
+              <Target className="w-6 h-6 text-[#1D4ED8]" />
             </div>
             <span className="text-[11px] font-bold text-gold-dark uppercase tracking-wider block">
               Official Mission Statement
             </span>
-            <h3 className="text-2xl font-editorial font-bold text-forest">
+            <h3 className="text-2xl font-editorial font-bold text-charcoal">
               Mission of the Department
             </h3>
             <div className="space-y-4 text-xs sm:text-sm text-charcoal-light">
               <div>
-                <strong className="text-forest block mb-1">Our mission is to:</strong>
+                <strong className="text-charcoal block mb-1">Our mission is to:</strong>
                 <p className="mb-2">Develop a comprehensive Islamic educational framework for training future Islamic economists and finance experts who:</p>
                 <ul className="space-y-1.5 pl-4 list-disc text-xs text-charcoal-muted">
                   <li>Practice and propagate Islamic economic ideologies</li>
@@ -232,7 +231,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
 
       {/* 4. PHILOSOPHY OF THE DEPARTMENT */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
+        <div className="bg-[#1D4ED8] rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
           <div className="max-w-3xl space-y-2">
             <div className="inline-flex items-center space-x-2 text-xs font-bold text-gold uppercase tracking-wider">
 
@@ -247,7 +246,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
-            <div className="bg-forest-dark/90 rounded-2xl p-6 border border-gold/30 space-y-2">
+            <div className="bg-[#063497] rounded-2xl p-6 border border-gold/30 space-y-2">
               <span className="font-mono text-gold text-xs font-bold">01</span>
               <h4 className="font-editorial text-base font-bold text-white">Ultimate Source</h4>
               <p className="text-xs text-sage-light leading-relaxed">
@@ -255,7 +254,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
               </p>
             </div>
 
-            <div className="bg-forest-dark/90 rounded-2xl p-6 border border-gold/30 space-y-2">
+            <div className="bg-[#063497] rounded-2xl p-6 border border-gold/30 space-y-2">
               <span className="font-mono text-gold text-xs font-bold">02</span>
               <h4 className="font-editorial text-base font-bold text-white">Revelation &amp; Prophetic Guidance</h4>
               <p className="text-xs text-sage-light leading-relaxed">
@@ -263,7 +262,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
               </p>
             </div>
 
-            <div className="bg-forest-dark/90 rounded-2xl p-6 border border-gold/30 space-y-2">
+            <div className="bg-[#063497] rounded-2xl p-6 border border-gold/30 space-y-2">
               <span className="font-mono text-gold text-xs font-bold">03</span>
               <h4 className="font-editorial text-base font-bold text-white">Three Interrelated Goals</h4>
               <div className="text-xs text-sage-light space-y-1">
@@ -273,7 +272,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
               </div>
             </div>
 
-            <div className="bg-forest-dark/90 rounded-2xl p-6 border border-gold/30 space-y-2">
+            <div className="bg-[#063497] rounded-2xl p-6 border border-gold/30 space-y-2">
               <span className="font-mono text-gold text-xs font-bold">04</span>
               <h4 className="font-editorial text-base font-bold text-white">Progress of the Ummah</h4>
               <p className="text-xs text-sage-light leading-relaxed">
@@ -281,7 +280,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
               </p>
             </div>
 
-            <div className="bg-forest-dark/90 rounded-2xl p-6 border border-gold/30 space-y-2 sm:col-span-2">
+            <div className="bg-[#063497] rounded-2xl p-6 border border-gold/30 space-y-2 sm:col-span-2">
               <span className="font-mono text-gold text-xs font-bold">05</span>
               <h4 className="font-editorial text-base font-bold text-white">Integration with Modern Expertise</h4>
               <p className="text-xs text-sage-light leading-relaxed">
@@ -298,7 +297,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
           <span className="text-xs font-bold tracking-widest text-gold-dark uppercase font-sans">
             Formal Curricula
           </span>
-          <h2 className="text-3xl font-editorial font-bold text-forest">
+          <h2 className="text-3xl font-editorial font-bold text-charcoal">
             Academic Programs Overview
           </h2>
           <p className="text-xs sm:text-sm text-charcoal-muted">
@@ -314,7 +313,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
               <div className="inline-flex items-center space-x-2 text-[10px] font-bold text-gold-dark uppercase tracking-wider bg-gold/15 px-2.5 py-1 rounded">
                 Undergraduate
               </div>
-              <h3 className="font-editorial text-xl font-bold text-forest">
+              <h3 className="font-editorial text-xl font-bold text-charcoal">
                 Undergraduate Program (B.A.)
               </h3>
               <div className="space-y-2 text-xs text-charcoal-light">
@@ -329,12 +328,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
           </div>
 
           {/* M.A. Program */}
-          <div className="bg-white rounded-2xl border-2 border-forest p-7 shadow-elevated space-y-4 flex flex-col justify-between relative">
+          <div className="bg-white rounded-2xl border-2 border-[#1D4ED8] p-7 shadow-elevated space-y-4 flex flex-col justify-between relative">
             <div className="space-y-3">
-              <div className="inline-flex items-center space-x-2 text-[10px] font-bold text-white uppercase tracking-wider bg-forest px-2.5 py-1 rounded">
+              <div className="inline-flex items-center space-x-2 text-[10px] font-bold text-white uppercase tracking-wider bg-[#1D4ED8] px-2.5 py-1 rounded">
                 Flagship Postgraduate
               </div>
-              <h3 className="font-editorial text-xl font-bold text-forest">
+              <h3 className="font-editorial text-xl font-bold text-charcoal">
                 M.A. in Islamic Economics &amp; Finance
               </h3>
               <p className="text-xs text-charcoal-muted leading-relaxed">
@@ -342,7 +341,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
               </p>
 
               <div className="space-y-2 text-xs text-charcoal-light pt-2 border-t border-gray-100">
-                <div className="font-bold text-forest">Mandatory Core Papers:</div>
+                <div className="font-bold text-charcoal">Mandatory Core Papers:</div>
                 <ol className="list-decimal list-inside space-y-1 text-[11px] text-charcoal-muted pl-1">
                   <li>Principles of Islamic Economics and Finance</li>
                   <li>Islamic Economist’s Thought</li>
@@ -359,25 +358,25 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
                 </div>
               </div>
             </div>
-            <div className="pt-3 border-t border-gray-100 text-[11px] text-forest font-semibold">
+            <div className="pt-3 border-t border-gray-100 text-[11px] text-charcoal font-semibold">
               Focus: Islamic Economic World View, Banking Operations, Social Finance &amp; Maqasid.
             </div>
           </div>
 
           {/* Diploma & Certificate */}
-          <div className="bg-white rounded-2xl border border-forest/15 p-7 shadow-soft space-y-4 flex flex-col justify-between">
+          <div className="bg-white rounded-2xl border border-charcoal/15 p-7 shadow-soft space-y-4 flex flex-col justify-between">
             <div className="space-y-3">
               <div className="inline-flex items-center space-x-2 text-[10px] font-bold text-gold-dark uppercase tracking-wider bg-gold/15 px-2.5 py-1 rounded">
                 Executive &amp; Public
               </div>
-              <h3 className="font-editorial text-xl font-bold text-forest">
+              <h3 className="font-editorial text-xl font-bold text-charcoal">
                 Diploma &amp; Certificate Courses
               </h3>
               <p className="text-xs text-charcoal-muted leading-relaxed">
                 Short-term, public-facing programs offered in collaboration with <strong>CPET (Centre for Public Education and Training)</strong> at Darul Huda.
               </p>
               <div className="space-y-1.5 text-xs text-charcoal-light pt-2">
-                <div className="font-bold text-forest">Key Course Topics:</div>
+                <div className="font-bold text-charcoal">Key Course Topics:</div>
                 <ul className="list-disc list-inside space-y-1 text-[11px] text-charcoal-muted pl-1">
                   <li>Islamic Finance Fundamentals</li>
                   <li>Zakat Management &amp; Computation</li>
@@ -396,12 +395,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
 
       {/* 6. RESEARCH & PUBLICATIONS & ONGOING PROJECTS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="bg-surface-lightGreen/50 rounded-3xl p-8 sm:p-12 border border-forest/15 space-y-6">
+        <div className="bg-charcoal/5 rounded-3xl p-8 sm:p-12 border border-forest/15 space-y-6">
           <div className="max-w-3xl space-y-2">
             <span className="text-xs font-bold text-gold-dark uppercase tracking-wider">
               Intellectual Output
             </span>
-            <h2 className="text-3xl font-editorial font-bold text-forest">
+            <h2 className="text-3xl font-editorial font-bold text-charcoal">
               Research, Projects &amp; Publications
             </h2>
             <p className="text-xs sm:text-sm text-charcoal-light">
@@ -411,46 +410,45 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-soft space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-forest/5 text-forest flex items-center justify-center">
-                <Building2 className="w-5 h-5 text-forest" />
+              <div className="w-10 h-10 rounded-xl bg-chaarcoal/5 text-[#1D4ED8] flex items-center justify-center">
+                <Building2 className="w-5 h-5 text-[#1D4ED8]" />
               </div>
               <span className="text-[10px] font-bold text-gold-dark uppercase tracking-wider">Flagship Initiative</span>
-              <h4 className="font-editorial text-lg font-bold text-forest">CFSEI</h4>
+              <h4 className="font-editorial text-lg font-bold text-charcoal">CFSEI</h4>
               <p className="text-xs text-charcoal-muted leading-relaxed">
                 <strong>Center for Financial Sustainability of Educational Institutions:</strong> Focused on developing sustainable financial models for institutions that offer free education, rooted in Islamic social finance principles such as waqf, zakat, and sadaqah.
               </p>
             </div>
 
             <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-soft space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-forest/5 text-forest flex items-center justify-center">
-                <BookOpen className="w-5 h-5 text-forest" />
+              <div className="w-10 h-10 rounded-xl bg-charcoal/5 text-[#1D4ED8] flex items-center justify-center">
+                <BookOpen className="w-5 h-5 text-[#1D4ED8]" />
               </div>
               <span className="text-[10px] font-bold text-gold-dark uppercase tracking-wider">Academic Periodical</span>
-              <h4 className="font-editorial text-lg font-bold text-forest">Peer-Reviewed Research Journal</h4>
+              <h4 className="font-editorial text-lg font-bold text-charcoal">Peer-Reviewed Research Journal</h4>
               <p className="text-xs text-charcoal-muted leading-relaxed">
                 Dedicated to Islamic banking systems, halal investment frameworks, economic justice through Islamic social finance, and comparative policy analysis between conventional and Islamic finance.
               </p>
               <button
                 onClick={() => onNavigate('tamweel')}
-                className="text-xs font-bold text-forest hover:text-gold-dark flex items-center space-x-1 pt-1"
-              >
-                <span>View Tamweel Journal</span>
+                className="text-xs font-bold text-charcoal hover:text-gold-dark flex items-center space-x-1 pt-1"
+              > <span>View Tamweel Journal</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
 
             <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-soft space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-forest/5 text-forest flex items-center justify-center">
-                <Calendar className="w-5 h-5 text-forest" />
+              <div className="w-10 h-10 rounded-xl bg-charcoal/5 text-[#1D4ED8] flex items-center justify-center">
+                <Calendar className="w-5 h-5 text-[#1D4ED8]" />
               </div>
               <span className="text-[10px] font-bold text-gold-dark uppercase tracking-wider">Dialogue &amp; Awareness</span>
-              <h4 className="font-editorial text-lg font-bold text-forest">Academic Events</h4>
+              <h4 className="font-editorial text-lg font-bold text-charcoal">Academic Events</h4>
               <p className="text-xs text-charcoal-muted leading-relaxed">
                 Workshops, seminars, and public lectures are held throughout the year to strengthen academic dialogue and public awareness regarding ethical finance.
               </p>
               <button
                 onClick={() => onNavigate('activities')}
-                className="text-xs font-bold text-forest hover:text-gold-dark flex items-center space-x-1 pt-1"
+                className="text-xs font-bold text-charcoal hover:text-gold-dark flex items-center space-x-1 pt-1"
               >
                 <span>View Activities Archive</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -468,7 +466,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
 
               <span>International Network</span>
             </div>
-            <h2 className="text-3xl font-editorial font-bold text-forest mt-1">
+            <h2 className="text-3xl font-editorial font-bold text-charcoal mt-1">
               Global Collaborations
             </h2>
           </div>
@@ -478,9 +476,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-2xl p-6 border border-forest/10 shadow-soft space-y-2">
+          <div className="bg-white rounded-2xl p-6 border border-charcoal/10 shadow-soft space-y-2">
             <span className="text-xs font-bold text-gold-dark uppercase">Partner 01</span>
-            <h4 className="font-editorial text-lg font-bold text-forest">Department of Economics, IIUM</h4>
+            <h4 className="font-editorial text-lg font-bold text-charcoal">Department of Economics, IIUM</h4>
             <p className="text-xs text-charcoal-muted leading-relaxed">
               International Islamic University Malaysia (Kuala Lumpur). Collaboration covering joint conferences, curriculum exchanges, and visiting scholar seminars.
             </p>
@@ -488,7 +486,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
 
           <div className="bg-white rounded-2xl p-6 border border-forest/10 shadow-soft space-y-2">
             <span className="text-xs font-bold text-gold-dark uppercase">Partner 02</span>
-            <h4 className="font-editorial text-lg font-bold text-forest">INCEIF University, Kuala Lumpur</h4>
+            <h4 className="font-editorial text-lg font-bold text-charcoal">INCEIF University, Kuala Lumpur</h4>
             <p className="text-xs text-charcoal-muted leading-relaxed">
               International Centre for Education in Islamic Finance (INCEIF). Global curriculum benchmarks and collaborative research in Islamic banking and capital markets.
             </p>
@@ -496,7 +494,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
 
           <div className="bg-white rounded-2xl p-6 border border-forest/10 shadow-soft space-y-2">
             <span className="text-xs font-bold text-gold-dark uppercase">Partner 03</span>
-            <h4 className="font-editorial text-lg font-bold text-forest">Department of Economics, Calicut University</h4>
+            <h4 className="font-editorial text-lg font-bold text-charcoal">Department of Economics, Calicut University</h4>
             <p className="text-xs text-charcoal-muted leading-relaxed">
               Academic collaboration enabling regional econometrics research, thesis supervision, and comparative study of conventional and Islamic economics.
             </p>
@@ -506,12 +504,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
 
       {/* 8. FACULTY DIRECTORY & LEADERSHIP */}
       <section id="faculty-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="border-b border-forest/10 pb-4">
+        <div className="border-b border-charcoal/10 pb-4">
           <div className="inline-flex items-center space-x-1.5 text-xs font-bold text-gold-dark uppercase tracking-wider">
 
             <span>Academic Leadership</span>
           </div>
-          <h2 className="text-3xl font-editorial font-bold text-forest mt-1">
+          <h2 className="text-3xl font-editorial font-bold text-charcoal mt-1">
             Faculty Directory &amp; Department Leadership
           </h2>
           <p className="text-xs sm:text-sm text-charcoal-muted mt-1">
@@ -521,7 +519,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
 
         {facultyLoading ? (
           <div className="flex flex-col items-center justify-center py-16 text-charcoal-muted">
-            <Loader2 className="w-8 h-8 animate-spin text-forest mb-2" />
+            <Loader2 className="w-8 h-8 animate-spin text-charcoal mb-2" />
             <span className="text-sm">Loading faculty directory...</span>
           </div>
         ) : liveProfiles.length === 0 ? (
@@ -533,21 +531,21 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
             {liveProfiles.map((f) => (
               <div
                 key={f.id}
-                className="bg-white rounded-2xl border border-forest/10 p-6 shadow-soft hover:shadow-elevated transition-all flex flex-col justify-between space-y-4"
+                className="bg-white rounded-2xl border border-charcoal/10 p-6 shadow-soft hover:shadow-elevated transition-all flex flex-col justify-between space-y-4"
               >
                 <div className="space-y-4">
-                  <div className="w-16 h-16 rounded-xl overflow-hidden bg-forest/5 shrink-0 border border-gold/40 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-xl overflow-hidden bg-charcoal/5 shrink-0 border border-gold/40 flex items-center justify-center">
                     {f.photo_url ? (
                       <img src={f.photo_url} alt={f.full_name} className="w-full h-full object-cover" />
                     ) : (
-                      <UserCheck className="w-8 h-8 text-forest/40" />
+                      <UserCheck className="w-8 h-8 text-charcoal/40" />
                     )}
                   </div>
                   <div>
                     <span className="text-[10px] font-bold text-gold-dark uppercase tracking-wider bg-gold/15 px-2 py-0.5 rounded">
                       {f.category_name || f.designation}
                     </span>
-                    <h4 className="font-editorial text-base font-bold text-forest mt-1 leading-snug">
+                    <h4 className="font-editorial text-base font-bold text-charcoal mt-1 leading-snug">
                       {f.full_name}
                     </h4>
                     {f.designation && (
@@ -558,31 +556,31 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
                   <div className="space-y-1.5 text-xs text-charcoal-light border-t border-gray-100 pt-3">
                     {f.qualifications && (
                       <div>
-                        <strong className="text-forest">Qualification:</strong> {f.qualifications}
+                        <strong className="text-charcoal">Qualification:</strong> {f.qualifications}
                       </div>
                     )}
                     {f.specializations && (
                       <div>
-                        <strong className="text-forest">Specialization:</strong> {f.specializations}
+                        <strong className="text-charcoal">Specialization:</strong> {f.specializations}
                       </div>
                     )}
                     {f.office_info && (
-                      <div className="flex items-center space-x-1.5 text-forest font-semibold pt-1">
+                      <div className="flex items-center space-x-1.5 text-charcoal font-semibold pt-1">
                         <Phone className="w-3.5 h-3.5 text-gold shrink-0" />
                         <span>{f.office_info}</span>
                       </div>
                     )}
                     {f.email && (
                       <div>
-                        <strong className="text-forest">Email:</strong>{' '}
-                        <a href={`mailto:${f.email}`} className="font-mono text-forest hover:underline text-[11px]">{f.email}</a>
+                        <strong className="text-charcoal">Email:</strong>{' '}
+                        <a href={`mailto:${f.email}`} className="font-mono text-charcoal hover:underline text-[11px]">{f.email}</a>
                       </div>
                     )}
                   </div>
                 </div>
 
-                <div className="pt-2 text-[11px] text-charcoal-muted bg-forest/5 p-2.5 rounded-lg border border-forest/10 flex items-center justify-between">
-                  <span className="font-medium text-forest">{f.category_name || 'Faculty Member'}</span>
+                <div className="pt-2 text-[11px] text-charcoal-muted bg-charcoal/5 p-2.5 rounded-lg border border-charcoal/10 flex items-center justify-between">
+                  <span className="font-medium text-charcoal">{f.category_name || 'Faculty Member'}</span>
                   <IslamicStarIcon size={12} className="text-gold" />
                 </div>
               </div>
@@ -593,7 +591,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
 
       {/* 9. JOIN US CALLOUT & CONTACT BLOCK */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden shadow-2xl border-2 border-gold/40">
+        <div className="bg-[#1D4ED8] rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden shadow-2xl border-2 border-gold/40">
           <div className="space-y-3 max-w-2xl">
             <span className="text-xs font-bold text-gold uppercase tracking-wider">
               Join Our Academic Community
@@ -614,7 +612,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, faculty }) => 
           <div className="pt-4 flex flex-wrap items-center gap-4">
             <button
               onClick={() => onNavigate('contact')}
-              className="px-6 py-3.5 bg-gold hover:bg-gold-light text-forest font-bold text-xs sm:text-sm rounded-xl shadow-lg transition"
+              className="px-6 py-3.5 bg-gold hover:bg-gold-light text-charcoal font-bold text-xs sm:text-sm rounded-xl shadow-lg transition"
             >
               Contact Department
             </button>

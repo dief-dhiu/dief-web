@@ -146,8 +146,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
 
       {/* 1. HEADER BANNER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden shadow-2xl border-2 border-gold/40">
-          <div className="absolute inset-0 pattern-dark-islamic opacity-30 pointer-events-none"></div>
+        <div className="bg-[#1D4ED8] rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden shadow-2xl border-2 border-gold/40">
 
           <div className="relative z-10 max-w-3xl space-y-4">
             <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-gold/20 text-gold text-xs font-semibold border border-gold/30">
@@ -172,7 +171,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
       {featuredActivities.length > 0 && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-4">
-            <div className="flex items-center space-x-2 text-forest">
+            <div className="flex items-center space-x-2 text-charcoal">
 
               <h2 className="text-lg font-editorial font-bold">Featured Academic Highlights</h2>
             </div>
@@ -194,24 +193,24 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       ) : (
-                        <div className="w-full h-full flex flex-col items-center justify-center text-forest/40">
+                        <div className="w-full h-full flex flex-col items-center justify-center text-charcoal/40">
                           <Calendar className="w-12 h-12 mb-2" />
                           <span className="text-xs">DIEF Academic Event</span>
                         </div>
                       )}
 
                       <div className="absolute top-3 left-3 flex items-center space-x-2">
-                        <span className="bg-forest text-gold text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shadow">
+                        <span className="bg-[#1D4ED8] text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shadow">
                           {act.category_name}
                         </span>
-                        <span className="bg-amber-400 text-forest text-[10px] font-bold px-2 py-0.5 rounded shadow flex items-center space-x-1">
-                          <Star className="w-3 h-3 fill-forest" />
+                        <span className="bg-amber-400 text-charcoal text-[10px] font-bold px-2 py-0.5 rounded shadow flex items-center space-x-1">
+                          <Star className="w-3 h-3 fill-charcoal" />
                           <span>Featured</span>
                         </span>
                       </div>
 
                       {isUpcoming && (
-                        <div className="absolute top-3 right-3 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded shadow">
+                        <div className="absolute top-3 right-3 bg-charcoal/50 text-white text-[10px] font-bold px-2.5 py-1 rounded shadow">
                           Upcoming Event
                         </div>
                       )}
@@ -231,7 +230,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                           </span>
                         </div>
 
-                        <h3 className="font-editorial text-xl font-bold text-forest group-hover:text-gold transition-colors leading-snug">
+                        <h3 className="font-editorial text-xl font-bold text-charcoal group-hover:text-[#1D4ED8] transition-colors leading-snug">
                           {act.title}
                         </h3>
 
@@ -240,7 +239,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                         </p>
                       </div>
 
-                      <div className="pt-4 border-t border-forest/15 flex items-center justify-between text-xs font-bold text-forest group-hover:text-gold-dark transition">
+                      <div className="pt-4 border-t border-forest/15 flex items-center justify-between text-xs font-bold text-charcoal group-hover:text-gold-dark transition">
                         <span className="flex items-center space-x-1 text-muted">
                           <MapPin className="w-3.5 h-3.5 text-gold shrink-0" />
                           <span className="truncate max-w-[200px] sm:max-w-xs">{act.venue}</span>
@@ -273,7 +272,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search activities by topic, speaker, or venue..."
-                className="w-full pl-10 pr-4 py-2 text-xs bg-forest/5 border border-forest/15 rounded-xl focus:border-forest focus:outline-none font-medium text-forest placeholder:text-charcoal-muted"
+                className="w-full pl-10 pr-4 py-2 text-xs bg-forest/5 border border-forest/15 rounded-xl focus:border-forest focus:outline-none font-medium text-charcoal placeholder:text-charcoal-muted"
               />
             </div>
 
@@ -285,8 +284,8 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                   key={t}
                   onClick={() => setTimelineFilter(t)}
                   className={`px-3 py-1.5 rounded-lg transition text-xs font-semibold ${timelineFilter === t
-                    ? 'bg-forest text-white shadow-soft'
-                    : 'bg-forest/5 text-forest hover:bg-forest/10 border border-forest/15'
+                    ? 'bg-[#1D4ED8] text-white shadow-soft'
+                    : 'bg-charcoal/5 text-charcoal hover:bg-charcoal/10 border border-forest/15'
                     }`}
                 >
                   {t === 'All' ? 'All Activities' : t}
@@ -302,8 +301,8 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition text-xs font-semibold ${selectedCategory === cat
-                  ? 'bg-forest text-white shadow-soft'
-                  : 'bg-forest/5 text-forest hover:bg-forest/10 border border-forest/15'
+                  ? 'bg-[#1D4ED8] text-white shadow-soft'
+                  : 'bg-charcoal/5 text-charcoal hover:bg-charcoal/10 border border-forest/15'
                   }`}
               >
                 {cat}
@@ -323,8 +322,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
           </div>
         ) : filteredActivities.length === 0 ? (
           <div className="text-center py-16 bg-white rounded-3xl border border-gray-200 p-8 space-y-3">
-            <IslamicStarIcon size={36} className="mx-auto text-gold mb-1" />
-            <h3 className="font-editorial text-xl font-bold text-forest">No matching activities found</h3>
+            <h3 className="font-editorial text-xl font-bold text-charcoal">No matching activities found</h3>
             <p className="text-xs text-charcoal-muted max-w-sm mx-auto">
               No published events match your selected filters. Try choosing "All Activities" or adjusting your keywords.
             </p>
@@ -334,7 +332,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                 setTimelineFilter('All');
                 setSearchQuery('');
               }}
-              className="px-4 py-2 rounded-xl bg-forest text-white text-xs font-semibold hover:bg-emerald-deep transition-colors shadow-soft"
+              className="px-4 py-2 rounded-xl bg-[#1D4ED8] text-white text-xs font-semibold hover:bg-[#2563EA] transition-colors shadow-soft"
             >
               Reset Filters
             </button>
@@ -360,22 +358,22 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       ) : (
-                        <div className="w-full h-full flex flex-col items-center justify-center text-forest/40">
+                        <div className="w-full h-full flex flex-col items-center justify-center text-charcoal/40">
                           <ImageIcon className="w-8 h-8 mb-1" />
                           <span className="text-[10px]">Academic Event</span>
                         </div>
                       )}
 
-                      <div className="absolute top-3 left-3 bg-forest text-gold text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shadow">
+                      <div className="absolute top-3 left-3 bg-[#1D4ED8] text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shadow">
                         {act.category_name}
                       </div>
 
                       {isUpcoming ? (
-                        <div className="absolute top-3 right-3 bg-white/95 text-forest text-[10px] font-bold px-2 py-0.5 rounded shadow">
+                        <div className="absolute top-3 right-3 bg-white/95 text-charcoal text-[10px] font-bold px-2 py-0.5 rounded shadow">
                           Upcoming
                         </div>
                       ) : (
-                        <div className="absolute top-3 right-3 bg-forest-dark/80 text-white text-[10px] font-medium px-2 py-0.5 rounded shadow">
+                        <div className="absolute top-3 right-3 bg-charcoal/50 text-white text-[10px] font-medium px-2 py-0.5 rounded shadow">
                           Archive
                         </div>
                       )}
@@ -402,7 +400,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                         </span>
                       </div>
 
-                      <h3 className="font-editorial text-lg font-bold text-forest group-hover:text-gold transition-colors leading-snug line-clamp-2">
+                      <h3 className="font-editorial text-lg font-bold text-charcoal group-hover:text-[#1D4ED8] transition-colors leading-snug line-clamp-2">
                         {act.title}
                       </h3>
 
@@ -419,14 +417,14 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                         <span className="truncate">{act.venue}</span>
                       </div>
                       {act.speaker_details && (
-                        <div className="flex items-center space-x-1.5 text-forest font-medium truncate">
+                        <div className="flex items-center space-x-1.5 text-charcoal-muted font-medium truncate">
                           <User className="w-3 h-3 text-gold shrink-0" />
                           <span className="truncate">{act.speaker_details}</span>
                         </div>
                       )}
                     </div>
 
-                    <div className="pt-1 flex items-center justify-between text-xs font-bold text-forest group-hover:text-gold-dark transition">
+                    <div className="pt-1 flex items-center justify-between text-xs font-bold text-charcoal group-hover:text-gold-dark transition">
                       <span>View Event Details</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </div>
@@ -440,11 +438,11 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
 
       {/* 5. EVENT DETAIL MODAL */}
       {activeModalActivity && (
-        <div className="fixed inset-0 z-50 bg-forest-dark/80 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn">
+        <div className="fixed inset-0 z-50 bg-charcoal/80 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn">
           <div className="bg-white rounded-3xl max-w-3xl w-full max-h-[92vh] overflow-y-auto border border-gold/40 shadow-2xl relative overflow-hidden flex flex-col">
 
             {/* Modal Header / Banner */}
-            <div className="relative aspect-[16/9] w-full overflow-hidden bg-forest flex-shrink-0">
+            <div className="relative aspect-[16/9] w-full overflow-hidden bg-charcoal flex-shrink-0">
               {activeModalActivity.featured_image_url ? (
                 <img
                   src={activeModalActivity.featured_image_url}
@@ -458,7 +456,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                 </div>
               )}
 
-              <div className="absolute inset-0 bg-gradient-to-t from-forest/95 via-forest/40 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1D4ED8]/95 via-[#1D4ED8]/40 to-transparent"></div>
 
               <button
                 onClick={handleCloseActivityModal}
@@ -469,7 +467,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
 
               <div className="absolute bottom-4 left-6 right-6 text-white space-y-1.5">
                 <div className="flex items-center space-x-2">
-                  <span className="text-[10px] font-bold tracking-wider uppercase bg-gold text-forest px-2.5 py-0.5 rounded">
+                  <span className="text-[10px] font-bold tracking-wider uppercase bg-gold text-charcoal px-2.5 py-0.5 rounded">
                     {activeModalActivity.category_name}
                   </span>
                   {activeModalActivity.start_date >= today && (
@@ -529,7 +527,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
 
               {/* Descriptions */}
               <div className="space-y-3 text-xs sm:text-sm text-charcoal-light leading-relaxed">
-                <h4 className="font-editorial text-base font-bold text-forest">Session Overview</h4>
+                <h4 className="font-editorial text-base font-bold text-charcoal">Session Overview</h4>
                 <p className="bg-forest/5 p-4 rounded-xl border border-forest/15 font-medium text-charcoal">
                   {activeModalActivity.short_description}
                 </p>
@@ -543,7 +541,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
               {/* Photo Gallery if present */}
               {activeModalActivity.gallery && activeModalActivity.gallery.length > 0 && (
                 <div className="space-y-3 pt-2 border-t border-gray-100">
-                  <h4 className="font-editorial text-sm font-bold text-forest flex items-center space-x-1.5">
+                  <h4 className="font-editorial text-sm font-bold text-charcoal flex items-center space-x-1.5">
                     <ImageIcon className="w-4 h-4 text-gold" />
                     <span>Event Photo Chronicle ({activeModalActivity.gallery.length} Images)</span>
                   </h4>
@@ -572,7 +570,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
 
               {/* Contact Information */}
               {activeModalActivity.contact_info && (
-                <div className="flex items-center space-x-2 text-xs text-forest bg-forest/5 p-3 rounded-xl border border-forest/15">
+                <div className="flex items-center space-x-2 text-xs text-charcoal bg-charcoal/5 p-3 rounded-xl border border-charcoal/15">
                   <Phone className="w-3.5 h-3.5 text-gold shrink-0" />
                   <span><strong>Queries &amp; Contact:</strong> {activeModalActivity.contact_info}</span>
                 </div>
@@ -582,7 +580,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
               <div className="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3">
                 <button
                   onClick={() => onShowToast('Activity Saved', 'Dates bookmarked to your session.', 'info')}
-                  className="px-4 py-2 bg-forest/5 hover:bg-forest/10 text-forest border border-forest/15 rounded-xl text-xs font-semibold transition"
+                  className="px-4 py-2 bg-charcoal/5 hover:bg-charcoal/10 text-charcoal border border-charcoal/15 rounded-xl text-xs font-semibold transition"
                 >
                   Bookmark Event
                 </button>
@@ -593,7 +591,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                       href={activeModalActivity.registration_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center space-x-1.5 px-5 py-2.5 bg-forest hover:bg-emerald-deep text-white rounded-xl text-xs font-bold transition shadow-soft"
+                      className="inline-flex items-center space-x-1.5 px-5 py-2.5 bg-[#1D4ED8] hover:bg-[#2563EA] text-white rounded-xl text-xs font-bold transition shadow-soft"
                     >
                       <span>Register for Event</span>
                       <ExternalLink className="w-3.5 h-3.5 text-gold" />
@@ -604,7 +602,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({
                         handleCloseActivityModal();
                         onNavigate('contact');
                       }}
-                      className="px-5 py-2.5 bg-forest hover:bg-emerald-deep text-white rounded-xl text-xs font-bold transition shadow-soft"
+                      className="px-5 py-2.5 bg-[#1D4ED8] hover:bg-[#2563EA] text-white rounded-xl text-xs font-bold transition shadow-soft"
                     >
                       Inquire Attendance / Registration
                     </button>

@@ -66,8 +66,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
       {/* HEADER BANNER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
-          <div className="absolute inset-0 pattern-dark-islamic opacity-30 pointer-events-none"></div>
+        <div className="bg-[#1D4ED8] rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
 
           <div className="relative z-10 max-w-3xl space-y-4">
             <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gold/20 text-gold text-xs font-semibold border border-gold/30">
@@ -98,7 +97,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 <span className="text-xs font-bold text-gold-dark uppercase tracking-wider block">
                   Institutional Secretariat
                 </span>
-                <h3 className="font-editorial text-2xl font-bold text-forest mt-1">
+                <h3 className="font-editorial text-2xl font-bold text-charcoal mt-1">
                   Department Information
                 </h3>
 
@@ -109,7 +108,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 <div className="flex items-start space-x-3">
                   <MapPin className="w-5 h-5 text-gold shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-forest block mb-0.5">Physical Campus Location:</strong>
+                    <strong className="text-charcoal block mb-0.5">Physical Campus Location:</strong>
                     Department of Islamic Economics and Finance<br />
                     Under Kulliyya of Sharia, Darul Huda Islamic University<br />
                     Chemmad, Malappuram, Kerala – 676306, India
@@ -119,9 +118,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 <div className="flex items-start space-x-3">
                   <Mail className="w-5 h-5 text-gold shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-forest block mb-0.5">Official Email:</strong>
+                    <strong className="text-charcoal block mb-0.5">Official Email:</strong>
                     <div>
-                      <a href="mailto:dief@dhiu.in" className="font-mono text-forest font-semibold hover:underline">
+                      <a href="mailto:dief@dhiu.in" className="font-mono text-charcoal font-semibold hover:underline">
                         dief@dhiu.in
                       </a>
                     </div>
@@ -132,16 +131,16 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 <div className="flex items-start space-x-3">
                   <Phone className="w-5 h-5 text-gold shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-forest block mb-0.5">Contact Directory:</strong>
-                    <div>HOD (Anas Hudawi Nellikkuth): <span className="font-mono font-semibold text-forest">+91 81295 95547</span></div>
-                    <div>Dean, Kulliyya of Sharia (Dr. K.P. Jafar Hudawi Kolathur): <span className="font-mono font-semibold text-forest">+91 99462 92164</span></div>
+                    <strong className="text-charcoal block mb-0.5">Contact Directory:</strong>
+                    <div>HOD (Anas Hudawi Nellikkuth): <span className="font-mono font-semibold text-charcoal">+91 81295 95547</span></div>
+                    <div>Dean, Kulliyya of Sharia (Dr. K.P. Jafar Hudawi Kolathur): <span className="font-mono font-semibold text-charcoal">+91 99462 92164</span></div>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-3">
                   <Clock className="w-5 h-5 text-gold shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-forest block mb-0.5">Office Visiting Hours:</strong>
+                    <strong className="text-charcoal block mb-0.5">Office Visiting Hours:</strong>
                     Saturday – Thursday: 09:00 AM – 04:30 PM IST<br />
                     Friday: Academic Holiday / Research Recess
                   </div>
@@ -153,7 +152,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
             {/* Simulated Campus Google Maps Interactive Card */}
             <div className="bg-white rounded-2xl p-6 border border-forest/15 shadow-soft space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-forest uppercase tracking-wider">
+                <span className="text-xs font-bold text-charcoal uppercase tracking-wider">
                   Campus Geography &amp; Location Map
                 </span>
                 <span className="text-[11px] text-gold-dark font-medium">Google Maps Integration</span>
@@ -163,14 +162,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               <div className="relative rounded-xl overflow-hidden aspect-[16/9] border border-forest/15 bg-forest/5 flex items-center justify-center group">
                 <div className="absolute inset-0 pattern-islamic-subtle opacity-70"></div>
                 <div className="relative z-10 text-center p-4">
-                  <MapPin className="w-8 h-8 text-forest mx-auto mb-1 animate-bounce" />
-                  <div className="text-xs font-bold text-forest">Darul Huda Islamic University</div>
+                  <MapPin className="w-8 h-8 text-charcoal mx-auto mb-1 animate-bounce" />
+                  <div className="text-xs font-bold text-charcoal">Darul Huda Islamic University</div>
                   <div className="text-[10px] text-charcoal-muted">Chemmad, Malappuram District, Kerala</div>
                   <a
                     href="https://maps.google.com/?q=Darul+Huda+Islamic+University+Chemmad"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-3 inline-flex items-center space-x-1.5 px-3 py-1.5 bg-forest text-white rounded-lg text-[11px] font-semibold hover:bg-emerald-deep transition shadow-soft"
+                    className="mt-3 inline-flex items-center space-x-1.5 px-3 py-1.5 bg-[#1D4ED8] text-white rounded-lg text-[11px] font-semibold hover:bg-#2563EA transition shadow-soft"
                   >
                     <span>Open in Google Maps</span>
                     <ExternalLink className="w-3 h-3 text-gold" />
@@ -185,10 +184,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({
           <div className="lg:col-span-7 bg-white rounded-2xl p-8 sm:p-10 border border-forest/10 shadow-elevated">
             {submitted ? (
               <div className="py-12 text-center space-y-4 animate-fadeIn">
-                <div className="w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto">
+                <div className="w-16 h-16 bg-emerald-100 text-charcoal rounded-full flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="font-editorial text-2xl font-bold text-forest">
+                <h3 className="font-editorial text-2xl font-bold text-charcoal">
                   Enquiry Dispatched Successfully!
                 </h3>
                 <p className="text-xs sm:text-sm text-charcoal-light max-w-md mx-auto leading-relaxed">
@@ -203,7 +202,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       setSubject('');
                       setMessage('');
                     }}
-                    className="px-5 py-2.5 bg-forest text-white text-xs font-bold rounded-xl hover:bg-emerald-deep transition shadow-soft"
+                    className="px-5 py-2.5 bg-[#1D4ED8] text-white text-xs font-bold rounded-xl hover:bg-[#2563EA] transition shadow-soft"
                   >
                     Send Another Message
                   </button>
@@ -215,7 +214,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                   <span className="text-xs font-bold text-gold-dark uppercase tracking-wider">
                     Online Message Desk
                   </span>
-                  <h3 className="font-editorial text-2xl font-bold text-forest mt-1">
+                  <h3 className="font-editorial text-2xl font-bold text-charcoal mt-1">
                     Send a Direct Message
                   </h3>
                   <p className="text-xs text-charcoal-muted mt-1">
@@ -315,7 +314,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 bg-forest hover:bg-emerald-deep text-white font-semibold text-xs sm:text-sm rounded-xl shadow-soft transition flex items-center justify-center space-x-2"
+                  className="w-full py-3.5 bg-[#1D4ED8] hover:bg-[#2563EA] text-white font-semibold text-xs sm:text-sm rounded-xl shadow-soft transition flex items-center justify-center space-x-2"
                 >
                   <Send className="w-4 h-4 text-gold" />
                   <span>Send Message </span>

@@ -10,7 +10,15 @@
     background-color: #F7F6F0;
   }
 
-  h1, h2, h3, h4, h5, h6, .font-editorial, .font-serif, .font-display {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .font-editorial,
+  .font-serif,
+  .font-display {
     font-family: 'Source Serif 4', Georgia, serif;
     font-style: normal;
   }

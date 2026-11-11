@@ -35,7 +35,7 @@ export const IslamicPatternBand: React.FC<{ className?: string }> = ({ className
 );
 
 export const CrestLogo: React.FC<{ size?: number; className?: string }> = ({ size = 48, className = "" }) => (
-  <div 
+  <div
     style={{ width: size, height: size }}
     className={`relative flex items-center justify-center rounded-xl bg-white border border-gold/50 shadow-soft p-1.5 overflow-hidden shrink-0 group ${className}`}
   >
@@ -45,9 +45,9 @@ export const CrestLogo: React.FC<{ size?: number; className?: string }> = ({ siz
     <div className="absolute top-0.5 right-0.5 w-1.5 h-1.5 border-t border-r border-gold/70"></div>
     <div className="absolute bottom-0.5 left-0.5 w-1.5 h-1.5 border-b border-l border-gold/70"></div>
     <div className="absolute bottom-0.5 right-0.5 w-1.5 h-1.5 border-b border-r border-gold/70"></div>
-    <img 
-      src="/dief-logo.png" 
-      alt="Department of Islamic Economics and Finance Official Logo" 
+    <img
+      src="/dief-logo-blue.png"
+      alt="Department of Islamic Economics and Finance Official Logo"
       className="w-full h-full object-contain relative z-10 transition-transform duration-200 group-hover:scale-105"
     />
   </div>

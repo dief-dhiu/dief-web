@@ -25,9 +25,7 @@ export const DhibPage: React.FC<DhibPageProps> = ({ onNavigate, onShowToast }) =
 
       {/* 1. HERO & DHIB INTRODUCTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-forest rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
-          <div className="absolute inset-0 pattern-dark-islamic opacity-30 pointer-events-none"></div>
-
+        <div className="bg-[#1D4ED8] rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden border-2 border-gold/40 shadow-elevated">
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-4">
 
@@ -35,10 +33,9 @@ export const DhibPage: React.FC<DhibPageProps> = ({ onNavigate, onShowToast }) =
                 <Building2 className="w-3.5 h-3.5" />
                 <span>Department Flagship Initiative 01</span>
               </div>
-
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-editorial font-bold text-white tracking-tight">
                 DHIB <br />
-                <span className="text-gold">Darul Huda Islamic Bank</span>
+                <span className="text-xl sm:text-2xl font-editorial text-white font-semibold">Darul Huda Islamic Bank</span>
               </h1>
 
 
@@ -47,19 +44,11 @@ export const DhibPage: React.FC<DhibPageProps> = ({ onNavigate, onShowToast }) =
                 An innovative academic financial laboratory, exploratory sandbox, and community financial literacy platform dedicated to investigating, modeling, and demonstrating Shariah-compliant, interest-free banking paradigms.
               </p>
 
-              {/* MANDATORY LEGAL & OPERATIONAL STATUS DECLARATION */}
-              <div className="mt-4 p-4 rounded-xl bg-forest-dark/90 border border-gold/40 text-xs text-sage-light flex items-start space-x-3">
-
-                <div>
-                  <strong className="text-white block mb-0.5">Academic &amp; Operational Disclosure:</strong>
-                  DHIB is an institutional educational initiative and simulation sandbox established by the Department of Islamic Economics and Finance. It does <em>not</em> function as a commercial, state-licensed deposit-taking bank or provide regulated retail banking services.
-                </div>
-              </div>
 
               <div className="pt-2 flex flex-wrap gap-4">
                 <a
                   href="#principles"
-                  className="px-5 py-3 bg-gold hover:bg-gold-light text-forest font-bold text-xs rounded-xl shadow transition"
+                  className="px-5 py-3 bg-gold hover:bg-gold-light text-charcoal font-bold text-xs rounded-xl shadow transition"
                 >
                   Islamic Banking Principles
                 </a>
@@ -77,7 +66,7 @@ export const DhibPage: React.FC<DhibPageProps> = ({ onNavigate, onShowToast }) =
 
           <div className="bg-white p-8 rounded-2xl border border-forest/10 shadow-soft space-y-3">
             <span className="text-xs font-bold text-gold-dark uppercase tracking-wider">DHIB Vision</span>
-            <h3 className="text-2xl font-editorial font-bold text-forest">Pioneering Fair Financial Horizons</h3>
+            <h3 className="text-2xl font-editorial font-bold text-charcoal">Pioneering Fair Financial Horizons</h3>
             <p className="text-xs sm:text-sm text-charcoal-light leading-relaxed">
               To cultivate an authoritative, educational bridge between classical Islamic commercial ethics and modern monetary institutions, empowering students and community stakeholders with practical mastery of interest-free participatory banking.
             </p>
@@ -85,7 +74,7 @@ export const DhibPage: React.FC<DhibPageProps> = ({ onNavigate, onShowToast }) =
 
           <div className="bg-white p-8 rounded-2xl border border-forest/10 shadow-soft space-y-3">
             <span className="text-xs font-bold text-gold-dark uppercase tracking-wider">DHIB Mission</span>
-            <h3 className="text-2xl font-editorial font-bold text-forest">Hands-on Literacy &amp; Research</h3>
+            <h3 className="text-2xl font-editorial font-bold text-charcoal">Hands-on Literacy &amp; Research</h3>
             <p className="text-xs sm:text-sm text-charcoal-light leading-relaxed">
               Demystify Islamic banking mechanics through simulated branch workflows, publish educational consumer guides, evaluate AAOIFI governance standards, and promote public awareness on debt-free financial independence.
             </p>
@@ -100,7 +89,7 @@ export const DhibPage: React.FC<DhibPageProps> = ({ onNavigate, onShowToast }) =
           <span className="text-xs font-bold tracking-widest text-gold-dark uppercase font-sans">
             Doctrinal Core
           </span>
-          <h2 className="text-3xl font-editorial font-bold text-forest">
+          <h2 className="text-3xl font-editorial font-bold text-charcoal">
             Core Principles of Islamic Banking
           </h2>
           <p className="text-xs sm:text-sm text-charcoal-muted">
@@ -111,40 +100,40 @@ export const DhibPage: React.FC<DhibPageProps> = ({ onNavigate, onShowToast }) =
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
           <div className="bg-white p-6 rounded-2xl border border-forest/10 shadow-soft space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-forest text-gold flex items-center justify-center font-bold text-sm">
+            <div className="w-10 h-10 rounded-xl bg-[#1D4ED8] text-white flex items-center justify-center font-bold text-sm">
               01
             </div>
-            <h4 className="font-editorial text-lg font-bold text-forest">Prohibition of Riba (Interest/Usury)</h4>
+            <h4 className="font-editorial text-lg font-bold text-charcoal">Prohibition of Riba (Interest/Usury)</h4>
             <p className="text-xs text-charcoal-muted leading-relaxed">
               Money is a medium of exchange and measure of value, not an autonomous commodity. Guaranteed fixed increments charged on credit loans are strictly forbidden.
             </p>
           </div>
 
           <div className="bg-white p-6 rounded-2xl border border-forest/10 shadow-soft space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-forest text-gold flex items-center justify-center font-bold text-sm">
+            <div className="w-10 h-10 rounded-xl bg-[#1D4ED8] text-white flex items-center justify-center font-bold text-sm">
               02
             </div>
-            <h4 className="font-editorial text-lg font-bold text-forest">Elimination of Gharar &amp; Maysir</h4>
+            <h4 className="font-editorial text-lg font-bold text-charcoal">Elimination of Gharar &amp; Maysir</h4>
             <p className="text-xs text-charcoal-muted leading-relaxed">
               Zero tolerance for excessive uncertainty (Gharar) and pure gambling speculation (Maysir). Contracts require absolute transparency regarding terms, assets, and delivery.
             </p>
           </div>
 
           <div className="bg-white p-6 rounded-2xl border border-forest/10 shadow-soft space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-forest text-gold flex items-center justify-center font-bold text-sm">
+            <div className="w-10 h-10 rounded-xl bg-[#1D4ED8] text-white flex items-center justify-center font-bold text-sm">
               03
             </div>
-            <h4 className="font-editorial text-lg font-bold text-forest">Risk Sharing &amp; Partnership</h4>
+            <h4 className="font-editorial text-lg font-bold text-charcoal">Risk Sharing &amp; Partnership</h4>
             <p className="text-xs text-charcoal-muted leading-relaxed">
               Profits and losses must be shared in accordance with predetermined ratios (Al-Ghunm bi al-Ghurm). Capital cannot demand reward without bearing legitimate commercial risk.
             </p>
           </div>
 
           <div className="bg-white p-6 rounded-2xl border border-forest/10 shadow-soft space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-forest text-gold flex items-center justify-center font-bold text-sm">
+            <div className="w-10 h-10 rounded-xl bg-[#1D4ED8] text-white flex items-center justify-center font-bold text-sm">
               04
             </div>
-            <h4 className="font-editorial text-lg font-bold text-forest">Real Asset Backing</h4>
+            <h4 className="font-editorial text-lg font-bold text-charcoal">Real Asset Backing</h4>
             <p className="text-xs text-charcoal-muted leading-relaxed">
               Financial transactions must be intrinsically linked to identifiable, tangible economic goods, services, or usufruct, preventing synthetic leverage bubbles.
             </p>
@@ -155,24 +144,24 @@ export const DhibPage: React.FC<DhibPageProps> = ({ onNavigate, onShowToast }) =
 
       {/* 7 & 8. CONTACT DHIB */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-surface-lightGreen rounded-3xl p-8 sm:p-12 border border-forest/15 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="bg-charcoal/5 rounded-3xl p-8 sm:p-12 border border-charcoal/15 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2">
             <span className="text-xs font-bold text-gold-dark uppercase tracking-wider">
               Enquiries &amp; Academic Visits
             </span>
-            <h3 className="text-2xl font-editorial font-bold text-forest">
+            <h3 className="text-2xl font-editorial font-bold text-charcoal">
               Connect with the DHIB Working Group
             </h3>
             <p className="text-xs sm:text-sm text-charcoal-light max-w-xl">
               For student laboratory visits, guest workshops, and curricular exchange regarding Islamic banking literacy.
             </p>
             <div className="text-[11px] font-mono text-charcoal-muted pt-1">
-              Official Desk: <a href="mailto:dief@dhiu.in" className="hover:underline text-forest font-semibold">dief@dhiu.in</a>
+              Official Desk: <a href="mailto:dief@dhiu.in" className="hover:underline text-charcoal font-semibold">dief@dhiu.in</a>
             </div>
           </div>
           <button
             onClick={() => onNavigate('contact')}
-            className="px-6 py-3.5 bg-forest hover:bg-emerald-deep text-white font-semibold text-xs rounded-xl shadow transition shrink-0"
+            className="px-6 py-3.5 bg-[#1D4ED8] hover:bg-[#2563EA] text-white font-semibold text-xs rounded-xl shadow transition shrink-0"
           >
             Contact DHIB Coordinators
           </button>
